@@ -13,7 +13,18 @@ public class PlayerMovement : MonoBehaviour
     private float acceleration = 3.4f;
     private float deceleration = 5.5f;
     private float cureStamina = 0.83f;
+    protected string tagValue;
+
     private void Update()
+    {
+        Move();
+    }
+    public void SetTagValue(string newTagValue)
+    {
+        tagValue = newTagValue;
+    }
+
+    private void Move()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
 
@@ -56,8 +67,9 @@ public class PlayerMovement : MonoBehaviour
         {
             increaseSpeed = 0;
         }
-        Debug.Log(currentStamina);
     }
+
+    
 
 
 }
