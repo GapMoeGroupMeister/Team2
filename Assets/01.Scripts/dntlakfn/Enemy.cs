@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
 public abstract class Enemy : MonoBehaviour
 {
     protected Rigidbody2D rigid;
     public GameObject Player;
+
+    
 
     [SerializeField] protected float _speed;
     [SerializeField] protected int _hp;
@@ -18,6 +21,8 @@ public abstract class Enemy : MonoBehaviour
 
     [SerializeField] protected Transform _playerTransform;
     [SerializeField] protected EnemeyStatus _enemyStatus;
+    [SerializeField] protected Vector3 tlqkf;
+
 
 
     /* 해야할거
@@ -27,47 +32,54 @@ public abstract class Enemy : MonoBehaviour
      * Find 완성하기
      */
 
-
-
-
-    private void Update()
+    private void Start()
     {
-        Move(EnemeyStatus.Recon);
+        tlqkf = transform.position;
     }
 
 
-
+    [System.Obsolete]
     protected void Move(EnemeyStatus enemyStatus)
     {
-        switch (enemyStatus) 
+        switch (enemyStatus)
         {
             // 발견 했을 때
 
             case EnemeyStatus.Attack:
                 // 플래이어를 계속 쫒아다님
 
-                Vector2.MoveTowards(transform.position, new Vector2(Random.RandomRange(-10f, 10f), Random.RandomRange(-10f, 10f)), 10);
-                if(transform.position == Player.transform.position)
+                transform.position = Vector2.MoveTowards(transform.position, _playerTransform.position, _speed);
+                Debug.Log("됨");
+                if (Vector2.Distance(transform.position, Player.transform.position) <= _attackDistance)
                 {
-
+                    Attack();
                 }
                 break;
 
             // 정찰 중일 때
 
             case EnemeyStatus.Recon:
-                // 자기중심 20*20(임시) 크기의 구역을 랜덤으로 지정해서 돌아다님
+                // 자기중심 20*20(임시) 크기의 구역 안 에서 랜덤으로 지정해서 돌아다님
 
-                Vector2.MoveTowards(transform.position, new Vector2(Random.RandomRange(-10f, 10f), Random.RandomRange(-10f, 10f)), 10);
+                
+                if (transform.position == tlqkf)
+                {
+                    tlqkf = new Vector2(Random.RandomRange(-10f, 10f), Random.RandomRange(-10f, 10f));
+                }
+                
+                transform.position = Vector2.MoveTowards(transform.position, tlqkf, _speed);
+                
+                Debug.Log("발");
                 break;
 
             // 소리가 들렸을 때
 
             case EnemeyStatus.Suspicious:
-                // 현재 위치에서 소리가 난 위치로 이동, 3초동안 주변을 둘러봄
+                // 현재 위치에서 소리가 난 위치로 이동
 
-                Vector2.MoveTowards(transform.position, new Vector2(1, 1) , 10);
-                break;                                 /*소리 난 쪽 위치*/
+                transform.position = Vector2.MoveTowards(transform.position, new Vector2(1, 1), _speed);
+                                      /*소리 난 쪽 위치*/
+                break;
 
 
 
@@ -75,7 +87,7 @@ public abstract class Enemy : MonoBehaviour
 
 
         }
-        
+
     }
 
     protected void Damaged(int damage)
@@ -98,18 +110,11 @@ public abstract class Enemy : MonoBehaviour
 
         // 적 캐릭터에 해당하는 시체 생성
         // Instantiate()
+        Destroy(gameObject);
     }
 
     protected void Attack()
     {
-        // 플래이어에 근접하면
-        /*
-         * if()
-         * {
-         * 
-         * }
-         */
-
         // 공격 애니메이션
 
         // 플래이어 채력 가져와서 감소 시키기
@@ -120,15 +125,10 @@ public abstract class Enemy : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // 콜라이더 2개 써서 탐지 범위용, 피격용으로 사용
+   
 
-        if (collision.tag == "Player") 
-        {
-            _enemyStatus = EnemeyStatus.Attack;
-        }
-    }
+
+    
 
 
 
