@@ -321,8 +321,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
+  m_Offset: {x: -0.022573352, y: 0}
+  m_Size: {x: 1.5383747, y: 1.5383747}
   m_Direction: 0
 --- !u!1001 &868925545
 PrefabInstance:
@@ -376,6 +376,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scrap
       objectReference: {fileID: 0}
+    - target: {fileID: 4465070615679043033, guid: 5a4b9884e26ecdb44a090ba5bbeab664, type: 3}
+      propertyPath: Scrap
+      value: 
+      objectReference: {fileID: 4241059668766418947, guid: 5a4b9884e26ecdb44a090ba5bbeab664, type: 3}
+    - target: {fileID: 4465070615679043033, guid: 5a4b9884e26ecdb44a090ba5bbeab664, type: 3}
+      propertyPath: playerObject
+      value: 
+      objectReference: {fileID: 428887966}
     - target: {fileID: 5229685165524777765, guid: 5a4b9884e26ecdb44a090ba5bbeab664, type: 3}
       propertyPath: m_IsTrigger
       value: 1
