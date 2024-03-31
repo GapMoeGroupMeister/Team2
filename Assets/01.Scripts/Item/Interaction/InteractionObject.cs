@@ -14,12 +14,17 @@ public class InteractionObject : InteractionObjType
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void Update()
+    {
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             string tagValue = gameObject.tag;
-            Debug.Log(tagValue);
+            
 
             if (playerObject != null)
             {
@@ -27,7 +32,7 @@ public class InteractionObject : InteractionObjType
                 if (playerMovement != null)
                 {
                     playerMovement.SetTagValue(tagValue);
-                    
+                    Search();
                 }
                 
             }
@@ -38,5 +43,10 @@ public class InteractionObject : InteractionObjType
     protected override void Interaction()
     {
 
+    }
+
+    protected override void Search()
+    {
+        
     }
 }
