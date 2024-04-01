@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Scrap
+  - Body
+  - Door
+  - Cover
   layers:
   - Default
   - TransparentFX
