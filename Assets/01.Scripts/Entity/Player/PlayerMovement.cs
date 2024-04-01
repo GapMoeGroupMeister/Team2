@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -19,22 +17,13 @@ public class PlayerMovement : MonoBehaviour
     {
         Move();
     }
-    public void SetTagValue(string newTagValue)
-    {
-        tagValue = newTagValue;
-    }
 
     private void Move()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
-
-
-
-
         vertical = Input.GetAxisRaw("Vertical");
 
-        Vector3 MoveDir = new Vector3(horizontal, vertical, 0);
-        MoveDir.Normalize();
+        Vector3 MoveDir = new Vector3(horizontal, vertical, 0).normalized;
         
 
         if (Input.GetKey(KeyCode.LeftShift) && !(currentStamina <= 0))
@@ -43,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
             currentStamina -= 0.996f * Time.deltaTime;
             movespeed += increaseSpeed;
         }
-        else if (!(currentStamina >= fullStamina) && !(Input.GetKey(KeyCode.LeftShift)))
+        else if (!(currentStamina >= fullStamina) && !Input.GetKey(KeyCode.LeftShift))
         {
             currentStamina += cureStamina * Time.deltaTime;
         }
@@ -67,9 +56,11 @@ public class PlayerMovement : MonoBehaviour
         {
             increaseSpeed = 0;
         }
+
+        Debug.Log(currentStamina);
     }
 
-    
 
+   
 
 }

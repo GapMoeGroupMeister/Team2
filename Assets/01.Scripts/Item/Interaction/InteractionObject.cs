@@ -1,50 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class InteractionObject : InteractionObjType
 {
 
     private PlayerMovement Galahad;
-    public GameObject playerObject;
+    private PlayerMovement playerObject =null;
     public GameObject Scrap;
+
+    
 
     private void Awake()
     {
-        playerObject = GameObject.FindGameObjectWithTag("Player");
+        playerObject = FindObjectOfType<PlayerMovement>();
 
     }
 
     private void Update()
     {
-        
+        Search();
+        Interaction();
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            string tagValue = gameObject.tag;
-
-
-            if (playerObject != null)
-            {
-                PlayerMovement playerMovement = playerObject.GetComponent<PlayerMovement>();
-                if (playerMovement != null)
-                {
-                    playerMovement.SetTagValue(tagValue);
-                    Debug.Log(tagValue);
-
-                }
-
-            }
-
+            enable = true;
         }
     }
 
 
-    protected void Search()
+    protected virtual void Search()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -52,18 +38,41 @@ public class InteractionObject : InteractionObjType
 
             Collider2D coll = Physics2D.OverlapCircle(worldPoint, 0.5f);
 
-            if (coll == Scrap)
+            if (enable && coll != null)
             {
-                PickedUp();
+                makeSearch = true;
+            }
+
+            if (makeSearch == true)
+            {
+                Debug.Log(coll);
             }
         }
     }
 
-    
-    protected override void Interaction()
+    protected virtual void Interaction()
     {
+        if (Input.GetMouseButtonDown(1))
+        {
+            Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+            Collider2D coll = Physics2D.OverlapCircle(worldPoint, 0.5f);
+
+            if (enable && coll != null)
+            {
+                makeInteraction = true;
+            }
+
+            if (makeInteraction == true)
+            {
+                Debug.Log("Interaction" + coll);
+            }
+        }
     }
 
-    
+
+    protected override void PickedUp()
+    {
+        base.PickedUp();
+    }
 }

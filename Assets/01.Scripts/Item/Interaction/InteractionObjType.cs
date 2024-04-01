@@ -1,18 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class InteractionObjType : MonoBehaviour
 {
-
-    protected abstract void Interaction();
-
-    protected virtual void Search()
-    {
-        
-    }
-    
-
+    protected bool enable = false;
+    protected bool makeInteraction = false;
+    protected bool makeSearch = false;
+    protected bool searchScrap = false;
 
 
     protected virtual void PickedUp()
