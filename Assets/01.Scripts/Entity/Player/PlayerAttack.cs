@@ -32,12 +32,13 @@ public class PlayerAttack : MonoBehaviour
             StartCoroutine(Attack1());
 
         }
-        IEnumerator Attack1()
-        {
-            yield return new WaitForSeconds(0.3f);
-            isAttackAble = false;
+        
+    }
+    IEnumerator Attack1()
+    {
+        yield return new WaitForSeconds(0.3f);
+        isAttackAble = false;
 
-        }
     }
 
     protected void PlayerDefend()
@@ -48,12 +49,12 @@ public class PlayerAttack : MonoBehaviour
             Defend1();
             
         }
+    }
 
-        IEnumerator Defend1()
-        {
-            yield return new WaitForSeconds(0.3f);
-            isAttackAble = false;
-            gameObject.GetComponent<BoxCollider>().enabled = true;
-        }
+    IEnumerator Defend1()
+    {
+        yield return new WaitForSeconds(0.3f);
+        isAttackAble = false;
+        gameObject.GetComponent<BoxCollider>().enabled = true;
     }
 }
