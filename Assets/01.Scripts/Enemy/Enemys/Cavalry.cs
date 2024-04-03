@@ -6,6 +6,7 @@ public class Cavalry : Enemy
 {
     private void Start()
     {
+        _collider.size = new Vector2(_findDistance_x, _findDistance_y);
         _enemyStatus = EnemeyStatus.Recon;
     }
 
@@ -41,7 +42,7 @@ public class Cavalry : Enemy
     {
         if (!(collision.gameObject.tag == "Player"))
         {
-            tlqkf = new Vector2(Random.RandomRange(-10f, 10f), Random.RandomRange(-10f, 10f));
+            ReconRange = new Vector2(Random.RandomRange(-10f, 10f), Random.RandomRange(-10f, 10f));
         }
     }
 
