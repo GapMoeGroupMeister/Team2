@@ -4,7 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy_archers
+  - Scrap
+  - Body
+  - Door
+  - Cover
   layers:
   - Default
   - TransparentFX
