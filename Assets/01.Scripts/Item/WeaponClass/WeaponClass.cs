@@ -2,15 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponClass : MonoBehaviour
+public abstract class WeaponClass : MonoBehaviour
 {
-    public bool isSowrd;
-    public bool isSpear;
-    public bool isAxe;
-
-
-
+    public abstract void Attack();
 }
+
+
 
 /*
     - 검 :  빠름 / /사정거리 중간/ 공격범위 보통

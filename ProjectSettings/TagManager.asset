@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Axe
+  - Shield
+  - Sword
+  - Spare
+  - Bow
   layers:
   - Default
   - TransparentFX
