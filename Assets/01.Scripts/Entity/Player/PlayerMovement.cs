@@ -1,17 +1,8 @@
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : Player
 {
-    private float horizontal;
-    private float vertical;
-    private float movespeed = 5;
-    private float currentStamina = 20;
-    private float fullStamina = 20;
-    private float increaseSpeed;
-    private float acceleration = 3.4f;
-    private float deceleration = 5.5f;
-    private float cureStamina = 0.83f;
-    protected string tagValue;
+    
 
     private void Update()
     {
