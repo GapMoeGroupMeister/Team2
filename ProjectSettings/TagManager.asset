@@ -4,12 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
-  - Axe
-  - Shield
-  - Sword
-  - Spare
-  - Bow
+  - Scrap
+  - Body
+  - Door
+  - Cover
+  - CombatPlayer
   layers:
   - Default
   - TransparentFX
