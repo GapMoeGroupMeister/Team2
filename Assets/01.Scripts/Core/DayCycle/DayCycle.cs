@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class DayCycle : MonoBehaviour
 {
+    public GameObject playerPrefab;
+    public GameObject combatPlayerPrefab;
+    GameObject playerObj;
+    GameObject combatObj;
     public enum Time
     {
         Day, Night
@@ -16,6 +20,10 @@ public class DayCycle : MonoBehaviour
     private void Start()
     {
         theWorld = false;
+        playerObj = Instantiate(playerPrefab);
+        combatObj = Instantiate(combatPlayerPrefab);
+
+        combatObj.SetActive(false);
     }
 
     public bool TheWorld
@@ -35,6 +43,8 @@ public class DayCycle : MonoBehaviour
         {
             if (Hour > 4.2f)
             {
+                combatObj.SetActive(false);
+                playerObj.SetActive(true);
                 currentTime = ChangeDay(currentTime);
                 Hour = 0;
                 theWorld = true;
@@ -44,6 +54,8 @@ public class DayCycle : MonoBehaviour
         {
             if (Hour > 3f)
             {
+                combatObj.SetActive(true);
+                playerObj.SetActive(false);
                 currentTime = ChangeDay(currentTime);
                 Hour = 0;
                 theWorld = true;

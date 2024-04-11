@@ -1,10 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-public class PlayerStaminaUI : PlayerMovement
-{
 
-    public Slider staminaUi;
-    
+public class NewBehaviourScript : MonoBehaviour
+{
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +13,6 @@ public class PlayerStaminaUI : PlayerMovement
     // Update is called once per frame
     void Update()
     {
-        staminaUi.value = currentStamina / fullStamina;
+        
     }
 }
