@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    protected bool isAttackAble = false;
+    protected bool isAttackAble = true;
     protected Transform trans;
     protected Vector2 box;
 
@@ -17,7 +17,7 @@ public class PlayerAttack : MonoBehaviour
 
     protected void PlayersAttack()
     {
-        if (Input.GetMouseButtonDown(0) && !isAttackAble)
+        if (Input.GetMouseButtonDown(0) && isAttackAble)
         {
             Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(trans.position, box, 0);
             foreach (Collider2D collider in collider2Ds)
@@ -28,7 +28,7 @@ public class PlayerAttack : MonoBehaviour
                 }
             }
             animator.SetTrigger("Attack1");
-            isAttackAble = true;
+            isAttackAble = false;
             StartCoroutine(Attack1());
 
         }
