@@ -355,6 +355,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1391401763}
   - component: {fileID: 1391401762}
+  - component: {fileID: 1391401764}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -394,6 +395,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1391401764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391401761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0153ee5d1daf7e4486a466dd6ad7117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 97525578}
+  archerPrefab: {fileID: 1359420475927455222, guid: 3bbf5ddc75c562545a13ed2f775ae978, type: 3}
+  cavarlyPrefab: {fileID: 4083817515648105490, guid: f25c98779c9bee643804edbadd5ea2be, type: 3}
 --- !u!1 &1763248247
 GameObject:
   m_ObjectHideFlags: 0

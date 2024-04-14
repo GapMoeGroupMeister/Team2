@@ -9,7 +9,7 @@ public class DayTimer : MonoBehaviour
     private Slider Timer;
     private float remainTime;
 
-    private void start()
+    private void Start()
     {
         Timer = GetComponent<Slider>();
     }

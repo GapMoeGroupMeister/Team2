@@ -27,9 +27,7 @@ public class PlayerMovement : Player
             currentStamina += cureStamina * Time.deltaTime;
         }
 
-
         transform.position += MoveDir * movespeed * Time.deltaTime;
-
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
