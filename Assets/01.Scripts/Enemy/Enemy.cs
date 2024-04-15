@@ -163,20 +163,6 @@ public abstract class Enemy : MonoBehaviour
 
 
 
-
-
-
-
-
-
-    
-
-    
-
-
-
-
-
     protected enum EnemeyStatus
     {
         Attack, Recon, Suspicious

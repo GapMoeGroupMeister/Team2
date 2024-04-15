@@ -2,7 +2,10 @@ using UnityEngine;
 
 public abstract class WeaponClass : MonoBehaviour
 {
-    public abstract void Attack();
+    public abstract int WeaponDamage(float damage);
+    public abstract int WeaponCooltime(int cooltime);
+
+
 }
 
 
