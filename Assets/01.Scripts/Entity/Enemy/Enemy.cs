@@ -12,6 +12,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected GameObject Arrow;
 
     [SerializeField] protected float _speed;
+    [SerializeField] protected int _maxHp;
     [SerializeField] protected int _hp;
     [SerializeField] protected int _defense;
     [SerializeField] protected int _damage;
@@ -19,7 +20,6 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected int _attackSpeed;
     [SerializeField] protected int _findDistance_x;
     [SerializeField] protected int _findDistance_y;
-
     [SerializeField] protected Transform _playerTransform;
     [SerializeField] protected EnemeyStatus _enemyStatus;
     [SerializeField] protected Vector3 ReconRange;
@@ -36,13 +36,14 @@ public abstract class Enemy : MonoBehaviour
 
     private void Awake()
     {
+        
         _collider = GetComponent<BoxCollider2D>();
         Player = GameObject.Find("Player");
         _playerTransform = GameObject.Find("Player").transform;
     }
     private void Start()
     {
-
+        
         ReconRange = transform.position;
     }
 
@@ -138,9 +139,9 @@ public abstract class Enemy : MonoBehaviour
     protected void Attack()
     {
 
-        if(Physics2D.Raycast(transform.position, tlqk.normalized, 1))
+        if(Physics2D.Raycast(transform.position, tlqk.normalized, _attackDistance))
         {
-
+            Physics2D.Raycast(transform.position, tlqk.normalized, _attackDistance).collider.gameObject.GetComponent<HealthSytem>()?.SetHP(0 /*데미지*/);
         }
         
         // 공격 애니메이션

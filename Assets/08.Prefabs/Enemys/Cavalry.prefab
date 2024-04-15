@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1647929875857419033}
   - component: {fileID: 3871219448304418280}
   - component: {fileID: 5898982645314243091}
+  - component: {fileID: -1603222673739650798}
   m_Layer: 0
   m_Name: Cavalry
   m_TagString: Untagged
@@ -147,7 +148,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -171,10 +172,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27ad3bdafa1aeac4eb912acef9d2d327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rigid: {fileID: 3871219448304418280}
   _collider: {fileID: 1647929875857419033}
   Player: {fileID: 0}
   Arrow: {fileID: 0}
   _speed: 0.1
+  _maxHp: 0
   _hp: 0
   _defense: 0
   _damage: 0
@@ -182,7 +185,36 @@ MonoBehaviour:
   _attackSpeed: 0
   _findDistance_x: 15
   _findDistance_y: 15
+  healthSytem: {fileID: 0}
   _playerTransform: {fileID: 0}
   _enemyStatus: 0
   ReconRange: {x: 0, y: 0, z: 0}
   tlqk: {x: 0, y: 0}
+--- !u!114 &-1603222673739650798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4083817515648105490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93d97cd78138c4b448d2df45f2e3757c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnHpChangedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -1603222673739650798}
+        m_TargetAssemblyTypeName: HealthSytem, Assembly-CSharp
+        m_MethodName: set_HP
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _hp: 0
