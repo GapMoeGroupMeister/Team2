@@ -23,8 +23,8 @@ public class Cavalry : Enemy
     private void OnTriggerEnter2D(Collider2D collision)
     {
         StopCoroutine("Wait");
-        // Äİ¶óÀÌ´õ 2°³ ½á¼­ Å½Áö¿ë, ÇÇ°İ¿ëÀ¸·Î »ç¿ë
-        Debug.Log("µÊ");
+        // ì½œë¼ì´ë” 2ê°œ ì¨ì„œ íƒì§€ìš©, í”¼ê²©ìš©ìœ¼ë¡œ ì‚¬ìš©
+        Debug.Log("ë¨");
         if (collision.gameObject.tag == "Player")
         {
             _enemyStatus = EnemeyStatus.Attack;
