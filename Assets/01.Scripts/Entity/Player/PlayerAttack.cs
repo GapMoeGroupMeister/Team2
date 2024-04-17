@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    public static WeaponManager weaponManager = new WeaponManager();
     public bool isAttackAble = false;
     protected Transform trans;
     protected Vector2 box;
+    protected int nowWeapon = weaponManager.NowWeapon;
 
     Animator animator;
 
@@ -24,7 +26,14 @@ public class PlayerAttack : MonoBehaviour
             {
                 if (collider.CompareTag("Enemy"))
                 {
+                    switch (nowWeapon)
+                    {
+                        case 4:
+                            //창 공격 불러오기
+                            break;
 
+                        // 이제 쭉 case 추가하면서 공격 하나하나 추가하면 될 거 같은
+                    }
                 }
             }
             animator.SetTrigger("Attack1");
