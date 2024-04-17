@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7192323287695918710}
   - component: {fileID: 8878341544012886221}
   - component: {fileID: 1604758105453617528}
+  - component: {fileID: 8974881230941832590}
   m_Layer: 0
   m_Name: Spear
   m_TagString: Spare
@@ -130,3 +131,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &8974881230941832590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478284113788084299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1700981c5cff4414993af479a270be15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sword: {fileID: 1478284113788084299, guid: 6a58cacea56f5454f85a7331916f666e, type: 3}
+  spear: {fileID: 1478284113788084299}
+  axe: {fileID: 1478284113788084299, guid: 3321f8e868ca29549bb6bf5aee80803b, type: 3}
+  blunt: {fileID: 0}
+  bow: {fileID: 1478284113788084299, guid: 54df9213af65fd64ea424675f55a8bc2, type: 3}
+  player: {fileID: 4661358808514894030, guid: 009f0ff0af583264889bbaf5f2ae9a5d, type: 3}
+  weapon: {fileID: 1478284113788084299}
+  nowWeapon: 0
+  _spearRange: 4.2
+  _spearAttackSpeed: 0.8

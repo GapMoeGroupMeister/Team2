@@ -10,6 +10,7 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] protected GameObject blunt;
     [SerializeField] protected GameObject bow;
     [SerializeField] protected GameObject player;
+    [SerializeField] protected GameObject weapon;
     [SerializeField] protected int nowWeapon = 0;
     public static PlayerMovement playerMovement = new PlayerMovement();
     public static bool isAttacking = false;
