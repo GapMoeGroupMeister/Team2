@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    [SerializeField] public int nowWeapon = 0;
+    [SerializeField] protected GameObject sword;
+    [SerializeField] protected GameObject spear;
+    [SerializeField] protected GameObject axe;
+    [SerializeField] protected GameObject blunt;
+    [SerializeField] protected GameObject bow;
+    [SerializeField] protected GameObject player;
+    [SerializeField] protected int nowWeapon = 0;
+    public static PlayerMovement playerMovement = new PlayerMovement();
     public static bool isAttacking = false;
     public static bool isAxe = false;
     public static bool isShield = false;
     public static bool isSword = false;
-    public static bool isSpare = false;
+    public static bool isSpear = false;
     public static bool isBow = false;
+    protected Vector3 moveDir = playerMovement.MoveDir;
+
+    
 
     private void Update()
     {
@@ -18,7 +28,6 @@ public class WeaponManager : MonoBehaviour
 
         if (Input.GetMouseButton(0) && isAttacking == false)
         {
-            //°ø°Ý ¾Ö´Ï¸ÞÀÌ¼Ç ¿¬µ¿
             if (nowWeapon == 1)
             {
                 isAttacking = true;
@@ -40,7 +49,7 @@ public class WeaponManager : MonoBehaviour
             if (nowWeapon == 4)
             {
                 isAttacking = true;
-                isSpare = true;
+                isSpear = true;
             }
 
             if (nowWeapon == 5)
@@ -85,20 +94,20 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
+    protected void SwordAttack()
+    {
+        
+    }
+
     public void AttackEnd()
     {
         Destroy(gameObject);
     }
 
-    public override void Attack()
+    public int NowWeapon
     {
-        if (nowWeapon == 1)
-        {
-            Invoke("AttackEnd", 1f);
-            isAxe = false;
-            isAttacking = false;
-            AttackEnd();
-        }
+        get { return nowWeapon; }
+        set { nowWeapon = value; }
     }
 
 }

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class PlayerMovement : Player
 {
+    Vector3 moveDir;
     protected void Update()
     {
         Move();
@@ -13,7 +14,7 @@ public class PlayerMovement : Player
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
-        Vector3 MoveDir = new Vector3(horizontal, vertical, 0).normalized;
+        moveDir = new Vector3(horizontal, vertical, 0).normalized;
         
 
         if (Input.GetKey(KeyCode.LeftShift) && !(currentStamina <= 0))
@@ -27,7 +28,7 @@ public class PlayerMovement : Player
             currentStamina += cureStamina * Time.deltaTime;
         }
 
-        transform.position += MoveDir * movespeed * Time.deltaTime;
+        transform.position += moveDir * movespeed * Time.deltaTime;
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -44,5 +45,11 @@ public class PlayerMovement : Player
         {
             increaseSpeed = 0;
         }
+    }
+
+    public Vector3 MoveDir
+    {
+        get { return moveDir; }
+        set { moveDir = value; }
     }
 }
