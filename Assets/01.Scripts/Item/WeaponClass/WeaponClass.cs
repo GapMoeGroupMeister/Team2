@@ -2,7 +2,15 @@ using UnityEngine;
 
 public abstract class WeaponClass : MonoBehaviour
 {
-    public abstract void Attack();
+    protected float Cooltime(float cooltime)
+    {
+        cooltime -= Time.deltaTime;
+
+        return cooltime;
+
+        /*if (cooltime == 0) attacking = false;*/
+    }
+
 }
 
 

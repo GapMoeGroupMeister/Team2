@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    protected bool isAttackAble = true;
+    public bool isAttackAble = false;
+    protected Transform trans;
     protected Vector2 box;
 
     Animator animator;
@@ -16,17 +17,27 @@ public class PlayerAttack : MonoBehaviour
 
     protected void PlayersAttack()
     {
-        if (Input.GetMouseButton(0) && isAttackAble == true)
+        if (Input.GetMouseButtonDown(0) && !isAttackAble)
         {
-            isAttackAble = false;
-            //무기별로 있는 공격 메서드를 불러와서 ㄱㄱ
+            Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(trans.position, box, 0);
+            foreach (Collider2D collider in collider2Ds)
+            {
+                if (collider.CompareTag("Enemy"))
+                {
+
+                }
+            }
+            animator.SetTrigger("Attack1");
+            isAttackAble = true;
+            StartCoroutine(Attack1());
+
         }
+        
     }
     IEnumerator Attack1()
     {
         yield return new WaitForSeconds(0.3f);
         isAttackAble = false;
-
     }
 
     protected void PlayerDefend()
