@@ -16,7 +16,11 @@ public class PlayerAttack : MonoBehaviour
 
     protected void PlayersAttack()
     {
-          
+        if (Input.GetMouseButton(0) && isAttackAble == true)
+        {
+            isAttackAble = false;
+            //무기별로 있는 공격 메서드를 불러와서 ㄱㄱ
+        }
     }
     IEnumerator Attack1()
     {
