@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BattleSystem : MonoBehaviour
 {
-    [SerializeField] protected GameObject enemy;
+    [SerializeField] protected GameObject cavarly;
+    [SerializeField] protected GameObject archer;
     [SerializeField] private Camera mainCamera;
     protected Vector2 leftLimit;
     protected Vector2 rightLimit;
@@ -21,11 +22,6 @@ public class BattleSystem : MonoBehaviour
         rightLimit = mainCamera.ViewportToWorldPoint(new Vector3(1, 1));
     }
 
-    private void Awake()
-    {
-        enemy = Instantiate(cavarlyPrefab);
-    }
-
     void Update()
     {
         enemyCount = Random.Range(7, 12);
@@ -34,17 +30,18 @@ public class BattleSystem : MonoBehaviour
         //{
             for (int i = 0; i <= enemyCount; i++)
             {
-                enemyType = Random.Range(1, enemyTypeCount);
+                enemyType = Random.Range(1, enemyTypeCount +1);
 
                 switch (enemyType)
                 {
                     case 1:
-                    enemy.transform.position = new Vector2 (Random.Range(leftLimit.x, rightLimit.x), Random.Range(leftLimit.y, rightLimit.y));
+                    Instantiate(cavarlyPrefab);
+                    cavarly.transform.position = new Vector2 (Random.Range(leftLimit.x, rightLimit.x), Random.Range(leftLimit.y, rightLimit.y));
                     break;
 
-                    case 2 :
-                    enemy = Instantiate(archerPrefab);
-                    enemy.transform.position = new Vector2(Random.Range(leftLimit.x, rightLimit.x), Random.Range(leftLimit.y, rightLimit.y));
+                    case 2:
+                    Instantiate(archerPrefab);
+                    archer.transform.position = new Vector2(Random.Range(leftLimit.x, rightLimit.x), Random.Range(leftLimit.y, rightLimit.y));
                     break;
             }
             }
