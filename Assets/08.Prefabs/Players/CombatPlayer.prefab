@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 7973616125282631864}
   - component: {fileID: 9075973343980249193}
   - component: {fileID: 2837562595277820401}
+  - component: {fileID: -2239752402322022219}
   m_Layer: 0
   m_Name: CombatPlayer
   m_TagString: CombatPlayer
@@ -206,3 +207,31 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.5, y: 1}
   m_Direction: 0
+--- !u!114 &-2239752402322022219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4661358808514894030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93d97cd78138c4b448d2df45f2e3757c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnHpChangedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -2239752402322022219}
+        m_TargetAssemblyTypeName: HealthSytem, Assembly-CSharp
+        m_MethodName: set_HP
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _hp: 0

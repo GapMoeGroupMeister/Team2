@@ -14,12 +14,16 @@ public class Player : MonoBehaviour
     protected float deceleration = 5.5f;
     protected float cureStamina = 0.83f;
     protected string tagValue;
+    protected HealthSytem healthSytem;
     protected float fullHp = 20;
     protected float currentHp = 20;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        healthSytem = GetComponent<HealthSytem>();
+        healthSytem.ResetHP(fullHp);
     }
 
     // Update is called once per frame

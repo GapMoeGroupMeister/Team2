@@ -5,8 +5,16 @@ using UnityEngine.Events;
 
 public class HealthSytem : MonoBehaviour
 {
+    
     [SerializeField] UnityEvent OnHpChangedEvent;
-    [SerializeField] private float _hp;
+    [SerializeField] protected SpriteRenderer entity;
+
+    [SerializeField] protected float _hp;
+
+    private void Start()
+    {
+        entity = entity.GetComponent<SpriteRenderer>();
+    }
 
     public float HP
     {
@@ -23,10 +31,12 @@ public class HealthSytem : MonoBehaviour
             if (_hp > value)
             {
                 //HP가 깎였을 때 이벤트
+                StartCoroutine("Damaged");
             }
             else if (_hp < value)
             {
-                //힐이 들어왔을 때 이벤트
+                //힐이 들어왔을 때 이벤트 
+                StartCoroutine("Healed");
             }
             _hp = value;
         }
@@ -40,5 +50,20 @@ public class HealthSytem : MonoBehaviour
     public void SetHP(float value)
     {
         HP = value;
+    }
+
+    // 데미지 입으면 깜빡거림
+    IEnumerator Damaged() 
+    {
+        entity.color = Color.red;
+        yield return new WaitForSeconds(0.5f);
+        entity.color = Color.white;
+    }
+
+    IEnumerator Healed()
+    {
+        entity.color = Color.green;
+        yield return new WaitForSeconds(0.5f);
+        entity.color = Color.white;
     }
 }

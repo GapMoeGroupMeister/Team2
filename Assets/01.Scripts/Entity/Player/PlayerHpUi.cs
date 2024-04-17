@@ -7,6 +7,7 @@ public class PlayerHpUi : Player
 {
 
     public Slider hpUi;
+     
     
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,6 @@ public class PlayerHpUi : Player
     // Update is called once per frame
     void Update()
     {
-        hpUi.value = currentHp / fullHp;
+        hpUi.value = healthSytem.HP / fullHp;
     }
 }

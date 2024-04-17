@@ -24,7 +24,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 if (collider.CompareTag("Enemy"))
                 {
-
+                    collider.gameObject.GetComponent<HealthSytem>()?.SetHP(1 /*µ¥¹ÌÁö*/);
                 }
             }
             animator.SetTrigger("Attack1");

@@ -100,6 +100,7 @@ public abstract class Enemy : MonoBehaviour
                 if (transform.position == ReconRange || Timer > 20f)
                 {
                     ReconRange = new Vector2(Random.RandomRange(-10f, 10f), Random.RandomRange(-10f, 10f));
+                    Timer = 0;
                 }
                 
                 transform.position = Vector2.MoveTowards(transform.position, ReconRange, _speed);
