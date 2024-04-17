@@ -1,19 +1,9 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : Player
 {
-    private float horizontal;
-    private float vertical;
-    private float movespeed = 5;
-    private float currentStamina = 20;
-    private float fullStamina = 20;
-    private float increaseSpeed;
-    private float acceleration = 3.4f;
-    private float deceleration = 5.5f;
-    private float cureStamina = 0.83f;
-    protected string tagValue;
-
-    private void Update()
+    protected void Update()
     {
         Move();
     }
@@ -37,9 +27,7 @@ public class PlayerMovement : MonoBehaviour
             currentStamina += cureStamina * Time.deltaTime;
         }
 
-
         transform.position += MoveDir * movespeed * Time.deltaTime;
-
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -56,11 +44,5 @@ public class PlayerMovement : MonoBehaviour
         {
             increaseSpeed = 0;
         }
-
-        Debug.Log(currentStamina);
     }
-
-
-   
-
 }
