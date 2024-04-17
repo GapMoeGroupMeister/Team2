@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    protected bool isAttackAble = false;
+    public bool isAttackAble = false;
     protected Transform trans;
     protected Vector2 box;
 

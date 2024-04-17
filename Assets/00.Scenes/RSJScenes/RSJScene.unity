@@ -1332,6 +1332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dc5264bc2b831c42908f419484405f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  axePrefab: {fileID: 0}
 --- !u!1001 &1225393514
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1510,6 +1511,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3409748316937932840, guid: f25c98779c9bee643804edbadd5ea2be, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871219448304418280, guid: f25c98779c9bee643804edbadd5ea2be, type: 3}
+      propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4083817515648105490, guid: f25c98779c9bee643804edbadd5ea2be, type: 3}
@@ -1842,6 +1847,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 62698117938792086, guid: f630d1823049d84459c7f51832ef87ba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4024256234405855228, guid: f630d1823049d84459c7f51832ef87ba, type: 3}
+      propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6825581175632476641, guid: f630d1823049d84459c7f51832ef87ba, type: 3}

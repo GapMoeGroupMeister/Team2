@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Axe : MonoBehaviour
 {
+    public GameObject axePrefab;
 
     private GameObject _WeaponObj;
 
@@ -12,22 +13,19 @@ public class Axe : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-
+            
         }
     }
 
-
-
-
-   /* private int WeaponDamage(int damage)
+    private void Update()
     {
-        damage = 10;
+       /* if (WeaponManager.nowWeapon.)
+        {
+            GameObject Axe = Instantiate(axePrefab);
+            isAttacking();
+            Cooltime(3);
+        }*/
     }
-
-    private int WeaponCooltime(float Cooltime)
-    {
-        Cooltime = 3f;
-    }*/
 }
     
 

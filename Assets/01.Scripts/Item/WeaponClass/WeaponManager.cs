@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    [SerializeField] private int nowWeapon = 0;
+    [SerializeField] public int nowWeapon = 0;
     public static bool isAttacking = false;
     public static bool isAxe = false;
     public static bool isShield = false;
@@ -16,7 +16,7 @@ public class WeaponManager : MonoBehaviour
     {
        
 
-        if (Input.GetKeyDown(KeyCode.F) && isAttacking == false)
+        if (Input.GetMouseButton(0) && isAttacking == false)
         {
             //공격 애니메이션 연동
             if (nowWeapon == 1)

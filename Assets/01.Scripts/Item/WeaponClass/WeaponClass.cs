@@ -2,9 +2,14 @@ using UnityEngine;
 
 public abstract class WeaponClass : MonoBehaviour
 {
-    public abstract int WeaponDamage(float damage);
-    public abstract int WeaponCooltime(int cooltime);
+    protected float Cooltime(float cooltime)
+    {
+        cooltime -= Time.deltaTime;
 
+        return cooltime;
+
+        /*if (cooltime == 0) attacking = false;*/
+    }
 
 }
 
