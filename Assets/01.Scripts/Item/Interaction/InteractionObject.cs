@@ -1,13 +1,39 @@
+using System.Collections;
 using UnityEngine;
 
 public class InteractionObject : InteractionObjType
 {
 
     private PlayerMovement Galahad;
-    private PlayerMovement playerObject =null;
-    public GameObject Scrap;
+    private PlayerMovement playerObject = null;
+    [SerializeField] private GameObject Scrap;
 
-    
+    protected float lootingTime = 2f;
+    protected bool isLooting = false;
+
+    private IEnumerator LootingCoroutine()
+    {
+        isLooting = true;
+        yield return new WaitForSeconds(lootingTime);
+        isLooting = false;
+    }
+
+    private void StartLooting()
+    {
+        if (!isLooting)
+        {
+            StartCoroutine(LootingCoroutine());
+        }
+    }
+
+    public void CancelLooting()
+    {
+        if (isLooting)
+        {
+            StopCoroutine(LootingCoroutine());
+            isLooting = false;
+        }
+    }
 
     private void Awake()
     {
@@ -41,6 +67,7 @@ public class InteractionObject : InteractionObjType
             if (enable && coll != null)
             {
                 makeSearch = true;
+                StartLooting();
             }
 
             if (makeSearch == true)

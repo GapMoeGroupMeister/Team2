@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     protected bool isAttackAble = true;
-    protected Transform trans;
     protected Vector2 box;
 
     Animator animator;
@@ -17,22 +16,11 @@ public class PlayerAttack : MonoBehaviour
 
     protected void PlayersAttack()
     {
-        if (Input.GetMouseButtonDown(0) && isAttackAble)
+        if (Input.GetMouseButton(0) && isAttackAble == true)
         {
-            Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(trans.position, box, 0);
-            foreach (Collider2D collider in collider2Ds)
-            {
-                if (collider.CompareTag("Enemy"))
-                {
-                    collider.gameObject.GetComponent<HealthSytem>()?.SetHP(1 /*데미지*/);
-                }
-            }
-            animator.SetTrigger("Attack1");
             isAttackAble = false;
-            StartCoroutine(Attack1());
-
+            //무기별로 있는 공격 메서드를 불러와서 ㄱㄱ
         }
-        
     }
     IEnumerator Attack1()
     {

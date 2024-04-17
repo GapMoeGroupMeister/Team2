@@ -1,10 +1,9 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : Player
 {
-    
-
-    private void Update()
+    protected void Update()
     {
         Move();
     }
@@ -28,9 +27,7 @@ public class PlayerMovement : Player
             currentStamina += cureStamina * Time.deltaTime;
         }
 
-
         transform.position += MoveDir * movespeed * Time.deltaTime;
-
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -47,11 +44,5 @@ public class PlayerMovement : Player
         {
             increaseSpeed = 0;
         }
-
-        Debug.Log(currentStamina);
     }
-
-
-   
-
 }
