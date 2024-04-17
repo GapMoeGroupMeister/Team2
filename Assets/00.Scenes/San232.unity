@@ -539,9 +539,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cavarly: {fileID: 4083817515648105490, guid: f25c98779c9bee643804edbadd5ea2be, type: 3}
   archer: {fileID: 1359420475927455222, guid: 3bbf5ddc75c562545a13ed2f775ae978, type: 3}
-  mainCamera: {fileID: 97525578}
-  archerPrefab: {fileID: 1359420475927455222, guid: 3bbf5ddc75c562545a13ed2f775ae978, type: 3}
-  cavarlyPrefab: {fileID: 4083817515648105490, guid: f25c98779c9bee643804edbadd5ea2be, type: 3}
+  mainCamera: {fileID: 0}
+  archerPrefab: {fileID: 4083817515648105490, guid: f25c98779c9bee643804edbadd5ea2be, type: 3}
+  cavarlyPrefab: {fileID: 1359420475927455222, guid: 3bbf5ddc75c562545a13ed2f775ae978, type: 3}
 --- !u!1 &1523999523
 GameObject:
   m_ObjectHideFlags: 0

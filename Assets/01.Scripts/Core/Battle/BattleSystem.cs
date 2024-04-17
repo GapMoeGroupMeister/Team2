@@ -43,7 +43,7 @@ public class BattleSystem : MonoBehaviour
                     Instantiate(archerPrefab);
                     archer.transform.position = new Vector2(Random.Range(leftLimit.x, rightLimit.x), Random.Range(leftLimit.y, rightLimit.y));
                     break;
-            }
+                }
             }
         //}
     }

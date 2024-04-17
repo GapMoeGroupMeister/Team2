@@ -18,7 +18,7 @@ public class WeaponManager : MonoBehaviour
 
         if (Input.GetMouseButton(0) && isAttacking == false)
         {
-            //°ø°İ ¾Ö´Ï¸ŞÀÌ¼Ç ¿¬µ¿
+            //Â°Ã¸Â°Ã Â¾Ã–Â´ÃÂ¸ÃÃ€ÃŒÂ¼Ã‡ Â¿Â¬ÂµÂ¿
             if (nowWeapon == 1)
             {
                 isAttacking = true;
@@ -88,6 +88,17 @@ public class WeaponManager : MonoBehaviour
     public void AttackEnd()
     {
         Destroy(gameObject);
+    }
+
+    public override void Attack()
+    {
+        if (nowWeapon == 1)
+        {
+            Invoke("AttackEnd", 1f);
+            isAxe = false;
+            isAttacking = false;
+            AttackEnd();
+        }
     }
 
 }
