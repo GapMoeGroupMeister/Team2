@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponManager : WeaponClass
+public class WeaponManager : MonoBehaviour
 {
-    [SerializeField] private int nowWeapon = 0;
+    [SerializeField] public int nowWeapon = 0;
     public static bool isAttacking = false;
     public static bool isAxe = false;
     public static bool isShield = false;
@@ -14,49 +14,46 @@ public class WeaponManager : WeaponClass
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A) && isAttacking == false)
+       
+
+        if (Input.GetMouseButton(0) && isAttacking == false)
         {
-            //∞¯∞› æ÷¥œ∏ﬁ¿Ãº« ø¨µø
+            //¬∞√∏¬∞√ù ¬æ√ñ¬¥√è¬∏√û√Ä√å¬º√á ¬ø¬¨¬µ¬ø
             if (nowWeapon == 1)
             {
                 isAttacking = true;
                 isAxe = true;
-                Attack();
             }
 
             if (nowWeapon == 2)
             {
                 isAttacking = true;
                 isShield = true;
-                Attack();
             }
 
             if (nowWeapon == 3)
             {
                 isAttacking = true;
                 isSword = true;
-                Attack();
             }
 
             if (nowWeapon == 4)
             {
                 isAttacking = true;
                 isSpare = true;
-                Attack();
             }
 
             if (nowWeapon == 5)
             {
                 isAttacking = true;
                 isBow = true;
-                Attack();
             }
         }
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject == CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             Destroy(gameObject);
         }
@@ -92,6 +89,7 @@ public class WeaponManager : WeaponClass
     {
         Destroy(gameObject);
     }
+
     public override void Attack()
     {
         if (nowWeapon == 1)
@@ -102,4 +100,5 @@ public class WeaponManager : WeaponClass
             AttackEnd();
         }
     }
+
 }
