@@ -92,12 +92,6 @@ public class WeaponManager : WeaponClass
     {
         Destroy(gameObject);
     }
-
-    protected void AttackSword()
-    {
-
-    }
-
     public override void Attack()
     {
         if (nowWeapon == 1)
