@@ -6,6 +6,8 @@ public class ArmorClass : MonoBehaviour
     [SerializeField] private Slider _armorBar;
     private int _armor;
     private float restoreBar = 0.7f;
+    private bool _attackDelay = false;
+
     public int armor
     {
         get => _armor;
@@ -36,6 +38,10 @@ public class ArmorClass : MonoBehaviour
     {
         armor = 100;
         _armorBar.value += restoreBar * Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.Space)) GetDamage(10);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy")) GetDamage(20);
     }
 }
