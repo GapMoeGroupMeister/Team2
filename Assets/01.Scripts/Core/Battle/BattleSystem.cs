@@ -20,7 +20,7 @@ public class BattleSystem : MonoBehaviour
         rightLimit = mainCamera.ViewportToWorldPoint(new Vector3(1, 1));
     }
 
-    void Update()
+    void Awake()
     {
         enemyCount = Random.Range(7, 12);
 

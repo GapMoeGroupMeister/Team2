@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    [SerializeField] protected GameObject sword;
-    [SerializeField] protected GameObject spear;
-    [SerializeField] protected GameObject axe;
-    [SerializeField] protected GameObject blunt;
-    [SerializeField] protected GameObject bow;
+    [SerializeField] protected GameObject swordPrefab;
+    [SerializeField] protected GameObject spearPrefab;
+    [SerializeField] protected GameObject axePrefab;
+    [SerializeField] protected GameObject bluntPrefab;
+    [SerializeField] protected GameObject bowPrefab;
     [SerializeField] protected GameObject player;
     [SerializeField] protected GameObject weapon;
     [SerializeField] protected int nowWeapon = 0;
@@ -18,7 +18,26 @@ public class WeaponManager : MonoBehaviour
 
     private int weaponCount = 5;
 
-    
+    private void Awake()
+    {
+        Vector3 spawnPosition = transform.position;
+        GameObject spawnedSword = Instantiate(swordPrefab, spawnPosition, Quaternion.identity);
+        GameObject spawnedSpear = Instantiate(spearPrefab, spawnPosition, Quaternion.identity);
+        GameObject spawnedAxe = Instantiate(axePrefab, spawnPosition, Quaternion.identity);
+        GameObject spawnedBlunt = Instantiate(bluntPrefab, spawnPosition, Quaternion.identity);
+        GameObject spawnedBow = Instantiate(bowPrefab, spawnPosition, Quaternion.identity);
+        swordPrefab.transform.parent = transform;
+        spearPrefab.transform.parent = transform;
+        axePrefab.transform.parent = transform;
+        bluntPrefab.transform.parent = transform;
+        bowPrefab.transform.parent = transform;
+        swordPrefab.SetActive(false);
+        spearPrefab.SetActive(false);
+        axePrefab.SetActive(false);
+        bluntPrefab.SetActive(false);
+        bowPrefab.SetActive(false);
+
+    }
 
     private void Update()
     {
@@ -35,6 +54,7 @@ public class WeaponManager : MonoBehaviour
                 case 1:
                     isAttacking = true;
                     break;
+
                 case 2:
                     isAttacking = true;
                     break;
@@ -42,9 +62,11 @@ public class WeaponManager : MonoBehaviour
                 case 3:
                     isAttacking = true;
                     break;
+
                 case 4:
                     isAttacking = true;
                     break;
+
                 case 5:
                     isAttacking = true;
                     break;
@@ -57,42 +79,50 @@ public class WeaponManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             nowWeapon += 1;
-
-            if (nowWeapon > weaponCount) nowWeapon -= weaponCount;
+            Debug.Log("다음 무기 불러와야디");
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            nowWeapon -= 1;
+            Debug.Log("이전 무기 불러와야디");
+        }
+
+        nowWeapon = Mathf.Clamp(nowWeapon, 1, weaponCount);
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        GameObject getTag = collision.gameObject;
+        if (getTag.CompareTag("Enemy"))
         {
             Destroy(gameObject);
         }
 
-        else if (collision.gameObject.CompareTag("Axe"))
+        else if (getTag.CompareTag("Axe"))
         {
             nowWeapon = 1;
-            Destroy(collision.gameObject);
+            Destroy(getTag);
         }
-        else if (collision.gameObject.CompareTag("Shield"))
+        else if (getTag.CompareTag("Shield"))
         {
             nowWeapon = 2;
-            Destroy(collision.gameObject);
+            Destroy(getTag);
         }
-        else if (collision.gameObject.CompareTag("Sword"))
+        else if (getTag.CompareTag("Sword"))
         {
             nowWeapon = 3;
-            Destroy(collision.gameObject);
+            Destroy(getTag);
         }
-        else if (collision.gameObject.CompareTag("Spare"))
+        else if (getTag.CompareTag("Spare"))
         {
             nowWeapon = 4;
-            Destroy(collision.gameObject);
+            Destroy(getTag);
         }
-        else if (collision.gameObject.CompareTag("Bow"))
+        else if (getTag.CompareTag("Bow"))
         {
             nowWeapon = 5;
-            Destroy(collision.gameObject);
+            Destroy(getTag);
         }
     }
 

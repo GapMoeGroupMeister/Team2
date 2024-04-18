@@ -37,8 +37,8 @@ public abstract class Enemy : MonoBehaviour
     private void Awake()
     {
         _collider = GetComponent<BoxCollider2D>();
-        Player = GameObject.Find("Player");
-        _playerTransform = GameObject.Find("Player").transform;
+        Player = GameObject.Find("CombatPlayer");
+        _playerTransform = GameObject.Find("CombatPlayer").transform;
     }
     private void Start()
     {

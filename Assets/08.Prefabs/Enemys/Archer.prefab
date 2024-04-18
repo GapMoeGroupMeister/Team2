@@ -145,8 +145,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigid: {fileID: 0}
   _collider: {fileID: 5303981234018361260}
-  Player: {fileID: 0}
-  Arrow: {fileID: 0}
+  Player: {fileID: 4661358808514894030, guid: 009f0ff0af583264889bbaf5f2ae9a5d, type: 3}
+  Arrow: {fileID: 4672251512579532059, guid: 551f4c1aea85ef44ab9681431663a30f, type: 3}
   _speed: 0.05
   _hp: 0
   _defense: 0
