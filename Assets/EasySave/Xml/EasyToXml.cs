@@ -106,6 +106,7 @@ namespace EasySave.Xml
          * <param name="dict">저장할 Dictionary</param>
          * <param name="xmlFileName">xml 파일 이름</param>
          */
+        [System.Obsolete("DictionaryToJson<T, TU>을 사용하세요. Xml은 불안정합니다.")]
         public static void DictionaryToXml<TKey, TValue>(Dictionary<TKey, TValue> dict, string xmlFileName)
         {
             if (!Directory.Exists(LocalPath))
@@ -130,6 +131,7 @@ namespace EasySave.Xml
          * <param name="xmlFileName">xml 파일 이름</param>
          * <returns>xml 파일을 읽어서 만든 Dictionary</returns>
          */
+        [System.Obsolete("DictionaryFromJson<T, TU>을 사용하세요. Xml은 불안정합니다.")]
         public static Dictionary<TKey, TValue> DictionaryFromXml<TKey, TValue>(string xmlFileName)
         {
             string path = LocalPath + xmlFileName + ".xml";
