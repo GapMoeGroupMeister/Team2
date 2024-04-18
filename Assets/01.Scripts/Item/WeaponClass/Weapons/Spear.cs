@@ -17,7 +17,7 @@ public class Spear : WeaponManager
         while (time < _spearAttackSpeed)
         {
             time += Time.deltaTime / duration;
-            transform.position += moveDir *  _spearRange; 
+            transform.position += moveDir *  _spearRange;
             yield return null;
         }
         while (time > 0)
