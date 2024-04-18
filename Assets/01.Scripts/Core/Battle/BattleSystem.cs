@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BattleSystem : MonoBehaviour
 {
-    [SerializeField] protected GameObject cavarly;
-    [SerializeField] protected GameObject archer;
     [SerializeField] private Camera mainCamera;
     protected Vector2 leftLimit;
     protected Vector2 rightLimit;
@@ -35,12 +33,12 @@ public class BattleSystem : MonoBehaviour
                 switch (enemyType)
                 {
                     case 1:
-                    Instantiate(cavarlyPrefab);
+                    GameObject cavarly = Instantiate(cavarlyPrefab);
                     cavarly.transform.position = new Vector2 (Random.Range(leftLimit.x, rightLimit.x), Random.Range(leftLimit.y, rightLimit.y));
                     break;
 
                     case 2:
-                    Instantiate(archerPrefab);
+                    GameObject archer = Instantiate(archerPrefab);
                     archer.transform.position = new Vector2(Random.Range(leftLimit.x, rightLimit.x), Random.Range(leftLimit.y, rightLimit.y));
                     break;
                 }
