@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class Sword : WeaponManager
 {
-    // Start is called before the first frame update
-    void Start()
+
+    [SerializeField] private float _swordAttackSpeed = 1.2f;
+    private float save = 0;
+
+    public IEnumerator SwordWield(float duration = 0.8f)
     {
-        
-    }
-    
-    void Update()
-    {
-        
+        float time = 0.0f;
+        weapon.GetComponent<BoxCollider>().enabled = true;
+        while (time < _swordAttackSpeed)
+        {
+            time += Time.deltaTime / duration;
+            transform.position += moveDir * _swordAttackSpeed;
+            save += _swordAttackSpeed;
+            yield return null;
+        }
+        transform.position -= moveDir * save;
+        weapon.GetComponent<BoxCollider>().enabled = false;
     }
 }
