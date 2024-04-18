@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    [SerializeField] protected GameObject swordPrefab;
-    [SerializeField] protected GameObject spearPrefab;
-    [SerializeField] protected GameObject axePrefab;
-    [SerializeField] protected GameObject bluntPrefab;
-    [SerializeField] protected GameObject bowPrefab;
+    [SerializeField] protected GameObject[] weaponPrefabs;
     [SerializeField] protected GameObject player;
     [SerializeField] protected GameObject weapon;
-    [SerializeField] protected int nowWeapon = 0;
+    [SerializeField] protected static int nowWeapon = 0;
     public static PlayerMovement playerMovement = new PlayerMovement();
     public static bool isAttacking = false;
     protected Vector3 moveDir = playerMovement.MoveDir;
@@ -20,29 +16,23 @@ public class WeaponManager : MonoBehaviour
 
     private void Awake()
     {
-        Vector3 spawnPosition = transform.position;
-        GameObject spawnedSword = Instantiate(swordPrefab, spawnPosition, Quaternion.identity);
-        GameObject spawnedSpear = Instantiate(spearPrefab, spawnPosition, Quaternion.identity);
-        GameObject spawnedAxe = Instantiate(axePrefab, spawnPosition, Quaternion.identity);
-        GameObject spawnedBlunt = Instantiate(bluntPrefab, spawnPosition, Quaternion.identity);
-        GameObject spawnedBow = Instantiate(bowPrefab, spawnPosition, Quaternion.identity);
-        swordPrefab.transform.parent = transform;
-        spearPrefab.transform.parent = transform;
-        axePrefab.transform.parent = transform;
-        bluntPrefab.transform.parent = transform;
-        bowPrefab.transform.parent = transform;
-        swordPrefab.SetActive(false);
-        spearPrefab.SetActive(false);
-        axePrefab.SetActive(false);
-        bluntPrefab.SetActive(false);
-        bowPrefab.SetActive(false);
-
+        SetWeapon();
     }
 
     private void Update()
     {
         JudgeWeapon();
         ChangeWeapon();
+    }
+
+    private void SetWeapon()
+    {
+        Vector3 spawnPosition = transform.position;
+        foreach (GameObject weaponPrefabs in weaponPrefabs)
+        {
+            GameObject weapon = Instantiate(weaponPrefabs, transform);
+            weapon.SetActive(false);
+        }
     }
 
     private void JudgeWeapon()
@@ -87,7 +77,7 @@ public class WeaponManager : MonoBehaviour
             nowWeapon -= 1;
             Debug.Log("이전 무기 불러와야디");
         }
-
+        
         nowWeapon = Mathf.Clamp(nowWeapon, 1, weaponCount);
     }
 
@@ -124,11 +114,6 @@ public class WeaponManager : MonoBehaviour
             nowWeapon = 5;
             Destroy(getTag);
         }
-    }
-
-    protected void SwordAttack()
-    {
-        
     }
 
     public void AttackEnd()

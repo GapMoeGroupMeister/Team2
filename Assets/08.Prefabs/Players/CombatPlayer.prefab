@@ -220,11 +220,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e900918d21e62a4448cd682b16f81c45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sword: {fileID: 1478284113788084299, guid: 6a58cacea56f5454f85a7331916f666e, type: 3}
-  spear: {fileID: 1478284113788084299, guid: 3e840c085b76d854fb9721c49c74701a, type: 3}
-  axe: {fileID: 1478284113788084299, guid: 3321f8e868ca29549bb6bf5aee80803b, type: 3}
-  blunt: {fileID: 8807386253109026826, guid: 8a0007f239622d2458722ca291825c8f, type: 3}
-  bow: {fileID: 1478284113788084299, guid: 54df9213af65fd64ea424675f55a8bc2, type: 3}
+  weaponPrefabs:
+  - {fileID: 1478284113788084299, guid: 6a58cacea56f5454f85a7331916f666e, type: 3}
+  - {fileID: 1478284113788084299, guid: 3e840c085b76d854fb9721c49c74701a, type: 3}
+  - {fileID: 1478284113788084299, guid: 3321f8e868ca29549bb6bf5aee80803b, type: 3}
+  - {fileID: 8807386253109026826, guid: 8a0007f239622d2458722ca291825c8f, type: 3}
+  - {fileID: 1478284113788084299, guid: 54df9213af65fd64ea424675f55a8bc2, type: 3}
   player: {fileID: 4661358808514894030}
   weapon: {fileID: 0}
-  nowWeapon: 0
