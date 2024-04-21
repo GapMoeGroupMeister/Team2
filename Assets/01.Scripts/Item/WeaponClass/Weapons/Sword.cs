@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Sword : WeaponManager
 {
-    [SerializeField] private GameObject player;
     [SerializeField] private float _swordAttackSpeed = 60f;
-    private float save = 0;
 
     protected void SwordAttack()
     {
