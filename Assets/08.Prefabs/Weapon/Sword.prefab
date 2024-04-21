@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7192323287695918710}
   - component: {fileID: 8878341544012886221}
   - component: {fileID: 6001212840597573304}
+  - component: {fileID: 8450559992111833402}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Sword
@@ -130,3 +131,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &8450559992111833402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478284113788084299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b181702726b59445811361db6faf96b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponPrefabs: []
+  player: {fileID: 4661358808514894030, guid: 009f0ff0af583264889bbaf5f2ae9a5d, type: 3}
+  weapon: {fileID: 1478284113788084299}
+  player: {fileID: 4661358808514894030, guid: 009f0ff0af583264889bbaf5f2ae9a5d, type: 3}
+  _swordAttackSpeed: 60
