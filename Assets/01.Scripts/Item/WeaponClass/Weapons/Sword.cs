@@ -4,22 +4,19 @@ using UnityEngine;
 
 public class Sword : WeaponManager
 {
-
-    [SerializeField] private float _swordAttackSpeed = 1.2f;
+    [SerializeField] private GameObject player;
+    [SerializeField] private float _swordAttackSpeed = 60f;
     private float save = 0;
 
-    public IEnumerator SwordWield(float duration = 0.8f)
+    protected void SwordAttack()
     {
-        float time = 0.0f;
-        weapon.GetComponent<BoxCollider>().enabled = true;
-        while (time < _swordAttackSpeed)
-        {
-            time += Time.deltaTime / duration;
-            transform.position += moveDir * _swordAttackSpeed;
-            save += _swordAttackSpeed;
-            yield return null;
-        }
-        transform.position -= moveDir * save;
-        weapon.GetComponent<BoxCollider>().enabled = false;
+        Vector3 direction = player.transform.position - transform.position;
+        direction.Normalize();
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, _swordAttackSpeed * Time.deltaTime);
     }
+
 }

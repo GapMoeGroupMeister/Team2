@@ -22,7 +22,7 @@ public class Spear : WeaponManager
         }
         while (time > 0)
         {
-            time -= Time.deltaTime / duration;
+            time -= Time.deltaTime / (duration * 2);
             transform.position -= moveDir * _spearRange;
             yield return null;
         }
