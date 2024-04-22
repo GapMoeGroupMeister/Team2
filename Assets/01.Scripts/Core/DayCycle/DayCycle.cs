@@ -21,10 +21,10 @@ public class DayCycle : MonoBehaviour
     private void Start()
     {
         theWorld = false;
-        playerObj = Instantiate(playerPrefab);
-        combatObj = Instantiate(combatPlayerPrefab);
+        //playerObj = Instantiate(playerPrefab);
+        //combatObj = Instantiate(combatPlayerPrefab);
 
-        combatObj.SetActive(false);
+        //combatObj.SetActive(false);
     }
 
     public bool TheWorld
