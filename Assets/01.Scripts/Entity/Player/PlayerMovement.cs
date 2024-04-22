@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoSingleton<PlayerMovement>
 {
     protected float movespeed = 5f;
     protected float currentStamina = 20f;
@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     protected float deceleration = 5.5f;
     protected float cureStamina = 0.83f;
 
-    Vector3 moveDir;
+    public Vector3 moveDir;
     protected void Update()
     {
         Move();

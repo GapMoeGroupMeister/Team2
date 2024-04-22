@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public static WeaponManager weaponManager = new WeaponManager();
     public bool isAttackAble = false;
     protected Transform trans;
     protected Vector2 box;
-    protected int nowWeapon = weaponManager.NowWeapon;
+    private int nowWeapon = WeaponManager.Instance.NowWeapon;
 
     Animator animator;
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponManager : MonoBehaviour
+public class WeaponManager : MonoSingleton<WeaponManager>
 {
     [SerializeField] protected GameObject[] weaponPrefabs;
     [SerializeField] protected GameObject player;
@@ -10,11 +10,11 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] protected static int nowWeapon = 0;
     public static PlayerMovement playerMovement = new PlayerMovement();
     public static bool isAttacking = false;
-    protected Vector3 moveDir = playerMovement.MoveDir;
+    protected Vector3 moveDir = PlayerMovement.Instance.moveDir;
 
     private int weaponCount = 5;
 
-    private void Awake()
+    private void Start()
     {
         SetWeapon();
     }
