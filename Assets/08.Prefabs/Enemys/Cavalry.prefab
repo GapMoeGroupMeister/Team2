@@ -5063,8 +5063,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigid: {fileID: 3871219448304418280}
   _collider: {fileID: 1647929875857419033}
-  Player: {fileID: 0}
-  Arrow: {fileID: 0}
+  Player: {fileID: 4661358808514894030, guid: 009f0ff0af583264889bbaf5f2ae9a5d, type: 3}
+  Arrow: {fileID: 4672251512579532059, guid: 551f4c1aea85ef44ab9681431663a30f, type: 3}
   _speed: 0.1
   _maxHp: 0
   _hp: 0

@@ -43,8 +43,8 @@ public abstract class Enemy : MonoBehaviour
         Owner = GetComponent<GameObject>();
         EnemyHealth = GetComponent<HealthSytem>();
         _collider = GetComponent<BoxCollider2D>();
-        Player = GameObject.Find("Player");
-        _playerTransform = GameObject.Find("Player").transform;
+        Player = GameObject.Find("CombatPlayer");
+        _playerTransform = GameObject.Find("CombatPlayer").transform;
     }
     private void Start()
     {

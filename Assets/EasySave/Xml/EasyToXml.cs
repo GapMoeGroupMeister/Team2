@@ -12,6 +12,22 @@ namespace EasySave.Xml
         private static readonly string LocalPath = Application.dataPath + "/XML/";
         private static XmlSerializer _serializer;
         
+        private static void EnsureDirectoryExists()
+        {
+            if (!Directory.Exists(LocalPath))
+            {
+                Debug.Log("폴더가 존재하지 않습니다.");
+                Debug.Log("폴더를 생성합니다.");
+                Directory.CreateDirectory(LocalPath);
+                Debug.Log($"저장 경로: {LocalPath}");
+            }
+        }
+        
+        private static string GetFilePath(string fileName)
+        {
+            return Path.Combine(LocalPath, $"{fileName}.xml");
+        }
+        
         /** <summary>
          * obj를 xml 파일로 저장
          * </summary>
@@ -20,14 +36,8 @@ namespace EasySave.Xml
          */
         public static void ToXml<T>(T obj, string xmlFileName)
         {
-            if (!Directory.Exists(LocalPath))
-            {
-                Debug.Log("폴더가 존재하지 않습니다.");
-                Debug.Log("폴더를 생성합니다.");
-                Directory.CreateDirectory(LocalPath);
-                Debug.Log("저장 경로: " + LocalPath);
-            }
-            string path = LocalPath + xmlFileName + ".xml";
+            EnsureDirectoryExists();
+            string path = GetFilePath(xmlFileName);
             _serializer = new XmlSerializer(typeof(T));
             using FileStream stream = new FileStream(path, FileMode.Create);
             _serializer.Serialize(stream, obj);
@@ -41,7 +51,7 @@ namespace EasySave.Xml
          */
         public static T FromXml<T>(string xmlFileName)
         {
-            string path = LocalPath + xmlFileName + ".xml";
+            string path = GetFilePath(xmlFileName);
             if (!File.Exists(path))
             {
                 Debug.Log("파일이 존재하지 않습니다.");
@@ -64,14 +74,8 @@ namespace EasySave.Xml
          */
         public static void ListToXml<T>(List<T> list, string xmlFileName)
         {
-            if (!Directory.Exists(LocalPath))
-            {
-                Debug.Log("폴더가 존재하지 않습니다.");
-                Debug.Log("폴더를 생성합니다.");
-                Directory.CreateDirectory(LocalPath);
-                Debug.Log("저장 경로: " + LocalPath);
-            }
-            string path = LocalPath + xmlFileName + ".xml";
+            EnsureDirectoryExists();
+            string path = GetFilePath(xmlFileName);
             _serializer = new XmlSerializer(typeof(List<T>));
             using FileStream stream = new FileStream(path, FileMode.Create);
             _serializer.Serialize(stream, list);
@@ -85,7 +89,7 @@ namespace EasySave.Xml
          */
         public static List<T> ListFromXml<T>(string xmlFileName)
         {
-            string path = LocalPath + xmlFileName + ".xml";
+            string path = GetFilePath(xmlFileName);
             if (!File.Exists(path))
             {
                 Debug.Log("파일이 존재하지 않습니다.");
@@ -106,21 +110,16 @@ namespace EasySave.Xml
          * <param name="dict">저장할 Dictionary</param>
          * <param name="xmlFileName">xml 파일 이름</param>
          */
+        [System.Obsolete("DictionaryToJson<T, TU>을 사용하세요. Xml은 불안정합니다.")]
         public static void DictionaryToXml<TKey, TValue>(Dictionary<TKey, TValue> dict, string xmlFileName)
         {
-            if (!Directory.Exists(LocalPath))
-            {
-                Debug.Log("폴더가 존재하지 않습니다.");
-                Debug.Log("폴더를 생성합니다.");
-                Directory.CreateDirectory(LocalPath);
-                Debug.Log("저장 경로: " + LocalPath);
-            }
+            EnsureDirectoryExists();
 
             XElement root = 
                 new XElement("Root", 
                     from kv in dict 
                     select new XElement(kv.Key.ToString(), kv.Value));
-            string path = LocalPath + xmlFileName + ".xml";
+            string path = GetFilePath(xmlFileName);
             root.Save(path);
         }
 
@@ -130,9 +129,10 @@ namespace EasySave.Xml
          * <param name="xmlFileName">xml 파일 이름</param>
          * <returns>xml 파일을 읽어서 만든 Dictionary</returns>
          */
+        [System.Obsolete("DictionaryFromJson<T, TU>을 사용하세요. Xml은 불안정합니다.")]
         public static Dictionary<TKey, TValue> DictionaryFromXml<TKey, TValue>(string xmlFileName)
         {
-            string path = LocalPath + xmlFileName + ".xml";
+            string path = GetFilePath(xmlFileName);
             if (!File.Exists(path))
             {
                 Debug.Log("파일이 존재하지 않습니다.");

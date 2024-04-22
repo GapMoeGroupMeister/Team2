@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 7973616125282631864}
   - component: {fileID: 9075973343980249193}
   - component: {fileID: 2837562595277820401}
-  - component: {fileID: -2239752402322022219}
+  - component: {fileID: 6485491148801404043}
   m_Layer: 0
   m_Name: CombatPlayer
   m_TagString: CombatPlayer
@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee30281759cd0154cbaffbfcac955db5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAttackAble: 0
 --- !u!114 &7973616125282631864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,7 +208,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.5, y: 1}
   m_Direction: 0
---- !u!114 &-2239752402322022219
+--- !u!114 &6485491148801404043
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -216,22 +217,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4661358808514894030}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93d97cd78138c4b448d2df45f2e3757c, type: 3}
+  m_Script: {fileID: 11500000, guid: e900918d21e62a4448cd682b16f81c45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnHpChangedEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -2239752402322022219}
-        m_TargetAssemblyTypeName: HealthSytem, Assembly-CSharp
-        m_MethodName: set_HP
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _hp: 0
+  weaponPrefabs:
+  - {fileID: 1478284113788084299, guid: 6a58cacea56f5454f85a7331916f666e, type: 3}
+  - {fileID: 1478284113788084299, guid: 3e840c085b76d854fb9721c49c74701a, type: 3}
+  - {fileID: 1478284113788084299, guid: 3321f8e868ca29549bb6bf5aee80803b, type: 3}
+  - {fileID: 8807386253109026826, guid: 8a0007f239622d2458722ca291825c8f, type: 3}
+  - {fileID: 1478284113788084299, guid: 54df9213af65fd64ea424675f55a8bc2, type: 3}
+  player: {fileID: 4661358808514894030}
+  weapon: {fileID: 0}
