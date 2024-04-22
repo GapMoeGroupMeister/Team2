@@ -23,6 +23,9 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected Transform _playerTransform;
     [SerializeField] protected EnemeyStatus _enemyStatus;
     [SerializeField] protected Vector3 ReconRange;
+    [SerializeField] protected HealthSytem EnemyHealth;
+    [SerializeField] protected GameObject Owner;
+    [SerializeField] protected GameObject HPSlider;
     public Vector2 tlqk;
 
     float Timer;
@@ -36,19 +39,23 @@ public abstract class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        
+
+        Owner = GetComponent<GameObject>();
+        EnemyHealth = GetComponent<HealthSytem>();
         _collider = GetComponent<BoxCollider2D>();
         Player = GameObject.Find("Player");
         _playerTransform = GameObject.Find("Player").transform;
     }
     private void Start()
     {
-        
+        HPSlider = Instantiate(HPSlider, transform.position, Quaternion.identity, GameObject.Find("Canvas").transform);
+        EnemyHealth.ResetHP(_maxHp); 
         ReconRange = transform.position;
     }
-
+    
     private void Update()
     {
+        
         Timer += UnityEngine.Time.deltaTime;
         if (_hp < 0)
         {
@@ -57,7 +64,7 @@ public abstract class Enemy : MonoBehaviour
 
     }
 
-    [System.Obsolete]
+    
     protected void Move(EnemeyStatus enemyStatus)
     {
         switch (enemyStatus)
@@ -99,7 +106,7 @@ public abstract class Enemy : MonoBehaviour
                 
                 if (transform.position == ReconRange || Timer > 20f)
                 {
-                    ReconRange = new Vector2(Random.RandomRange(-10f, 10f), Random.RandomRange(-10f, 10f));
+                    ReconRange = new Vector2(Random.Range(-10f, 10f), Random.Range(-10f, 10f));
                     Timer = 0;
                 }
                 

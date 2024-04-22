@@ -13,7 +13,7 @@ public class Arrow : MonoBehaviour
 
     private void Awake()
     {
-        owner = GameObject.Find("Capsule").transform;
+        owner = GameObject.Find("Archers").transform;
         archers = owner.GetComponent<Archers>();
     }
     void Start()

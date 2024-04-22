@@ -8,12 +8,14 @@ public class HealthSytem : MonoBehaviour
     
     [SerializeField] UnityEvent OnHpChangedEvent;
     [SerializeField] protected SpriteRenderer entity;
+    [SerializeField] protected ParticleSystem ps;
 
     [SerializeField] protected float _hp;
 
     private void Start()
     {
         entity = entity.GetComponent<SpriteRenderer>();
+        ps = gameObject.GetComponentsInChildren<ParticleSystem>()[0];
     }
 
     public float HP
@@ -31,7 +33,7 @@ public class HealthSytem : MonoBehaviour
             if (_hp > value)
             {
                 //HP가 깎였을 때 이벤트
-                StartCoroutine("Damaged");
+                ps.Play();
             }
             else if (_hp < value)
             {
@@ -52,13 +54,8 @@ public class HealthSytem : MonoBehaviour
         HP = value;
     }
 
-    // 데미지 입으면 깜빡거림
-    IEnumerator Damaged() 
-    {
-        entity.color = Color.red;
-        yield return new WaitForSeconds(0.5f);
-        entity.color = Color.white;
-    }
+    
+    
 
     IEnumerator Healed()
     {

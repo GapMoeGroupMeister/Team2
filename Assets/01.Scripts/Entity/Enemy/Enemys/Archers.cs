@@ -40,7 +40,7 @@ public class Archers : Enemy
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (!(collision.gameObject.tag == "Player"))
+        if (!collision.gameObject.CompareTag("Player"))
         {
             ReconRange = new Vector2(Random.RandomRange(-10f, 10f), Random.RandomRange(-10f, 10f));
         }
