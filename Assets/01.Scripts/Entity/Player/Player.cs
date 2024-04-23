@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] protected HealthSytem PlayerHealth;
     protected float horizontal;
     protected float vertical;
     protected float movespeed = 5f;
@@ -16,4 +17,10 @@ public class Player : MonoBehaviour
     protected string tagValue;
     protected float fullHp = 20f;
     protected float currentHp = 20f;
+
+
+    private void Awake()
+    {
+        PlayerHealth = GetComponent<HealthSytem>();
+    }
 }

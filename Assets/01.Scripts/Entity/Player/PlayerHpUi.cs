@@ -4,6 +4,7 @@ public class PlayerHpUi : Player
 {
 
     public Slider hpUi;
+    
      
     
     void Start()
@@ -18,6 +19,6 @@ public class PlayerHpUi : Player
     
     public void CheckHp()
     {
-        hpUi.value = healthSytem.HP / fullHp;
+        hpUi.value = PlayerHealth.HP / fullHp;
     }
 }

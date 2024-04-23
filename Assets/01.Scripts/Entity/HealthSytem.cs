@@ -44,15 +44,7 @@ public class HealthSytem : MonoBehaviour
         }
     }
 
-    public void ResetHP(float maxHp)
-    {
-        HP = maxHp;
-    }
-
-    public void SetHP(float value)
-    {
-        HP = value;
-    }
+    
 
     
     

@@ -10,7 +10,7 @@ public class Cavalry : Enemy
         _enemyStatus = EnemeyStatus.Recon;
     }
 
-    [System.Obsolete]
+    
     private void FixedUpdate()
     {
         
@@ -36,7 +36,7 @@ public class Cavalry : Enemy
         StartCoroutine("Wait");
     }
 
-    [System.Obsolete]
+    
 
     private void OnCollisionStay2D(Collision2D collision)
     {

@@ -6,21 +6,24 @@ using UnityEngine.UI;
 public class EnemyHpUI : Enemy
 {
     protected Slider HpSlider;
+    public HealthSytem healthSytem;
+    
     
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         
+        
         HpSlider = GetComponent<Slider>();
-        Instantiate(HpSlider);
+        
     }
 
     // Update is called once per frame
     void Update()
     {// -960, -540 : 0, 0
-        transform.position = Camera.main.WorldToScreenPoint(Owner.transform.position + new Vector3(0, 0.8f, 0));
         
-        HpSlider.value = EnemyHealth.HP / 100;
+        
+        HpSlider.value = healthSytem.HP / 100;
     }
 }

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8215355303468059641}
   - component: {fileID: 7573694684550210842}
   - component: {fileID: -9221016340474550520}
-  - component: {fileID: 5221911788932891258}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -122,40 +121,10 @@ MonoBehaviour:
   ReconRange: {x: 0, y: 0, z: 0}
   EnemyHealth: {fileID: 0}
   Owner: {fileID: 0}
-  HpSlider: {fileID: 0}
+  HPSlider: {fileID: 0}
+  HPSlider_Pre: {fileID: 0}
   tlqk: {x: 0, y: 0}
---- !u!114 &5221911788932891258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1813496503973678500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aace85437c69db041bed602f99a16388, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rigid: {fileID: 0}
-  _collider: {fileID: 0}
-  Player: {fileID: 0}
-  Arrow: {fileID: 0}
-  _speed: 0
-  _maxHp: 0
-  _hp: 0
-  _defense: 0
-  _damage: 0
-  _attackDistance: 0
-  _attackSpeed: 0
-  _findDistance_x: 0
-  _findDistance_y: 0
-  _playerTransform: {fileID: 0}
-  _enemyStatus: 0
-  ReconRange: {x: 0, y: 0, z: 0}
-  EnemyHealth: {fileID: 0}
-  Owner: {fileID: 0}
-  HpSlider: {fileID: 0}
-  tlqk: {x: 0, y: 0}
+  healthSytem: {fileID: 0}
 --- !u!1 &4242599623528389857
 GameObject:
   m_ObjectHideFlags: 0

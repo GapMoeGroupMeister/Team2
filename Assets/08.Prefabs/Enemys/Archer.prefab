@@ -162,6 +162,10 @@ MonoBehaviour:
   _playerTransform: {fileID: 0}
   _enemyStatus: 0
   ReconRange: {x: 0, y: 0, z: 0}
+  EnemyHealth: {fileID: 0}
+  Owner: {fileID: 0}
+  HPSlider: {fileID: -9221016340474550520, guid: e4c8bf6c384cb7d46a55d9636e7accfb, type: 3}
+  HPSlider_Pre: {fileID: 1813496503973678500, guid: e4c8bf6c384cb7d46a55d9636e7accfb, type: 3}
   tlqk: {x: 0, y: 0}
 --- !u!50 &-2978192579881714880
 Rigidbody2D:

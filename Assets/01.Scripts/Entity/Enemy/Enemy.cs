@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public abstract class Enemy : MonoBehaviour
@@ -24,8 +25,9 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected EnemeyStatus _enemyStatus;
     [SerializeField] protected Vector3 ReconRange;
     [SerializeField] protected HealthSytem EnemyHealth;
-    [SerializeField] protected GameObject Owner;
-    [SerializeField] protected GameObject HPSlider;
+    [SerializeField] protected Transform Owner;
+    [SerializeField] protected EnemyHpUI HPSlider;
+    [SerializeField] protected GameObject HPSlider_Pre;
     public Vector2 tlqk;
 
     float Timer;
@@ -40,22 +42,26 @@ public abstract class Enemy : MonoBehaviour
     private void Awake()
     {
 
-        Owner = GetComponent<GameObject>();
+        
         EnemyHealth = GetComponent<HealthSytem>();
         _collider = GetComponent<BoxCollider2D>();
         Player = GameObject.Find("CombatPlayer");
         _playerTransform = GameObject.Find("CombatPlayer").transform;
+        HPSlider = Instantiate(HPSlider_Pre, transform.position, Quaternion.identity, GameObject.Find("Canvas").transform).GetComponent<EnemyHpUI>();
     }
     private void Start()
     {
-        HPSlider = Instantiate(HPSlider, transform.position, Quaternion.identity, GameObject.Find("Canvas").transform);
-        EnemyHealth.ResetHP(_maxHp); 
+        HPSlider.healthSytem = EnemyHealth;
+        EnemyHealth.HP = _maxHp; 
         ReconRange = transform.position;
+        Owner = transform;
     }
     
     private void Update()
     {
-        
+        HPSlider.healthSytem = EnemyHealth;
+        HPSlider.transform.position = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x + 1.5f, transform.position.y + 1f, 0));
+
         Timer += UnityEngine.Time.deltaTime;
         if (_hp < 0)
         {
@@ -149,7 +155,7 @@ public abstract class Enemy : MonoBehaviour
 
         if(Physics2D.Raycast(transform.position, tlqk.normalized, _attackDistance))
         {
-            Physics2D.Raycast(transform.position, tlqk.normalized, _attackDistance).collider.gameObject.GetComponent<HealthSytem>()?.SetHP(0 /*데미지*/);
+            Physics2D.Raycast(transform.position, tlqk.normalized, _attackDistance).collider.gameObject.GetComponent<HealthSytem>().HP -= 0;
         }
         
         // 공격 애니메이션
@@ -170,7 +176,7 @@ public abstract class Enemy : MonoBehaviour
         Instantiate(Arrow, transform.position, Quaternion.identity);
     }
 
-
+    
 
     protected enum EnemeyStatus
     {
