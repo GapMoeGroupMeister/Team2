@@ -23,7 +23,6 @@ public class DayCycle : MonoBehaviour
         theWorld = false;
         playerObj = Instantiate(playerPrefab);
         combatObj = Instantiate(combatPlayerPrefab);
-
         combatObj.SetActive(false);
     }
 
@@ -81,5 +80,3 @@ public class DayCycle : MonoBehaviour
         return time;
     }
 }
-
-
