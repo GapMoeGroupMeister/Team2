@@ -6,21 +6,23 @@ using UnityEngine.UI;
 public class LoveCalcul : MonoBehaviour
 {
     [SerializeField]Slider _loveBar;
-    public bool _happyEnd = false;
-    public bool _badEnding = false;
-    public static LoveCalcul _love;
+    private bool _happyEnd = false;
+    private bool _badEnding = false;
+    [SerializeField] private float _value = 100;
+    private bool _loveValue = false;
 
 
     private void Awake()
     {
-        //awake덕에 씬 전환시 값이 100으로 고정 후 시작
-        //수정해야됨
-        _loveBar.value = 100;
         _loveBar.maxValue = 200;
+        Reset();
     }
 
     private void Update()
     {
+        _loveBar.value = _value;
+        _badEnding = false;
+        _happyEnd = false;
         if (_loveBar.value == 0)
         {
             _badEnding = true;
@@ -44,11 +46,21 @@ public class LoveCalcul : MonoBehaviour
     {
         if(Random.Range(1, 11) <= 5)
         {
-            _loveBar.value -= Random.Range(1, 6);
+            _value -= Random.Range(1, 6);
         }
         else
         {
-            _loveBar.value += Random.Range(1, 6);
+            _value += Random.Range(1, 6);
         }
+    }
+
+    private void Reset()
+    {
+        if(_loveValue == false)
+        {
+            _loveBar.value = 100;
+            _loveValue = true;
+        }
+        _loveBar.value = _value;
     }
 }
