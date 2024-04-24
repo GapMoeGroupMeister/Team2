@@ -21,9 +21,10 @@ public class DayCycle : MonoBehaviour
     private void Start()
     {
         theWorld = false;
-        playerObj = Instantiate(playerPrefab);
-        combatObj = Instantiate(combatPlayerPrefab);
-        combatObj.SetActive(false);
+        //playerObj = Instantiate(playerPrefab);
+        //combatObj = Instantiate(combatPlayerPrefab);
+
+        //combatObj.SetActive(false);
     }
 
     public bool TheWorld
@@ -41,7 +42,7 @@ public class DayCycle : MonoBehaviour
 
         if (currentTime == Time.Night)
         {
-            if (Hour > 4.2f)
+            if (Hour > 42f)
             {
                 combatObj.SetActive(false);
                 playerObj.SetActive(true);
@@ -80,3 +81,5 @@ public class DayCycle : MonoBehaviour
         return time;
     }
 }
+
+
