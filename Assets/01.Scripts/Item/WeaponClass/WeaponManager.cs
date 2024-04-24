@@ -7,12 +7,19 @@ public class WeaponManager : MonoSingleton<WeaponManager>
     [SerializeField] protected GameObject[] weaponPrefabs;
     [SerializeField] protected GameObject player;
     [SerializeField] protected GameObject weapon;
-    [SerializeField] protected static int nowWeapon = 0;
-    public static PlayerMovement playerMovement = new PlayerMovement();
-    public static bool isAttacking = false;
-    protected Vector3 moveDir = PlayerMovement.Instance.moveDir;
+    [SerializeField] protected int nowWeapon = 0;
+    protected BoxCollider2D weaponCollider;
+    public bool isAttacking = false;
+    protected Vector3 moveDir;
 
     private int weaponCount = 5;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        moveDir = PlayerManager.Instance.MoveDir;
+        weaponCollider = weapon.GetComponent<BoxCollider2D>();
+    }
 
     private void Start()
     {
@@ -84,35 +91,33 @@ public class WeaponManager : MonoSingleton<WeaponManager>
     public void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject getTag = collision.gameObject;
-        if (getTag.CompareTag("Enemy"))
-        {
-            Destroy(gameObject);
-        }
 
-        else if (getTag.CompareTag("Axe"))
+        switch (getTag.tag)
         {
-            nowWeapon = 1;
-            Destroy(getTag);
-        }
-        else if (getTag.CompareTag("Shield"))
-        {
-            nowWeapon = 2;
-            Destroy(getTag);
-        }
-        else if (getTag.CompareTag("Sword"))
-        {
-            nowWeapon = 3;
-            Destroy(getTag);
-        }
-        else if (getTag.CompareTag("Spare"))
-        {
-            nowWeapon = 4;
-            Destroy(getTag);
-        }
-        else if (getTag.CompareTag("Bow"))
-        {
-            nowWeapon = 5;
-            Destroy(getTag);
+            case "Eneny":
+                Destroy(gameObject);
+                break;
+            case "Axe":
+                nowWeapon = 1;
+                Destroy(getTag);
+                break;
+            case "Shield":
+                nowWeapon = 2;
+                Destroy(getTag);
+                break;
+            case "Sword":
+                nowWeapon = 3;
+                Destroy(getTag);
+                break;
+            case "Spare":
+                nowWeapon = 4;
+                Destroy(getTag);
+                break;
+            case "Bow":
+                nowWeapon = 5;
+                Destroy(getTag);
+                break;
+
         }
     }
 
