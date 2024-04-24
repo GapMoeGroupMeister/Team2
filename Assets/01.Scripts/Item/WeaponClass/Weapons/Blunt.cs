@@ -6,7 +6,7 @@ public class Blunt : WeaponManager
 {
     [SerializeField] private float _bluntRange = 3.2f;
     [SerializeField] private float _bluntAttackSpeed = 2.1f;
-    protected void SprearAttack()
+    protected void BluntAttack()
     {
         StartCoroutine(HitDown());
     }
