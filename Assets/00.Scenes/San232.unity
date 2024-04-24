@@ -156,6 +156,7 @@ MonoBehaviour:
   player: {fileID: 4661358808514894030, guid: 009f0ff0af583264889bbaf5f2ae9a5d, type: 3}
   weapon: {fileID: 0}
   nowWeapon: 0
+  _arrowSpeed: 100
   isAttacking: 0
 --- !u!4 &96457203
 Transform:
@@ -377,6 +378,7 @@ MonoBehaviour:
   player: {fileID: 4661358808514894030, guid: 009f0ff0af583264889bbaf5f2ae9a5d, type: 3}
   weapon: {fileID: 0}
   nowWeapon: 0
+  _arrowSpeed: 100
   isAttacking: 0
 --- !u!4 &309335066
 Transform:
