@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DayCycle : MonoBehaviour
 {
@@ -20,10 +21,10 @@ public class DayCycle : MonoBehaviour
     private void Start()
     {
         theWorld = false;
-        playerObj = Instantiate(playerPrefab);
-        combatObj = Instantiate(combatPlayerPrefab);
+        //playerObj = Instantiate(playerPrefab);
+        //combatObj = Instantiate(combatPlayerPrefab);
 
-        combatObj.SetActive(false);
+        //combatObj.SetActive(false);
     }
 
     public bool TheWorld
@@ -41,7 +42,7 @@ public class DayCycle : MonoBehaviour
 
         if (currentTime == Time.Night)
         {
-            if (Hour > 4.2f)
+            if (Hour > 42f)
             {
                 combatObj.SetActive(false);
                 playerObj.SetActive(true);

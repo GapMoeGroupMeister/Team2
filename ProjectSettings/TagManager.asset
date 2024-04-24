@@ -9,6 +9,15 @@ TagManager:
   - Door
   - Cover
   - CombatPlayer
+  - Enemy_archers
+  - Axe
+  - Bow
+  - Shield
+  - Enemy
+  - Sword
+  - Spare
+  - Food
+  - Posion
   layers:
   - Default
   - TransparentFX

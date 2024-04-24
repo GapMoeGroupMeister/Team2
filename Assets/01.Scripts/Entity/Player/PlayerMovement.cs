@@ -1,8 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerMovement : Player
+public class PlayerMovement : MonoSingleton<PlayerMovement>
 {
+    protected float movespeed = 5f;
+    protected float currentStamina = 20f;
+    protected float fullStamina = 20f;
+    protected float increaseSpeed;
+    protected float acceleration = 3.4f;
+    protected float deceleration = 5.5f;
+    protected float cureStamina = 0.83f;
+
+    public Vector3 moveDir;
     protected void Update()
     {
         Move();
@@ -10,10 +19,10 @@ public class PlayerMovement : Player
 
     private void Move()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
-        vertical = Input.GetAxisRaw("Vertical");
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
 
-        Vector3 MoveDir = new Vector3(horizontal, vertical, 0).normalized;
+        moveDir = new Vector3(horizontal, vertical, 0).normalized;
         
 
         if (Input.GetKey(KeyCode.LeftShift) && !(currentStamina <= 0))
@@ -27,7 +36,7 @@ public class PlayerMovement : Player
             currentStamina += cureStamina * Time.deltaTime;
         }
 
-        transform.position += MoveDir * movespeed * Time.deltaTime;
+        transform.position += moveDir * movespeed * Time.deltaTime;
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -44,5 +53,11 @@ public class PlayerMovement : Player
         {
             increaseSpeed = 0;
         }
+    }
+
+    public Vector3 MoveDir
+    {
+        get { return moveDir; }
+        set { moveDir = value; }
     }
 }
