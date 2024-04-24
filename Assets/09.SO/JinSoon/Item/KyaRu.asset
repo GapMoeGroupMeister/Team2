@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbfe98fed4c1daa4dbd1d53463f64459, type: 3}
+  m_Name: KyaRu
+  m_EditorClassIdentifier: 
+  id: 0
+  itemName: "\uCEAC\uB8E8"
+  itemExplain: "\uC774\uAC8C\uC784\uC740 \uC774\uC81C \uCEAC\uB8E8\uAC00 \uC810\uB839\uD55C\uB2E4!"
+  maxAmountInSlot: 5
+  itemImage: {fileID: 21300000, guid: 7f8ac5e3d32ec234d8ba62555eed85ff, type: 3}
+  itemPf: {fileID: 672791492436654251, guid: 8bee50c349b667f4e834fe8d199544b9, type: 3}
+  itemSell: {fileID: 7372066719209750812, guid: 7b2e0912ba4f6594497c23eee1c2b0cc, type: 3}
+  itemSize: {x: 2, y: 2}
