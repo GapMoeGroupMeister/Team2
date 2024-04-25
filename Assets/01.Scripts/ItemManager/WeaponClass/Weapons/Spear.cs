@@ -13,7 +13,7 @@ public class Spear : WeaponManager
     public IEnumerator Sting(float duration = 0.8f)
     {
         float time = 0.0f;
-        weapon.GetComponent<BoxCollider>().enabled = true;
+        weapon.GetComponent<BoxCollider2D>().enabled = true;
         while (time < _spearAttackSpeed)
         {
             time += Time.deltaTime / duration;
@@ -26,6 +26,6 @@ public class Spear : WeaponManager
             transform.position -= moveDir * _spearRange;
             yield return null;
         }
-        weapon.GetComponent<BoxCollider>().enabled = false;
+        weapon.GetComponent<BoxCollider2D>().enabled = false;
     }
 }
