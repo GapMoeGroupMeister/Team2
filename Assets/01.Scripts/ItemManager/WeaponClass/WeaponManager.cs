@@ -8,6 +8,7 @@ public class WeaponManager : MonoSingleton<WeaponManager>
     [SerializeField] protected GameObject player;
     [SerializeField] protected GameObject weapon;
     [SerializeField] protected int nowWeapon = 0;
+    [SerializeField] protected float _arrowSpeed = 100f;
     protected BoxCollider2D weaponCollider;
     public bool isAttacking = false;
     protected Vector3 moveDir;

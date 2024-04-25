@@ -1,80 +1,30 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
     private PlayerManager playerManager;
-    private Rigidbody2D rb;
-
-    [Header("Speed Value")]
-    [SerializeField] protected float movespeed = 100f;
-    [SerializeField] protected float increaseSpeed;
-    [SerializeField] protected float acceleration = 3.4f;
-    [SerializeField] protected float deceleration = 5.5f;
-
-    [Space]
-
-    [Header("Stamina Value")]
-    [SerializeField] protected float currentStamina = 20f;
-    [SerializeField] protected float fullStamina = 20f;
-    [SerializeField] protected float cureStamina = 0.83f;
-
-
+    
     private void Awake()
     {
-        #region GetComponent
-        playerManager = GetComponent<PlayerManager>();
-        rb = GetComponent<Rigidbody2D>();
-        #endregion
-
-        #region Action Add
-        playerManager.OnMovement += Move;
-        playerManager.OnRun += Run;
-        #endregion
-
-        #region Clamp
-        increaseSpeed = Mathf.Clamp(increaseSpeed, 0f, 150f);
-        currentStamina = Mathf.Clamp(currentStamina, 0, fullStamina);
-        #endregion
+        playerManager = PlayerManager.Instance;
     }
 
-    private void OnDestroy()
+    private void OnMovement(InputValue value)
     {
-        playerManager.OnMovement -= Move;
-        playerManager.OnRun -= Run;
+        playerManager.MoveDir = value.Get<Vector3>();
     }
 
-    private void Move(Vector3 moveDir)
+    private void OnRun(InputValue value)
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-
-        moveDir = new Vector3(horizontal, vertical, 0).normalized;
-
-        rb.velocity = moveDir * (movespeed + increaseSpeed) * Time.deltaTime;
-
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (value.isPressed)
         {
-            increaseSpeed = 0;
+            playerManager.IsRun = true;
         }
-    }
-
-    private void Run()
-    {
-        increaseSpeed -= fullStamina / deceleration * Time.deltaTime;
-
-        if (currentStamina > 0)
+        else
         {
-            increaseSpeed += currentStamina / acceleration * Time.deltaTime;
-            currentStamina -= 0.996f * Time.deltaTime;
+            playerManager.IsRun = false;
         }
-        else if (currentStamina < fullStamina)
-        {
-            currentStamina += cureStamina * Time.deltaTime;
-        }
-
-        if (currentStamina <= 0)
-        {
-            increaseSpeed = 0;
-        }
+        
     }
 }
