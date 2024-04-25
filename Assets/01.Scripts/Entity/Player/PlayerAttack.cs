@@ -7,9 +7,14 @@ public class PlayerAttack : MonoBehaviour
     public bool isAttackAble = false;
     protected Transform trans;
     protected Vector2 box;
-    private int nowWeapon = WeaponManager.Instance.NowWeapon;
+    private int nowWeapon;
 
     Animator animator;
+
+    private void Awake()
+    {
+        nowWeapon = WeaponManager.Instance.NowWeapon;
+    }
 
     private void Update()
     {

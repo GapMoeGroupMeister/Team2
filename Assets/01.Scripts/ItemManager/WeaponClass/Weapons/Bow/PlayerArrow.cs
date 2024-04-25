@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerArrow : WeaponManager
 {
-    [SerializeField] private float _arrowSpeed = 100f;
+    
 
     private void Update()
     {

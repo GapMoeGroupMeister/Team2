@@ -27,9 +27,5 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
             _instance = this as T;
             DontDestroyOnLoad(gameObject);
         }
-        else
-        {
-            Destroy(gameObject);
-        }
     }
 }
