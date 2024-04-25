@@ -24,9 +24,10 @@ public class Archers : Enemy
     {
         
         // 콜라이더 2개 써서 탐지용, 피격용으로 사용
-        Debug.Log("됨");
+        
         if (collision.gameObject.CompareTag("Player"))
         {
+            Debug.Log("왜안돼 시발");
             _enemyStatus = EnemeyStatus.Attack;
             StopCoroutine("Wait");
         }

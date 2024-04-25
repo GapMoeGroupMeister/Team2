@@ -10,7 +10,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected Rigidbody2D rigid;
     [SerializeField] protected BoxCollider2D _collider;
     [SerializeField] protected GameObject Player;
-    [SerializeField] protected GameObject Arrow;
+    [SerializeField] protected GameObject _arrow;
 
     [SerializeField] protected float _speed;
     [SerializeField] protected int _maxHp;
@@ -79,7 +79,7 @@ public abstract class Enemy : MonoBehaviour
             // 발견 했을 때
 
             case EnemeyStatus.Attack:
-                // 플래이어를 계속 쫒아다님
+                
                 tlqk = _playerTransform.position - transform.position;
 
                 // 궁수 전용 공격
@@ -93,6 +93,7 @@ public abstract class Enemy : MonoBehaviour
                     break;
                 }
 
+                // 플래이어를 계속 쫒아다님
                 transform.position = Vector2.MoveTowards(transform.position, _playerTransform.position, _speed * 2);
               
                 if (Vector2.Distance(transform.position, Player.transform.position) <= _attackDistance)
@@ -119,7 +120,7 @@ public abstract class Enemy : MonoBehaviour
                 
                 transform.position = Vector2.MoveTowards(transform.position, ReconRange, _speed);
                 
-                Debug.Log("발");
+                
                 break;
 
             // 소리가 들렸을 때
@@ -166,10 +167,10 @@ public abstract class Enemy : MonoBehaviour
 
     protected void Attack_archers()
     {
-        GameObject arrow = Instantiate(Arrow, transform.position, Quaternion.identity);
-        arrow.GetComponent<Arrow>()._damage = _damage;
-        arrow.GetComponent<Arrow>().archers = GetComponent<Archers>();
-        arrow.GetComponent<Arrow>().owner = transform;
+        GameObject arrow = Instantiate(_arrow, transform.position, Quaternion.identity);
+        arrow.GetComponent<ArrowMovement>()._damage = _damage;
+        arrow.GetComponent<ArrowMovement>().archers = GetComponent<Archers>();
+        arrow.GetComponent<ArrowMovement>().owner = transform;
     }
 
 

@@ -21,6 +21,6 @@ public class PlayerHpUi : MonoBehaviour
     
     public void CheckHp()
     {
-        hpUi.value = PlayerHealth.HP / fullHp;
+        hpUi.value = currentHp / fullHp;
     }
 }

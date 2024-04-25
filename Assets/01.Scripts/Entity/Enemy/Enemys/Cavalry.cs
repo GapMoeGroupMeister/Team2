@@ -42,7 +42,7 @@ public class Cavalry : Enemy
     {
         if (!collision.gameObject.CompareTag("Player"))
         {
-            ReconRange = new Vector2(Random.RandomRange(-10f, 10f), Random.RandomRange(-10f, 10f));
+            ReconRange = new Vector2(Random.Range(-10f, 10f), Random.Range(-10f, 10f));
         }
     }
 
