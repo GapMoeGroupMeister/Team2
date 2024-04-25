@@ -55,3 +55,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground
+    uniqueID: 3801405087
+    locked: 0
+  - name: Weed
+    uniqueID: 2118100949
+    locked: 0
+  - name: Object
+    uniqueID: 3678558291
+    locked: 0
+  - name: Character
+    uniqueID: 2185696691
+    locked: 0
+  - name: FrontWall
+    uniqueID: 1001727741
+    locked: 0

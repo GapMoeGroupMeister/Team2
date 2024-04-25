@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HowMuchDefeat : MonoBehaviour
 {
-    [SerializeField] private static int defeat = 0;
+    [SerializeField] public int defeat = 0;
     [SerializeField] private Text _defeatUI;
 
 
@@ -20,6 +20,13 @@ public class HowMuchDefeat : MonoBehaviour
         defeat++;
         _defeatUI.text = "패전 횟수 : " + defeat;
     }
+
+    public void Reset()
+    {
+        defeat = 0;
+        _defeatUI.text = "패전 횟수 : " + defeat;
+    }
+
     private void Update()
     {
         //체력 불러와서 0이면 defeat 증가

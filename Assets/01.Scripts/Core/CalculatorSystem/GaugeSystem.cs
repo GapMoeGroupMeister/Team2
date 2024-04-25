@@ -12,6 +12,7 @@ public class FoodGauge : MonoBehaviour
     private int _dayChanges;
     public int _levelUp;
     public bool gaugeTest = false;
+    private int _lose;
 
 
     private void Awake()
@@ -20,14 +21,15 @@ public class FoodGauge : MonoBehaviour
         _foodBar.value = 0;
         _levelUp = 0;
         _dayChanges = 0;
+        _lose = GetComponent<HowMuchDefeat>().defeat;
         _food = 0;
         _scrap = 0;
-        _foodBar.maxValue = 100  + _dayChanges * _levelUp / 10;
         _scrapBar.maxValue = _foodBar.maxValue;
     }
 
     private void Update()
     {
+        _foodBar.maxValue = 100 + _dayChanges * (_lose * 10) / 10;
         _foodBar.value = _food;
         _scrapBar.value = _scrap;
         if (_foodBar.value >= _foodBar.maxValue && _scrapBar.value >= _scrapBar.maxValue)
