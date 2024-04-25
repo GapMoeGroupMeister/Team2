@@ -2,86 +2,123 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponManager : MonoBehaviour
+public class WeaponManager : MonoSingleton<WeaponManager>
 {
-    [SerializeField] public int nowWeapon = 0;
-    public static bool isAttacking = false;
-    public static bool isAxe = false;
-    public static bool isShield = false;
-    public static bool isSword = false;
-    public static bool isSpare = false;
-    public static bool isBow = false;
+    [SerializeField] protected GameObject[] weaponPrefabs;
+    [SerializeField] protected GameObject player;
+    [SerializeField] protected GameObject weapon;
+    [SerializeField] protected int nowWeapon = 0;
+    [SerializeField] protected float _arrowSpeed = 100f;
+    protected BoxCollider2D weaponCollider;
+    public bool isAttacking = false;
+    protected Vector3 moveDir;
+
+    private int weaponCount = 5;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        moveDir = PlayerManager.Instance.MoveDir;
+        weaponCollider = weapon.GetComponent<BoxCollider2D>();
+    }
+
+    private void Start()
+    {
+        SetWeapon();
+    }
 
     private void Update()
     {
-       
+        JudgeWeapon();
+        ChangeWeapon();
+    }
 
+    private void SetWeapon()
+    {
+        Vector3 spawnPosition = transform.position;
+        foreach (GameObject weaponPrefabs in weaponPrefabs)
+        {
+            GameObject weapon = Instantiate(weaponPrefabs, transform);
+            weapon.SetActive(false);
+        }
+    }
+
+    private void JudgeWeapon()
+    {
         if (Input.GetMouseButton(0) && isAttacking == false)
         {
-            //공격 애니메이션 연동
-            if (nowWeapon == 1)
+            switch (nowWeapon)
             {
-                isAttacking = true;
-                isAxe = true;
-            }
+                case 1:
+                    isAttacking = true;
+                    break;
 
-            if (nowWeapon == 2)
-            {
-                isAttacking = true;
-                isShield = true;
-            }
+                case 2:
+                    isAttacking = true;
+                    break;
 
-            if (nowWeapon == 3)
-            {
-                isAttacking = true;
-                isSword = true;
-            }
+                case 3:
+                    isAttacking = true;
+                    break;
 
-            if (nowWeapon == 4)
-            {
-                isAttacking = true;
-                isSpare = true;
-            }
+                case 4:
+                    isAttacking = true;
+                    break;
 
-            if (nowWeapon == 5)
-            {
-                isAttacking = true;
-                isBow = true;
+                case 5:
+                    isAttacking = true;
+                    break;
             }
         }
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    private void ChangeWeapon()
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            Destroy(gameObject);
+            nowWeapon += 1;
+            Debug.Log("다음 무기 불러와야디");
         }
 
-        else if (collision.gameObject.CompareTag("Axe"))
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            nowWeapon = 1;
-            Destroy(collision.gameObject);
+            nowWeapon -= 1;
+            Debug.Log("이전 무기 불러와야디");
         }
-        else if (collision.gameObject.CompareTag("Shield"))
+        
+        nowWeapon = Mathf.Clamp(nowWeapon, 1, weaponCount);
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        GameObject getTag = collision.gameObject;
+
+        switch (getTag.tag)
         {
-            nowWeapon = 2;
-            Destroy(collision.gameObject);
-        }
-        else if (collision.gameObject.CompareTag("Sword"))
-        {
-            nowWeapon = 3;
-            Destroy(collision.gameObject);
-        }
-        else if (collision.gameObject.CompareTag("Spare"))
-        {
-            nowWeapon = 4;
-            Destroy(collision.gameObject);
-        }
-        else if (collision.gameObject.CompareTag("Bow"))
-        {
-            nowWeapon = 5;
-            Destroy(collision.gameObject);
+            case "Eneny":
+                Destroy(gameObject);
+                break;
+            case "Axe":
+                nowWeapon = 1;
+                Destroy(getTag);
+                break;
+            case "Shield":
+                nowWeapon = 2;
+                Destroy(getTag);
+                break;
+            case "Sword":
+                nowWeapon = 3;
+                Destroy(getTag);
+                break;
+            case "Spare":
+                nowWeapon = 4;
+                Destroy(getTag);
+                break;
+            case "Bow":
+                nowWeapon = 5;
+                Destroy(getTag);
+                break;
+
         }
     }
 
@@ -90,4 +127,8 @@ public class WeaponManager : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public int NowWeapon
+    {
+        get { return nowWeapon; }
+    }
 }

@@ -7,8 +7,14 @@ public class PlayerAttack : MonoBehaviour
     public bool isAttackAble = false;
     protected Transform trans;
     protected Vector2 box;
+    private int nowWeapon;
 
     Animator animator;
+
+    private void Awake()
+    {
+        nowWeapon = WeaponManager.Instance.NowWeapon;
+    }
 
     private void Update()
     {
@@ -24,7 +30,14 @@ public class PlayerAttack : MonoBehaviour
             {
                 if (collider.CompareTag("Enemy"))
                 {
+                    switch (nowWeapon)
+                    {
+                        case 4:
+                            //창 공격 불러오기
+                            break;
 
+                        // 이제 쭉 case 추가하면서 공격 하나하나 추가하면 될 거 같은
+                    }
                 }
             }
             animator.SetTrigger("Attack1");

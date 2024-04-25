@@ -1,48 +1,30 @@
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
-public class PlayerMovement : Player
+public class PlayerMovement : MonoBehaviour
 {
-    protected void Update()
+    private PlayerManager playerManager;
+    
+    private void Awake()
     {
-        Move();
+        playerManager = PlayerManager.Instance;
     }
 
-    private void Move()
+    private void OnMovement(InputValue value)
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
-        vertical = Input.GetAxisRaw("Vertical");
+        playerManager.MoveDir = value.Get<Vector3>();
+    }
 
-        Vector3 MoveDir = new Vector3(horizontal, vertical, 0).normalized;
+    private void OnRun(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            playerManager.IsRun = true;
+        }
+        else
+        {
+            playerManager.IsRun = false;
+        }
         
-
-        if (Input.GetKey(KeyCode.LeftShift) && !(currentStamina <= 0))
-        {
-            increaseSpeed += currentStamina / acceleration * Time.deltaTime;
-            currentStamina -= 0.996f * Time.deltaTime;
-            movespeed += increaseSpeed;
-        }
-        else if (!(currentStamina >= fullStamina) && !Input.GetKey(KeyCode.LeftShift))
-        {
-            currentStamina += cureStamina * Time.deltaTime;
-        }
-
-        transform.position += MoveDir * movespeed * Time.deltaTime;
-
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            movespeed -= increaseSpeed;
-            increaseSpeed -= fullStamina / deceleration * Time.deltaTime;
-        }
-
-        if (increaseSpeed <= 0)
-        {
-            increaseSpeed = 0;
-        }
-
-        if (Input.GetKeyUp(KeyCode.LeftShift) || currentStamina <= 0)
-        {
-            increaseSpeed = 0;
-        }
     }
 }
