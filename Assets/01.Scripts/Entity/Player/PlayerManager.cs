@@ -19,7 +19,7 @@ public class PlayerManager : MonoSingleton<PlayerManager>
     private Rigidbody2D rb;
     private Vector3 moveDir;
 
-    #region 프로퍼티
+    #region Properties
     public Vector3 MoveDir
     {
         get => moveDir;
