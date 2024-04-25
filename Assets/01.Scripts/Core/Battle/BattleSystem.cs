@@ -24,8 +24,6 @@ public class BattleSystem : MonoBehaviour
     {
         enemyCount = Random.Range(7, 12);
 
-        //if ()
-        //{
             for (int i = 0; i <= enemyCount; i++)
             {
                 enemyType = Random.Range(1, enemyTypeCount +1);
@@ -43,6 +41,5 @@ public class BattleSystem : MonoBehaviour
                     break;
                 }
             }
-        //}
     }
 }

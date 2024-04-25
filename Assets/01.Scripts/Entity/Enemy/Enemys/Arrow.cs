@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Arrow : MonoBehaviour
+public class ArrowMovement : MonoBehaviour
 {
     public Rigidbody2D rigid;
     public Transform owner;

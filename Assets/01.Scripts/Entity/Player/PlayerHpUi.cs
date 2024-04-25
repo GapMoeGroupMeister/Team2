@@ -1,8 +1,10 @@
+using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHpUi : Player
+public class PlayerHpUi : MonoBehaviour
 {
-
+    protected float fullHp = 20f;
+    protected float currentHp = 20f;
     public Slider hpUi;
     
      
