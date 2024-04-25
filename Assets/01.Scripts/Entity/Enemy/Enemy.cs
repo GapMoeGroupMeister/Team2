@@ -28,6 +28,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected Transform Owner;
     [SerializeField] protected EnemyHpUI HPSlider;
     [SerializeField] protected GameObject HPSlider_Pre;
+    
     public Vector2 tlqk;
 
     float Timer;
@@ -44,14 +45,14 @@ public abstract class Enemy : MonoBehaviour
 
         
         EnemyHealth = GetComponent<HealthSytem>();
-        _collider = GetComponent<BoxCollider2D>();
+        _collider = GetComponentInChildren<BoxCollider2D>();
         Player = GameObject.Find("CombatPlayer");
         _playerTransform = GameObject.Find("CombatPlayer").transform;
         HPSlider = Instantiate(HPSlider_Pre, transform.position, Quaternion.identity, GameObject.Find("Canvas").transform).GetComponent<EnemyHpUI>();
     }
     private void Start()
     {
-        HPSlider.healthSytem = EnemyHealth;
+        
         EnemyHealth.HP = _maxHp; 
         ReconRange = transform.position;
         Owner = transform;
@@ -60,7 +61,7 @@ public abstract class Enemy : MonoBehaviour
     private void Update()
     {
         HPSlider.healthSytem = EnemyHealth;
-        HPSlider.transform.position = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x + 1.5f, transform.position.y + 1f, 0));
+        HPSlider.transform.position = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x + 1.5f, transform.position.y + 2f, 0));
 
         Timer += UnityEngine.Time.deltaTime;
         if (_hp < 0)
@@ -82,7 +83,7 @@ public abstract class Enemy : MonoBehaviour
                 tlqk = _playerTransform.position - transform.position;
 
                 // 궁수 전용 공격
-                if (gameObject.tag == "Enemy_archers") // 태그로 구별
+                if (gameObject.CompareTag("Enemy_archers")) // 태그로 구별
                 {
                     if (Timer >= _attackSpeed)
                     {
@@ -91,9 +92,9 @@ public abstract class Enemy : MonoBehaviour
                     }
                     break;
                 }
-                transform.position = Vector2.MoveTowards(transform.position, _playerTransform.position, _speed * 2);
-                
 
+                transform.position = Vector2.MoveTowards(transform.position, _playerTransform.position, _speed * 2);
+              
                 if (Vector2.Distance(transform.position, Player.transform.position) <= _attackDistance)
                 {
                     if (Timer >= _attackSpeed)
@@ -160,23 +161,26 @@ public abstract class Enemy : MonoBehaviour
         
         // 공격 애니메이션
 
-        // 플래이어 채력 가져와서 감소 시키기
-        /* 
-         * if (Vector2.Distance(transform.position, Player.transform.position) <= _attackDistance)
-            {
-                Player._hp -= damage
-            }
-         * 
-         * 
-         */
+        
     }
 
     protected void Attack_archers()
     {
-        Instantiate(Arrow, transform.position, Quaternion.identity);
+        GameObject arrow = Instantiate(Arrow, transform.position, Quaternion.identity);
+        arrow.GetComponent<Arrow>()._damage = _damage;
+        arrow.GetComponent<Arrow>().archers = GetComponent<Archers>();
+        arrow.GetComponent<Arrow>().owner = transform;
     }
 
+
     
+    
+
+
+
+
+
+
 
     protected enum EnemeyStatus
     {

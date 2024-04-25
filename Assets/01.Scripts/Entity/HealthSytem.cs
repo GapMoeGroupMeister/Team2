@@ -14,7 +14,7 @@ public class HealthSytem : MonoBehaviour
 
     private void Start()
     {
-        entity = entity.GetComponent<SpriteRenderer>();
+        entity = gameObject.GetComponentInChildren<SpriteRenderer>();
         ps = gameObject.GetComponentsInChildren<ParticleSystem>()[0];
     }
 
