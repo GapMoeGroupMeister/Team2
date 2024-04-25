@@ -20,24 +20,7 @@ public class Bow : WeaponManager
             pew = true;
         }
 
-        if(Input.GetMouseButton(0))
-        {
-            switch (pew)
-            {
-                case true:
-                    GameObject arrow = Instantiate(arrowPrefab);
-                    arrow.transform.position = bowPos.transform.position;
-                    break;
-                case false:
-                    _bowRange += Time.deltaTime;
-                    _bowAttackDamage += Time.deltaTime * 2;
-                    break;
-            }
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-
-        }
+        
         
     }
 }

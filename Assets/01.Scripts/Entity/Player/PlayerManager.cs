@@ -3,20 +3,84 @@ using System;
 
 public class PlayerManager : MonoSingleton<PlayerManager>
 {
-    public Action<Vector3> OnMovement;
-    public Action OnRun;
+    [Header("Speed Value")]
+    [SerializeField] protected float movespeed = 100f;
+    [SerializeField] protected float increaseSpeed;
+    [SerializeField] protected float acceleration = 3.4f;
+    [SerializeField] protected float deceleration = 5.5f;
 
+    [Space]
+
+    [Header("Stamina Value")]
+    [SerializeField] protected float currentStamina = 20f;
+    [SerializeField] protected float fullStamina = 20f;
+    [SerializeField] protected float cureStamina = 0.83f;
+
+    private Rigidbody2D rb;
     private Vector3 moveDir;
 
-    public Vector3 MoveDir => moveDir;
+    #region 프로퍼티
+    public Vector3 MoveDir
+    {
+        get => moveDir;
+        set => moveDir = value;
+    }
+
+    public float MoveSpeed
+    {
+        get => movespeed;
+        set => movespeed = value;
+    }
+
+    public float IncreaseSpeed
+    {
+        get => increaseSpeed;
+        set => increaseSpeed = value;
+    }
+
+    public bool IsRun { get; set; }
+    #endregion
+
+    protected override void Awake()
+    {
+        base.Awake();
+        #region Get Component
+        rb = GetComponent<Rigidbody2D>();
+        #endregion
+
+        #region Clamp
+        increaseSpeed = Mathf.Clamp(increaseSpeed, 0f, 150f);
+        currentStamina = Mathf.Clamp(currentStamina, 0, fullStamina);
+        #endregion
+    }
 
     private void Update()
     {
-        OnMovement?.Invoke(moveDir);
+        rb.velocity = moveDir * (movespeed + increaseSpeed) * Time.deltaTime;
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        #region run
+        if (IsRun)
         {
-            OnRun?.Invoke();
+            increaseSpeed -= fullStamina / deceleration * Time.deltaTime;
+
+            if (currentStamina > 0)
+            {
+                increaseSpeed += currentStamina / acceleration * Time.deltaTime;
+                currentStamina -= 0.996f * Time.deltaTime;
+            }
         }
+        else
+        {
+            if (currentStamina < fullStamina)
+            {
+                currentStamina += cureStamina * Time.deltaTime;
+            }
+
+            if (currentStamina <= 0)
+            {
+                increaseSpeed = 0;
+            }
+        }
+        #endregion
     }
 }
