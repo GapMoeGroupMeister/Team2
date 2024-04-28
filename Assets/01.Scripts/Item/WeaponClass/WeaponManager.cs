@@ -7,7 +7,7 @@ public class WeaponManager : MonoSingleton<WeaponManager>
     [SerializeField] protected GameObject[] weaponPrefabs;
     [SerializeField] protected GameObject player;
     [SerializeField] protected GameObject weapon;
-    [SerializeField] protected int nowWeapon = 0;
+    [SerializeField] protected int nowWeapon = 1;
     [SerializeField] protected float _arrowSpeed = 100f;
     protected BoxCollider2D weaponCollider;
     public bool isAttacking = false;
@@ -51,22 +51,27 @@ public class WeaponManager : MonoSingleton<WeaponManager>
             {
                 case 1:
                     isAttacking = true;
+                    weapon = weaponPrefabs[0];
                     break;
 
                 case 2:
                     isAttacking = true;
+                    weapon = weaponPrefabs[1];
                     break;
 
                 case 3:
                     isAttacking = true;
+                    weapon = weaponPrefabs[2];
                     break;
 
                 case 4:
                     isAttacking = true;
+                    weapon = weaponPrefabs[3];
                     break;
 
                 case 5:
                     isAttacking = true;
+                    weapon = weaponPrefabs[4];
                     break;
             }
         }

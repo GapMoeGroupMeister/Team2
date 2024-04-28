@@ -381,7 +381,7 @@ MonoBehaviour:
   - {fileID: 1478284113788084299, guid: 3321f8e868ca29549bb6bf5aee80803b, type: 3}
   - {fileID: 1478284113788084299, guid: 54df9213af65fd64ea424675f55a8bc2, type: 3}
   player: {fileID: 4661358808514894030, guid: 009f0ff0af583264889bbaf5f2ae9a5d, type: 3}
-  weapon: {fileID: 0}
+  weapon: {fileID: 1478284113788084299, guid: 6a58cacea56f5454f85a7331916f666e, type: 3}
   nowWeapon: 0
   _arrowSpeed: 100
   isAttacking: 0

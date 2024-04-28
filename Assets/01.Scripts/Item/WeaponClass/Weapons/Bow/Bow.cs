@@ -24,6 +24,7 @@ public class Bow : WeaponManager
             pew = true;
             _bowRange = _defaultBowRange;
             _bowAttackDamage = _defaultBowAttackDamage;
+            Instantiate(arrowPrefab);
         }
     }
 
@@ -39,6 +40,7 @@ public class Bow : WeaponManager
         {
             isDrawing = false;
             pew = true;
+            Instantiate(arrowPrefab);
         }
 
     }
