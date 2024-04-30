@@ -47,30 +47,28 @@ public class WeaponManager : MonoSingleton<WeaponManager>
     {
         if (Input.GetMouseButton(0) && isAttacking == false)
         {
+
+            isAttacking = true;
+
             switch (nowWeapon)
             {
                 case 1:
-                    isAttacking = true;
                     weapon = weaponPrefabs[0];
                     break;
 
                 case 2:
-                    isAttacking = true;
                     weapon = weaponPrefabs[1];
                     break;
 
                 case 3:
-                    isAttacking = true;
                     weapon = weaponPrefabs[2];
                     break;
 
                 case 4:
-                    isAttacking = true;
                     weapon = weaponPrefabs[3];
                     break;
 
                 case 5:
-                    isAttacking = true;
                     weapon = weaponPrefabs[4];
                     break;
             }
@@ -82,13 +80,11 @@ public class WeaponManager : MonoSingleton<WeaponManager>
         if (Input.GetKeyDown(KeyCode.E))
         {
             nowWeapon += 1;
-            Debug.Log("다음 무기 불러와야디");
         }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
             nowWeapon -= 1;
-            Debug.Log("이전 무기 불러와야디");
         }
         
         nowWeapon = Mathf.Clamp(nowWeapon, 1, weaponCount);

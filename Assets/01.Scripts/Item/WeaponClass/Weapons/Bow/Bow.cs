@@ -13,7 +13,6 @@ public class Bow : WeaponManager
     [SerializeField] private float _bowAttackDamage = 8f;
     private float _defaultBowAttackDamage = 8f;
     [SerializeField] private float _maxBowAttackDamage = 64f;
-    [SerializeField] private float _bowAttackSpeed = 2f;
     private bool pew = false;
     private bool isDrawing = false;
 
