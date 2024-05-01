@@ -7,6 +7,8 @@ public class PlayerHpUi : MonoBehaviour
     protected float currentHp = 20f;
     public Slider hpUi;
     
+     
+    
     void Start()
     {
         

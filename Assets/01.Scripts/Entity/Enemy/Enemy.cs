@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public abstract class Enemy : MonoBehaviour
@@ -9,20 +10,25 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected Rigidbody2D rigid;
     [SerializeField] protected BoxCollider2D _collider;
     [SerializeField] protected GameObject Player;
-    [SerializeField] protected GameObject Arrow;
+    [SerializeField] protected GameObject _arrow;
 
     [SerializeField] protected float _speed;
-    [SerializeField] protected int _hp;
+    [SerializeField] protected float _maxHp;
+    [SerializeField] protected float _hp;
     [SerializeField] protected int _defense;
     [SerializeField] protected int _damage;
     [SerializeField] protected float _attackDistance;
     [SerializeField] protected int _attackSpeed;
     [SerializeField] protected int _findDistance_x;
     [SerializeField] protected int _findDistance_y;
-
     [SerializeField] protected Transform _playerTransform;
     [SerializeField] protected EnemeyStatus _enemyStatus;
     [SerializeField] protected Vector3 ReconRange;
+    [SerializeField] protected HealthSytem EnemyHealth;
+    [SerializeField] protected Transform Owner;
+    [SerializeField] protected EnemyHpUI HPSlider;
+    [SerializeField] protected GameObject HPSlider_Pre;
+    
     public Vector2 tlqk;
 
     float Timer;
@@ -36,18 +42,23 @@ public abstract class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        _collider = GetComponent<BoxCollider2D>();
+
+        
+        EnemyHealth = GetComponent<HealthSytem>();
+        _collider = GetComponentInChildren<BoxCollider2D>();
         Player = GameObject.Find("CombatPlayer");
         _playerTransform = GameObject.Find("CombatPlayer").transform;
-    }
-    private void Start()
-    {
-
+        HPSlider = Instantiate(HPSlider_Pre, transform.position, Quaternion.identity, GameObject.Find("Canvas").transform).GetComponent<EnemyHpUI>();
+        EnemyHealth.HP = _maxHp;
         ReconRange = transform.position;
+        Owner = transform;
     }
-
     private void Update()
     {
+        _hp = EnemyHealth.HP;
+        HPSlider.healthSytem = EnemyHealth;
+        HPSlider.transform.position = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x + 1.5f, transform.position.y + 2f, 0));
+
         Timer += UnityEngine.Time.deltaTime;
         if (_hp < 0)
         {
@@ -56,7 +67,7 @@ public abstract class Enemy : MonoBehaviour
 
     }
 
-    [System.Obsolete]
+    
     protected void Move(EnemeyStatus enemyStatus)
     {
         switch (enemyStatus)
@@ -64,11 +75,11 @@ public abstract class Enemy : MonoBehaviour
             // 발견 했을 때
 
             case EnemeyStatus.Attack:
-                // 플래이어를 계속 쫒아다님
+                
                 tlqk = _playerTransform.position - transform.position;
 
                 // 궁수 전용 공격
-                if (gameObject.tag == "Enemy_archers") // 태그로 구별
+                if (gameObject.CompareTag("Enemy_archers")) // 태그로 구별
                 {
                     if (Timer >= _attackSpeed)
                     {
@@ -77,9 +88,10 @@ public abstract class Enemy : MonoBehaviour
                     }
                     break;
                 }
-                transform.position = Vector2.MoveTowards(transform.position, _playerTransform.position, _speed * 2);
-                
 
+                // 플래이어를 계속 쫒아다님
+                transform.position = Vector2.MoveTowards(transform.position, _playerTransform.position, _speed * 2);
+              
                 if (Vector2.Distance(transform.position, Player.transform.position) <= _attackDistance)
                 {
                     if (Timer >= _attackSpeed)
@@ -98,12 +110,13 @@ public abstract class Enemy : MonoBehaviour
                 
                 if (transform.position == ReconRange || Timer > 20f)
                 {
-                    ReconRange = new Vector2(Random.RandomRange(-10f, 10f), Random.RandomRange(-10f, 10f));
+                    ReconRange = new Vector2(Random.Range(-10f, 10f), Random.Range(-10f, 10f));
+                    Timer = 0;
                 }
                 
                 transform.position = Vector2.MoveTowards(transform.position, ReconRange, _speed);
                 
-                Debug.Log("발");
+                
                 break;
 
             // 소리가 들렸을 때
@@ -138,28 +151,31 @@ public abstract class Enemy : MonoBehaviour
     protected void Attack()
     {
 
-        if(Physics2D.Raycast(transform.position, tlqk.normalized, 1))
+        if(Physics2D.Raycast(transform.position, tlqk.normalized, _attackDistance))
         {
-
+            Physics2D.Raycast(transform.position, tlqk.normalized, _attackDistance).collider.gameObject.GetComponent<HealthSytem>().HP -= 0;
         }
         
         // 공격 애니메이션
 
-        // 플래이어 채력 가져와서 감소 시키기
-        /* 
-         * if (Vector2.Distance(transform.position, Player.transform.position) <= _attackDistance)
-            {
-                Player._hp -= damage
-            }
-         * 
-         * 
-         */
+        
     }
 
     protected void Attack_archers()
     {
-        Instantiate(Arrow, transform.position, Quaternion.identity);
+        GameObject arrow = Instantiate(_arrow, transform.position, Quaternion.identity);
+        arrow.GetComponent<ArrowMovement>()._damage = _damage;
+        arrow.GetComponent<ArrowMovement>().archers = GetComponent<Archers>();
+        arrow.GetComponent<ArrowMovement>().owner = transform;
     }
+
+
+    
+    
+
+
+
+
 
 
 
