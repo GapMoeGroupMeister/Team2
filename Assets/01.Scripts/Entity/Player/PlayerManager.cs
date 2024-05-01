@@ -6,20 +6,21 @@ public class PlayerManager : MonoSingleton<PlayerManager>
     [Header("Speed Value")]
     [SerializeField] protected float movespeed = 100f;
     [SerializeField] protected float increaseSpeed;
-    [SerializeField] protected float acceleration = 3.4f;
-    [SerializeField] protected float deceleration = 5.5f;
+    [SerializeField] protected float acceleration = 12.8f;
+    [SerializeField] protected float deceleration = 10.8f;
 
     [Space]
 
     [Header("Stamina Value")]
-    [SerializeField] protected float currentStamina = 20f;
-    [SerializeField] protected float fullStamina = 20f;
-    [SerializeField] protected float cureStamina = 0.83f;
+    [SerializeField] protected float currentStamina = 100f;
+    [SerializeField] protected float fullStamina = 100f;
+    [SerializeField] protected float cureStamina = 1;
+    [SerializeField] protected float decreaseStamina = 1.8999f;
 
     private Rigidbody2D rb;
     private Vector3 moveDir;
 
-    #region 프로퍼티
+    #region Properties
     public Vector3 MoveDir
     {
         get => moveDir;
@@ -66,7 +67,7 @@ public class PlayerManager : MonoSingleton<PlayerManager>
             if (currentStamina > 0)
             {
                 increaseSpeed += currentStamina / acceleration * Time.deltaTime;
-                currentStamina -= 0.996f * Time.deltaTime;
+                currentStamina -= decreaseStamina * Time.deltaTime;
             }
         }
         else
