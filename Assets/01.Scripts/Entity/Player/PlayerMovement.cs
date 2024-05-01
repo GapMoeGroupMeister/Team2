@@ -25,6 +25,5 @@ public class PlayerMovement : MonoBehaviour
         {
             playerManager.IsRun = false;
         }
-        
     }
 }

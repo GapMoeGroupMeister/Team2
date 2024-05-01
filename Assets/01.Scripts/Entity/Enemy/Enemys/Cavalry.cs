@@ -10,7 +10,7 @@ public class Cavalry : Enemy
         _enemyStatus = EnemeyStatus.Recon;
     }
 
-    [System.Obsolete]
+    
     private void FixedUpdate()
     {
         
@@ -24,8 +24,8 @@ public class Cavalry : Enemy
     {
         StopCoroutine("Wait");
         // 콜라이더 2개 써서 탐지용, 피격용으로 사용
-        Debug.Log("됨");
-        if (collision.gameObject.tag == "Player")
+        
+        if (collision.gameObject.CompareTag("Player"))
         {
             _enemyStatus = EnemeyStatus.Attack;
         }
@@ -36,13 +36,13 @@ public class Cavalry : Enemy
         StartCoroutine("Wait");
     }
 
-    [System.Obsolete]
+    
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (!(collision.gameObject.tag == "Player"))
+        if (!collision.gameObject.CompareTag("Player"))
         {
-            ReconRange = new Vector2(Random.RandomRange(-10f, 10f), Random.RandomRange(-10f, 10f));
+            ReconRange = new Vector2(Random.Range(-10f, 10f), Random.Range(-10f, 10f));
         }
     }
 
