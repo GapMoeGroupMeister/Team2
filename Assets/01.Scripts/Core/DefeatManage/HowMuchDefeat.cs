@@ -9,7 +9,7 @@ public class HowMuchDefeat : MonoBehaviour
     [SerializeField] private Text _defeatUI;
 
 
-    private void Awake()
+    /*private void Awake()
     {
         _defeatUI.text = "ÆÐÀü È½¼ö : " + defeat;
     }
@@ -25,7 +25,7 @@ public class HowMuchDefeat : MonoBehaviour
     {
         defeat = 0;
         _defeatUI.text = "ÆÐÀü È½¼ö : " + defeat;
-    }
+    }*/
 
     private void Update()
     {

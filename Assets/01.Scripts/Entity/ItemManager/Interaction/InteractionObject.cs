@@ -7,6 +7,7 @@ public class InteractionObject : InteractionObjType
     private PlayerMovement Galahad;
     private PlayerMovement playerObject = null;
     [SerializeField] private GameObject Scrap;
+    private HowMuchDefeat defeatValue;
 
     protected float lootingTime = 2f;
     protected bool isLooting = false;
@@ -38,7 +39,12 @@ public class InteractionObject : InteractionObjType
     private void Awake()
     {
         playerObject = FindObjectOfType<PlayerMovement>();
+        defeatValue = GetComponent<HowMuchDefeat>();
 
+        if (defeatValue.defeat >= 4)
+        {
+            lootingTime = 2f - (defeatValue.defeat * 0.1f);
+        }
     }
 
     private void Update()
