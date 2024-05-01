@@ -9,6 +9,7 @@ public class WeaponManager : MonoSingleton<WeaponManager>
     [SerializeField] protected GameObject weapon;
     [SerializeField] protected int nowWeapon = 1;
     [SerializeField] protected float _arrowSpeed = 100f;
+    private float _desiredAngle;
     protected BoxCollider2D weaponCollider;
     public bool isAttacking = false;
     protected Vector3 moveDir;
@@ -88,6 +89,13 @@ public class WeaponManager : MonoSingleton<WeaponManager>
         }
         
         nowWeapon = Mathf.Clamp(nowWeapon, 1, weaponCount);
+    }
+
+    private void WeaponDir()
+    {
+        Vector3 aimDir = moveDir;
+        _desiredAngle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
+        weapon.transform.rotation = Quaternion.AngleAxis(_desiredAngle, Vector3.forward);
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
