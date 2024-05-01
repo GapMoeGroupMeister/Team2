@@ -26,7 +26,7 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - Camera
   - 
   - 
   - 
@@ -69,4 +69,7 @@ TagManager:
     locked: 0
   - name: FrontWall
     uniqueID: 1001727741
+    locked: 0
+  - name: Particle
+    uniqueID: 606090489
     locked: 0

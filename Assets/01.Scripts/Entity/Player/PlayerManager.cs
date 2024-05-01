@@ -43,9 +43,8 @@ public class PlayerManager : MonoSingleton<PlayerManager>
     public bool IsRun { get; set; }
     #endregion
 
-    protected override void Awake()
+    protected void Awake()
     {
-        base.Awake();
         #region Get Component
         rb = GetComponent<Rigidbody2D>();
         #endregion
@@ -62,7 +61,7 @@ public class PlayerManager : MonoSingleton<PlayerManager>
 
     private void Update()
     {
-        rb.velocity = moveDir * (movespeed + increaseSpeed) * Time.deltaTime;
+        rb.velocity = moveDir * ((movespeed + increaseSpeed) * Time.deltaTime);
 
         #region run
         if (IsRun)

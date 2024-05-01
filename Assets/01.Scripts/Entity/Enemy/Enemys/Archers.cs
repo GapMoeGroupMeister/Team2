@@ -29,16 +29,14 @@ public class Archers : Enemy
         {
             Debug.Log("¿Ö¾ÈµÅ ½Ã¹ß");
             _enemyStatus = EnemeyStatus.Attack;
-            StopCoroutine("Wait");
+            StopCoroutine(Wait());
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        StartCoroutine("Wait");
+        StartCoroutine(Wait());
     }
-
-    
 
     private void OnCollisionStay2D(Collision2D collision)
     {

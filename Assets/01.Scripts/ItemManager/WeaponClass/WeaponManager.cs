@@ -16,9 +16,8 @@ public class WeaponManager : MonoSingleton<WeaponManager>
 
     private int weaponCount = 5;
 
-    protected override void Awake()
+    protected void Awake()
     {
-        base.Awake();
         moveDir = PlayerManager.Instance.MoveDir;
         weaponCollider = weapon.GetComponent<BoxCollider2D>();
     }

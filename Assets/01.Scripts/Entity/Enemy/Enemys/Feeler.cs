@@ -22,7 +22,7 @@ public class Feeler : Enemy
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        StopCoroutine("Wait");
+        StartCoroutine(Wait());
         // 콜라이더 2개 써서 탐지용, 피격용으로 사용
         
         if (collision.gameObject.CompareTag("Player"))
@@ -34,7 +34,7 @@ public class Feeler : Enemy
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        StartCoroutine("Wait");
+        StartCoroutine(Wait());
     }
 
     
