@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyHpUI : Enemy
+
+public class EnemyHpUI : MonoBehaviour
 {
     protected Slider HpSlider;
     public HealthSytem healthSytem;
@@ -24,6 +26,6 @@ public class EnemyHpUI : Enemy
     {// -960, -540 : 0, 0
         
         
-        HpSlider.value = healthSytem.HP / 100;
+        HpSlider.value = healthSytem.HP;
     }
 }

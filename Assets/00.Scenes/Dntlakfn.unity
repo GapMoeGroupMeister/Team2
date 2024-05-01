@@ -175,10 +175,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8057725135547312045, guid: 3bbf5ddc75c562545a13ed2f775ae978, type: 3}
-      propertyPath: _collider
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -512,10 +508,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -4299941991524138835, guid: f630d1823049d84459c7f51832ef87ba, type: 3}
-      propertyPath: entity
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 62698117938792086, guid: f630d1823049d84459c7f51832ef87ba, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.11

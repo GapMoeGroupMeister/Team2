@@ -13,8 +13,8 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected GameObject _arrow;
 
     [SerializeField] protected float _speed;
-    [SerializeField] protected int _maxHp;
-    [SerializeField] protected int _hp;
+    [SerializeField] protected float _maxHp;
+    [SerializeField] protected float _hp;
     [SerializeField] protected int _defense;
     [SerializeField] protected int _damage;
     [SerializeField] protected float _attackDistance;
@@ -49,17 +49,13 @@ public abstract class Enemy : MonoBehaviour
         Player = GameObject.Find("CombatPlayer");
         _playerTransform = GameObject.Find("CombatPlayer").transform;
         HPSlider = Instantiate(HPSlider_Pre, transform.position, Quaternion.identity, GameObject.Find("Canvas").transform).GetComponent<EnemyHpUI>();
-    }
-    private void Start()
-    {
-        
-        EnemyHealth.HP = _maxHp; 
+        EnemyHealth.HP = _maxHp;
         ReconRange = transform.position;
         Owner = transform;
     }
-    
     private void Update()
     {
+        _hp = EnemyHealth.HP;
         HPSlider.healthSytem = EnemyHealth;
         HPSlider.transform.position = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x + 1.5f, transform.position.y + 2f, 0));
 

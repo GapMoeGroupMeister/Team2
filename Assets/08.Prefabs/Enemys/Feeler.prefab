@@ -9904,12 +9904,12 @@ MonoBehaviour:
   Player: {fileID: 0}
   _arrow: {fileID: 0}
   _speed: 0.05
-  _maxHp: 0
+  _maxHp: 100
   _hp: 0
   _defense: 0
   _damage: 0
   _attackDistance: 0
-  _attackSpeed: 0
+  _attackSpeed: 1
   _findDistance_x: 10
   _findDistance_y: 5
   _playerTransform: {fileID: 0}
@@ -9961,6 +9961,7 @@ GameObject:
   - component: {fileID: 6887676369434766158}
   - component: {fileID: 3998707540219121683}
   - component: {fileID: 3387663998889271360}
+  - component: {fileID: 1456169772919230766}
   m_Layer: 0
   m_Name: Avatar
   m_TagString: Untagged
@@ -9978,7 +9979,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 62698117938792086}
@@ -10024,7 +10025,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5443465b80cfeb0489ad0414c7d84903, type: 3}
+  m_Sprite: {fileID: -1999999718, guid: cf48297da7b04de44992eb2619d2e54a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -10045,7 +10046,7 @@ Animator:
   m_GameObject: {fileID: 8040921582901394498}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 33cfd63c934c63f4fbc6f4932a471eee, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -10056,3 +10057,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1456169772919230766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8040921582901394498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3de9fb5a59ab2049a38ad7ba2312567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collider: {fileID: 8712026515011338763}
