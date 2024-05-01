@@ -361,7 +361,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &309335065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,9 +374,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e900918d21e62a4448cd682b16f81c45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponPrefabs: []
+  weaponPrefabs:
+  - {fileID: 1478284113788084299, guid: 6a58cacea56f5454f85a7331916f666e, type: 3}
+  - {fileID: 1478284113788084299, guid: 3e840c085b76d854fb9721c49c74701a, type: 3}
+  - {fileID: 8807386253109026826, guid: 8a0007f239622d2458722ca291825c8f, type: 3}
+  - {fileID: 1478284113788084299, guid: 3321f8e868ca29549bb6bf5aee80803b, type: 3}
+  - {fileID: 1478284113788084299, guid: 54df9213af65fd64ea424675f55a8bc2, type: 3}
   player: {fileID: 4661358808514894030, guid: 009f0ff0af583264889bbaf5f2ae9a5d, type: 3}
-  weapon: {fileID: 0}
+  weapon: {fileID: 1478284113788084299, guid: 6a58cacea56f5454f85a7331916f666e, type: 3}
   nowWeapon: 0
   _arrowSpeed: 100
   isAttacking: 0
@@ -608,11 +613,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74fb9971225e51c449f09221190bf56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 3.4
-  deceleration: 5.5
-  currentStamina: 20
-  fullStamina: 20
-  cureStamina: 0.83
 --- !u!4 &1064721723
 Transform:
   m_ObjectHideFlags: 0
@@ -725,11 +725,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74fb9971225e51c449f09221190bf56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 3.4
-  deceleration: 5.5
-  currentStamina: 20
-  fullStamina: 20
-  cureStamina: 0.83
 --- !u!114 &1450488418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -744,6 +739,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movespeed: 100
   increaseSpeed: 0
+  acceleration: 3.4
+  deceleration: 5.5
+  currentStamina: 20
+  fullStamina: 20
+  cureStamina: 0.83
 --- !u!4 &1450488419
 Transform:
   m_ObjectHideFlags: 0
