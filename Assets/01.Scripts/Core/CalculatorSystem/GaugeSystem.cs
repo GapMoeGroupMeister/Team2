@@ -29,7 +29,7 @@ public class FoodGauge : MonoBehaviour
 
     private void Update()
     {
-        _foodBar.maxValue = 100 + _dayChanges * (_lose * 10) / 10;
+        _foodBar.maxValue = 100 + _dayChanges * (_lose * 10);
         _foodBar.value = _food;
         _scrapBar.value = _scrap;
         if (_foodBar.value >= _foodBar.maxValue && _scrapBar.value >= _scrapBar.maxValue)
