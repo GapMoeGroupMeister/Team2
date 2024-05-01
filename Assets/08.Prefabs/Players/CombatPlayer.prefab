@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 9075973343980249193}
   - component: {fileID: 2837562595277820401}
   - component: {fileID: 6485491148801404043}
+  - component: {fileID: 2955153128936045511}
   m_Layer: 0
   m_Name: CombatPlayer
   m_TagString: CombatPlayer
@@ -228,3 +229,24 @@ MonoBehaviour:
   - {fileID: 1478284113788084299, guid: 54df9213af65fd64ea424675f55a8bc2, type: 3}
   player: {fileID: 4661358808514894030}
   weapon: {fileID: 0}
+  nowWeapon: 0
+  _arrowSpeed: 100
+  isAttacking: 0
+--- !u!114 &2955153128936045511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4661358808514894030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93d97cd78138c4b448d2df45f2e3757c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnHpChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  entity: {fileID: 0}
+  ps: {fileID: 0}
+  _hp: 0

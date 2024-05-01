@@ -1,20 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ArrowMovement : MonoBehaviour
 {
-    [SerializeField] protected Rigidbody2D rigid;
-    [SerializeField] protected Transform owner;
+    public Rigidbody2D rigid;
+    public Transform owner;
     [SerializeField] protected float _speed;
+    public float _damage;
     
-    Archers archers;
+    public Archers archers;
     // Start is called before the first frame update
 
     private void Awake()
     {
-        owner = GameObject.Find("Capsule").transform;
-        archers = owner.GetComponent<Archers>();
+        
     }
     void Start()
     {
@@ -24,15 +25,21 @@ public class ArrowMovement : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<HealthSytem>().HP -= _damage;
+            Destroy(gameObject);
+        }
     }
+
+
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
 }
