@@ -19,6 +19,7 @@ public class PlayerManager : MonoSingleton<PlayerManager>
 
     private Rigidbody2D rb;
     private Vector3 moveDir;
+    private HowMuchDefeat defValue;
 
     #region Properties
     public Vector3 MoveDir
@@ -53,6 +54,10 @@ public class PlayerManager : MonoSingleton<PlayerManager>
         increaseSpeed = Mathf.Clamp(increaseSpeed, 0f, 150f);
         currentStamina = Mathf.Clamp(currentStamina, 0, fullStamina);
         #endregion
+
+        defValue = GetComponent<HowMuchDefeat>();
+        if (defValue.defeat >= 4)
+            movespeed = 100f + (defValue.defeat * 5);
     }
 
     private void Update()
