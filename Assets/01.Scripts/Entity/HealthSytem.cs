@@ -7,16 +7,16 @@ using UnityEngine.Events;
 [Serializable]
 public class HealthSytem : MonoBehaviour
 {
-    
+
     [SerializeField] UnityEvent OnHpChangedEvent;
-    [SerializeField] protected SpriteRenderer entity;
+    
     [SerializeField] protected ParticleSystem ps;
 
     [SerializeField] protected float _hp;
 
     private void Start()
     {
-        entity = gameObject.GetComponentInChildren<SpriteRenderer>();
+        
         ps = gameObject.GetComponentsInChildren<ParticleSystem>()[0];
     }
 
@@ -40,21 +40,15 @@ public class HealthSytem : MonoBehaviour
             else if (_hp < value)
             {
                 //힐이 들어왔을 때 이벤트 
-                StartCoroutine("Healed");
+                
             }
             _hp = value;
         }
     }
 
-    
 
-    
-    
 
-    IEnumerator Healed()
-    {
-        entity.color = Color.green;
-        yield return new WaitForSeconds(0.5f);
-        entity.color = Color.white;
-    }
+
+
+
 }

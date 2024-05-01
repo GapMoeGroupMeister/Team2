@@ -744,6 +744,7 @@ MonoBehaviour:
   currentStamina: 20
   fullStamina: 20
   cureStamina: 0.83
+  decreaseStamina: 1.8999
 --- !u!4 &1450488419
 Transform:
   m_ObjectHideFlags: 0
