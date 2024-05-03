@@ -2,6 +2,6 @@ namespace Crogen.ObjectPooling
         {
             public enum PoolType
             {
-                GlobalVolume, 
+                pf_Cube, 
             }
         }
