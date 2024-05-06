@@ -18,10 +18,6 @@ public class BattleSystem : MonoBehaviour
         mainCamera = Camera.main;
         leftLimit = mainCamera.ViewportToWorldPoint(new Vector3(0, 0));
         rightLimit = mainCamera.ViewportToWorldPoint(new Vector3(1, 1));
-    }
-
-    void Awake()
-    {
         enemyCount = Random.Range(7, 12);
 
             for (int i = 0; i <= enemyCount; i++)
