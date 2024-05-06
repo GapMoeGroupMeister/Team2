@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6783838390493243197}
   - component: {fileID: 6031210748051011387}
   - component: {fileID: 973565677775546961}
+  - component: {fileID: 8830567625785952663}
+  - component: {fileID: 9016826521666135396}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -109,6 +111,40 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8830567625785952663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648755558177435651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d018c09110a2a86428717d711215a6fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movespeed: 100
+  increaseSpeed: 0
+  acceleration: 12.8
+  deceleration: 10.8
+  currentStamina: 100
+  fullStamina: 100
+  cureStamina: 1
+  decreaseStamina: 1.8999
+--- !u!114 &9016826521666135396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648755558177435651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30eadf36eb280d847a32a91a510f4fb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defeat: 0
+  _defeatUI: {fileID: 0}
 --- !u!1 &3421308727295783954
 GameObject:
   m_ObjectHideFlags: 0
