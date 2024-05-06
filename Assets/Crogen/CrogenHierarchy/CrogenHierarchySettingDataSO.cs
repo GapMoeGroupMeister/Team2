@@ -1,10 +1,10 @@
-﻿using System;
+﻿#if UNITY_EDITOR
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Crogen.CustomHierarchy.Editor
+namespace Crogen.CrogenHierarchy.Editor
 {
-    public class CustomHierarchySettingDataSO : ScriptableObject
+    public class CrogenHierarchySettingDataSO : ScriptableObject
     {
         //Background
         public BackgroundType backgroundType;
@@ -20,3 +20,4 @@ namespace Crogen.CustomHierarchy.Editor
         public List<Color> textColor;
     }
 }
+#endif

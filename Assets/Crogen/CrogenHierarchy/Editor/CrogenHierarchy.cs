@@ -1,30 +1,25 @@
 #if UNITY_EDITOR
-using System.Collections.Generic;
-using System.Linq;
-using Crogen.CustomHierarchy.Editor.HierarchyElement;
+using Crogen.CrogenHierarchy.Editor.HierarchyElement;
 using UnityEngine;
 using UnityEditor;
 
-namespace Crogen.CustomHierarchy.Editor
+namespace Crogen.CrogenHierarchy.Editor
 {
     [InitializeOnLoad]
-    public class CustomHierarchy
+    public class CrogenHierarchy
     {
         private static readonly float Offset = 3f;
-        public static event LogicCallback LogicCallback;
+        private static readonly DrawManager DrawManager;
         
-        static CustomHierarchy()
+        static CrogenHierarchy()
         {
-            new BackgroundLogic();
-            new IconLogic();
-            new LineLogic();
-            new TextLogic();
-            new ToggleLogic();
-            
-            EditorApplication.hierarchyWindowItemOnGUI += HandleHierarchyOnGUI;
+            //ElementDraw
+            DrawManager = new DrawManager();
+
+            EditorApplication.hierarchyWindowItemOnGUI = HandleHierarchyOnGUI;
         }
     
-        ~CustomHierarchy()
+        ~CrogenHierarchy()
         {
             EditorApplication.hierarchyWindowItemOnGUI -= HandleHierarchyOnGUI;
         }
@@ -42,7 +37,7 @@ namespace Crogen.CustomHierarchy.Editor
                 float hierarchySibling = (selectionRect.position.x - 60) / 14;
                 int hierarchyIndex = (int)selectionRect.position.y/16;
                 if(hierarchyInfo) hierarchyInfo.Init();
-                LogicCallback?.Invoke(selectionRect, hierarchyInfo, gameObject, parent, components, hierarchySibling, hierarchyIndex, Offset);
+                DrawManager.Draw(selectionRect, hierarchyInfo, gameObject, parent, components, hierarchySibling, hierarchyIndex, Offset);
             }
         }
     }

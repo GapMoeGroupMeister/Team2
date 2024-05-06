@@ -1,29 +1,29 @@
-﻿using System;
+﻿#if UNITY_EDITOR
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Crogen.CustomHierarchy.Editor
+namespace Crogen.CrogenHierarchy.Editor
 {
-    public class CustomHierarchySettingWindow : EditorWindow
+    public class CrogenHierarchySettingWindow : EditorWindow
     {
         private Vector2 _scrollPosition = Vector2.zero;
-        private static CustomHierarchySettingDataSO _hierarchySettingData;
+        private static CrogenHierarchySettingDataSO _hierarchySettingData;
 
-        [MenuItem("Crogen/CustomHierarchy/CustomHierarchyGlobalSetting")]
+        [MenuItem("Crogen/CrogenHierarchy/GlobalSetting")]
         public static void ShowWindow()
         {
-            var window = GetWindow<CustomHierarchySettingWindow>();
-            window.titleContent = new GUIContent("CustomHierarchySettingWindow");
+            var window = GetWindow<CrogenHierarchySettingWindow>();
+            window.titleContent = new GUIContent("CrogenHierarchySettingWindow");
             window.Show();
 
-            _hierarchySettingData = Resources.Load<CustomHierarchySettingDataSO>("HierarchySettingData");
+            _hierarchySettingData = Resources.Load<CrogenHierarchySettingDataSO>("HierarchySettingData");
 
             if (_hierarchySettingData == null)
             {
-                ScriptableObject asset = ScriptableObject.CreateInstance(typeof(CustomHierarchySettingDataSO));
-                AssetDatabase.CreateAsset(asset, "Assets/Crogen/CustomHierarchy/Resources/HierarchySettingData.asset");
-                _hierarchySettingData = Resources.Load<CustomHierarchySettingDataSO>("HierarchySettingData");
+                ScriptableObject asset = ScriptableObject.CreateInstance(typeof(CrogenHierarchySettingDataSO));
+                AssetDatabase.CreateAsset(asset, "Assets/Crogen/CrgoenHierarchy/Resources/HierarchySettingData.asset");
+                _hierarchySettingData = Resources.Load<CrogenHierarchySettingDataSO>("HierarchySettingData");
             }
             AssetDatabase.SaveAssets();
         }
@@ -140,7 +140,7 @@ namespace Crogen.CustomHierarchy.Editor
             }
             else
             {
-                _hierarchySettingData = Resources.Load<CustomHierarchySettingDataSO>("HierarchySettingData");
+                _hierarchySettingData = Resources.Load<CrogenHierarchySettingDataSO>("HierarchySettingData");
             }
             EditorGUILayout.EndScrollView();
         }
@@ -151,14 +151,7 @@ namespace Crogen.CustomHierarchy.Editor
                     
             if (GUILayout.Button("+"))
             {
-                if (list.Count == 0)
-                {
-                    list.Add(item);
-                }
-                else
-                {
-                    list.Add(list[list.Count - 1]);
-                }
+                list.Add(list.Count == 0 ? item : list[^1]);
             }
             if (list.Count > 0)
             {
@@ -171,3 +164,4 @@ namespace Crogen.CustomHierarchy.Editor
         }
     }
 }
+#endif

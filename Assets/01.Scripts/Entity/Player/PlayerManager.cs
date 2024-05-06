@@ -49,9 +49,9 @@ public class PlayerManager : MonoSingleton<PlayerManager>
     }
     #endregion
 
-    protected override void Awake()
+    protected void Awake()
     {
-        base.Awake();
+
         #region Get Component
         rb = GetComponent<Rigidbody2D>();
         #endregion

@@ -1,7 +1,8 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
 
-namespace Crogen.CustomHierarchy.Editor
+namespace Crogen.CrogenHierarchy.Editor
 {
     public class StyleEditor
     {
@@ -34,3 +35,4 @@ namespace Crogen.CustomHierarchy.Editor
         public static readonly int SpaceValue = 20;
     }
 }
+#endif

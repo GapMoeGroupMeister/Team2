@@ -28,7 +28,6 @@ public class Feeler : Enemy
         if (collision.gameObject.CompareTag("Player"))
         {
             _enemyStatus = EnemeyStatus.Attack;
-            
         }
     }
 

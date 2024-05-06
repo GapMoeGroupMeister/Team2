@@ -5,6 +5,7 @@ using UnityEngine;
 public class WeaponManager : MonoSingleton<WeaponManager>
 {
     [SerializeField] protected GameObject[] weaponPrefabs;
+    [SerializeField] protected GameObject[] weaponObjs = new GameObject[5];
     [SerializeField] protected GameObject player;
     [SerializeField] protected GameObject weapon;
     [SerializeField] protected int nowWeapon = 1;
@@ -14,17 +15,17 @@ public class WeaponManager : MonoSingleton<WeaponManager>
     public bool isAttacking = false;
     protected Vector3 moveDir;
 
-    private int weaponCount = 5;
+    private readonly int weaponCount = 5;
 
     protected void Awake()
     {
         moveDir = PlayerManager.Instance.MoveDir;
-        weaponCollider = weapon.GetComponent<BoxCollider2D>();
+        
+        SetWeapon();
     }
 
     private void Start()
     {
-        SetWeapon();
     }
 
     private void Update()
@@ -35,11 +36,10 @@ public class WeaponManager : MonoSingleton<WeaponManager>
 
     private void SetWeapon()
     {
-        Vector3 spawnPosition = transform.position;
-        foreach (GameObject weaponPrefabs in weaponPrefabs)
+        for (int i = 0; i < weaponPrefabs.Length; ++i)
         {
-            GameObject weapon = Instantiate(weaponPrefabs, transform);
-            weapon.SetActive(false);
+            weaponObjs[i] = Instantiate(weaponPrefabs[i], transform);
+            weaponObjs[i].SetActive(false);
         }
     }
 
@@ -47,31 +47,8 @@ public class WeaponManager : MonoSingleton<WeaponManager>
     {
         if (Input.GetMouseButton(0) && isAttacking == false)
         {
-
             isAttacking = true;
-
-            switch (nowWeapon)
-            {
-                case 1:
-                    weapon = weaponPrefabs[0];
-                    break;
-
-                case 2:
-                    weapon = weaponPrefabs[1];
-                    break;
-
-                case 3:
-                    weapon = weaponPrefabs[2];
-                    break;
-
-                case 4:
-                    weapon = weaponPrefabs[3];
-                    break;
-
-                case 5:
-                    weapon = weaponPrefabs[4];
-                    break;
-            }
+            weapon = weaponObjs[nowWeapon-1];
         }
     }
 
