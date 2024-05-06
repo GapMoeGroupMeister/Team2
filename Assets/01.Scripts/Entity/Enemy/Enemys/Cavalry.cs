@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Cavalry : Enemy
 {
@@ -10,14 +12,11 @@ public class Cavalry : Enemy
         _enemyStatus = EnemeyStatus.Recon;
     }
 
-    
     private void FixedUpdate()
     {
         
         Move(_enemyStatus);
     }
-
-
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -31,11 +30,6 @@ public class Cavalry : Enemy
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        StartCoroutine(Wait());
-    }
-
     
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -46,9 +40,5 @@ public class Cavalry : Enemy
         }
     }
 
-    private IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(4);
-        _enemyStatus = EnemeyStatus.Recon;
-    }
+    
 }

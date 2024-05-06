@@ -16,7 +16,6 @@ public class HealthSytem : MonoBehaviour
 
     private void Start()
     {
-        
         ps = gameObject.GetComponentsInChildren<ParticleSystem>()[0];
     }
 

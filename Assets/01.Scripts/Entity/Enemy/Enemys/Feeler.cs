@@ -10,15 +10,11 @@ public class Feeler : Enemy
         _enemyStatus = EnemeyStatus.Recon;
     }
 
-    
     private void FixedUpdate()
     {
         
         Move(_enemyStatus);
     }
-
-
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -31,24 +27,11 @@ public class Feeler : Enemy
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        StartCoroutine(Wait());
-    }
-
-    
-
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (!collision.gameObject.CompareTag("Player"))
         {
             ReconRange = new Vector2(Random.Range(-10f, 10f), Random.Range(-10f, 10f));
         }
-    }
-
-    private IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(4);
-        _enemyStatus = EnemeyStatus.Recon;
     }
 }
