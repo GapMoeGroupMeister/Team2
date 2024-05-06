@@ -3,7 +3,11 @@ guid: 3db98a1bfe060c2478e5e5c8817f16eb
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - player: {fileID: 4661358808514894030, guid: 009f0ff0af583264889bbaf5f2ae9a5d, type: 3}
+  - weapon: {fileID: 1478284113788084299, guid: 54df9213af65fd64ea424675f55a8bc2, type: 3}
+  - arrowPrefab: {instanceID: 0}
+  - bowPos: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
