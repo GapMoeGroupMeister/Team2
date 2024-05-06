@@ -33,7 +33,7 @@ public class Cavalry : Enemy
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        StartCoroutine("Wait");
+        StartCoroutine(Wait());
     }
 
     

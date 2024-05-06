@@ -18,13 +18,15 @@ public class DayCycle : MonoBehaviour
     public float Hour = 0;
     [SerializeField] private bool theWorld;
 
-    private void Start()
+    private void Awake()
     {
         theWorld = false;
-        //playerObj = Instantiate(playerPrefab);
-        //combatObj = Instantiate(combatPlayerPrefab);
+        playerObj = Instantiate(playerPrefab);
+        playerObj.name.Replace("(Clone)", "");
+        combatObj = Instantiate(combatPlayerPrefab);
+        combatObj.name.Replace("(Clone)", "");
 
-        //combatObj.SetActive(false);
+        combatObj.SetActive(false);
     }
 
     public bool TheWorld
