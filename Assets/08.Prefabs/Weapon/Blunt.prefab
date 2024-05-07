@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2247850222215070120}
   - component: {fileID: 4107370719200399474}
+  - component: {fileID: 4508262160490561581}
   m_Layer: 0
   m_Name: Blunt
   m_TagString: Untagged
@@ -84,3 +85,29 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4508262160490561581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8807386253109026826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fec3ecb381d9a0c4c9a255ed74eb3844, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponPrefabs: []
+  weaponObjs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  player: {fileID: 0}
+  weapon: {fileID: 0}
+  nowWeapon: 1
+  _arrowSpeed: 100
+  isAttacking: 0
+  _bluntRange: 3.2
+  _bluntAttackSpeed: 2.1

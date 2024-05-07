@@ -1,22 +1,21 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 [Serializable]
-public class HealthSytem : MonoBehaviour
+public class HealthSystem : MonoBehaviour
 {
-
-    [SerializeField] UnityEvent OnHpChangedEvent;
+    public UnityEvent OnHpChangedEvent;
     
     [SerializeField] protected ParticleSystem ps;
 
     [SerializeField] protected float _hp;
-
+    [HideInInspector] public float maxHp;
+    
     private void Start()
     {
-        ps = gameObject.GetComponentsInChildren<ParticleSystem>()[0];
+        ps = gameObject.GetComponentInChildren<ParticleSystem>();
+        maxHp = _hp;
     }
 
     public float HP

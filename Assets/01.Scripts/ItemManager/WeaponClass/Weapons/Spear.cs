@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spear : WeaponManager
+public class Spear : Weapon
 {
     [SerializeField] private float _spearRange = 4.2f;
     [SerializeField] private float _spearAttackSpeed = 0.8f;

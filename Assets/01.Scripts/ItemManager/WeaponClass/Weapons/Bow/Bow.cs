@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Bow : WeaponManager
+public class Bow : Weapon
 {
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private GameObject bowPos;

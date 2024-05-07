@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8878341544012886221}
   - component: {fileID: -9015384800290494696}
   - component: {fileID: -3819203877685645567}
+  - component: {fileID: 3788852636647338442}
   m_Layer: 0
   m_Name: Axe
   m_TagString: Axe
@@ -158,3 +159,28 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &3788852636647338442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478284113788084299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dc5264bc2b831c42908f419484405f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponPrefabs: []
+  weaponObjs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  player: {fileID: 0}
+  weapon: {fileID: 0}
+  nowWeapon: 1
+  _arrowSpeed: 100
+  isAttacking: 0
+  _axeAttackSpeed: 90

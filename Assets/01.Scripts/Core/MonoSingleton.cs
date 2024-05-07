@@ -17,6 +17,7 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
                 }
                 DontDestroyOnLoad(_instance.gameObject);
             }
+
             return _instance;
         }
     }

@@ -22,10 +22,10 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected Transform _playerTransform;
     [SerializeField] protected EnemeyStatus _enemyStatus;
     [SerializeField] protected Vector3 ReconRange;
-    [SerializeField] protected HealthSytem EnemyHealth;
+    [SerializeField] protected HealthSystem EnemyHealth;
     //[SerializeField] protected Transform Owner;
     [SerializeField] protected EnemyHpUI HPSlider;
-    [SerializeField] protected GameObject HPSlider_Pre;
+    [SerializeField] protected EnemyHpUI HPSlider_Pre;
     
     public Vector2 tlqk;
 
@@ -40,11 +40,13 @@ public abstract class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        EnemyHealth = GetComponent<HealthSytem>();
+        EnemyHealth = GetComponent<HealthSystem>();
         _collider = GetComponentInChildren<BoxCollider2D>();
         Player = GameObject.Find("CombatPlayer");
         _playerTransform = GameObject.Find("CombatPlayer").transform;
-        HPSlider = Instantiate(HPSlider_Pre, transform.position, Quaternion.identity, GameObject.Find("Canvas").transform).GetComponent<EnemyHpUI>();
+        HPSlider = Instantiate(HPSlider_Pre, transform);
+        HPSlider.transform.localPosition = new Vector3(0, 1, 0);
+        HPSlider.Init(EnemyHealth);
         EnemyHealth.HP = _maxHp;
         ReconRange = transform.position;
         //Owner = transform;
@@ -53,9 +55,6 @@ public abstract class Enemy : MonoBehaviour
     private void Update()
     {
         _hp = EnemyHealth.HP;
-        HPSlider.healthSytem = EnemyHealth;
-        HPSlider.transform.position = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y, 0));
-
         Timer += Time.deltaTime;
         if (_hp < 0)
         {
@@ -128,15 +127,16 @@ public abstract class Enemy : MonoBehaviour
 
     protected void Attack()
     {
-
-        if(Physics2D.Raycast(transform.position, tlqk.normalized, _attackDistance))
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, tlqk.normalized, _attackDistance);
+        if(hit.transform != null)
         {
-            Physics2D.Raycast(transform.position, tlqk.normalized, _attackDistance).collider.gameObject.GetComponent<HealthSytem>().HP -= 0;
+            if (hit.transform.TryGetComponent<HealthSystem>(out HealthSystem healthSystem))
+            {
+                healthSystem.HP -= 0;
+            }
         }
         
         // 공격 애니메이션
-
-        
     }
 
     protected void Attack_archers()

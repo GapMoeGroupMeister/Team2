@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2917782495716703990}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.34, y: 0.2, z: -2.2256286}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -71,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -2109270605
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.8103531, g: 1, b: 0.7971698, a: 1}
@@ -95,7 +95,7 @@ Animator:
   m_GameObject: {fileID: 2917782495716703990}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 76da9346670597f49af27b3a9aed6316, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -120,8 +120,7 @@ GameObject:
   - component: {fileID: 9075973343980249193}
   - component: {fileID: 2837562595277820401}
   - component: {fileID: 2955153128936045511}
-  - component: {fileID: 4210998522978506655}
-  - component: {fileID: 3865246521057886008}
+  - component: {fileID: 6488087362179002768}
   m_Layer: 0
   m_Name: CombatPlayer
   m_TagString: CombatPlayer
@@ -143,6 +142,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3072803319172227370}
+  - {fileID: 5092810557322413117}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8887436316809305842
@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74fb9971225e51c449f09221190bf56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _speed: 5
 --- !u!50 &9075973343980249193
 Rigidbody2D:
   serializedVersion: 4
@@ -196,7 +197,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &2837562595277820401
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -249,7 +250,8 @@ MonoBehaviour:
       m_Calls: []
   ps: {fileID: 0}
   _hp: 0
---- !u!114 &4210998522978506655
+  maxHp: 0
+--- !u!114 &6488087362179002768
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -258,35 +260,70 @@ MonoBehaviour:
   m_GameObject: {fileID: 4661358808514894030}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d018c09110a2a86428717d711215a6fe, type: 3}
+  m_Script: {fileID: 11500000, guid: 30eadf36eb280d847a32a91a510f4fb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 100
-  increaseSpeed: 0
-  acceleration: 12.8
-  deceleration: 10.8
-  currentStamina: 100
-  fullStamina: 100
-  cureStamina: 1
-  decreaseStamina: 1.8999
---- !u!95 &3865246521057886008
-Animator:
-  serializedVersion: 5
+  defeat: 0
+  _defeatUI: {fileID: 0}
+--- !u!1001 &2928598810829014530
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 643659510923959137}
+    m_Modifications:
+    - target: {fileID: 4333966941256275611, guid: ab7daad9005b261488b91920a62319cf, type: 3}
+      propertyPath: m_Name
+      value: DamagedEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928927039922864703, guid: ab7daad9005b261488b91920a62319cf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928927039922864703, guid: ab7daad9005b261488b91920a62319cf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928927039922864703, guid: ab7daad9005b261488b91920a62319cf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928927039922864703, guid: ab7daad9005b261488b91920a62319cf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928927039922864703, guid: ab7daad9005b261488b91920a62319cf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928927039922864703, guid: ab7daad9005b261488b91920a62319cf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928927039922864703, guid: ab7daad9005b261488b91920a62319cf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928927039922864703, guid: ab7daad9005b261488b91920a62319cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928927039922864703, guid: ab7daad9005b261488b91920a62319cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928927039922864703, guid: ab7daad9005b261488b91920a62319cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ab7daad9005b261488b91920a62319cf, type: 3}
+--- !u!4 &5092810557322413117 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7928927039922864703, guid: ab7daad9005b261488b91920a62319cf, type: 3}
+  m_PrefabInstance: {fileID: 2928598810829014530}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4661358808514894030}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 76da9346670597f49af27b3a9aed6316, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0

@@ -27,7 +27,7 @@ TagManager:
   - UI
   - 
   - Camera
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -72,4 +72,7 @@ TagManager:
     locked: 0
   - name: Particle
     uniqueID: 606090489
+    locked: 0
+  - name: UI
+    uniqueID: 4248932031
     locked: 0

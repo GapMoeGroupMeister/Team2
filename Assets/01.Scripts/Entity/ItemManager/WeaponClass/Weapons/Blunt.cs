@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Blunt : WeaponManager
+public class Blunt : Weapon
 {
     [SerializeField] private float _bluntRange = 3.2f;
     [SerializeField] private float _bluntAttackSpeed = 2.1f;
@@ -13,7 +13,7 @@ public class Blunt : WeaponManager
     public IEnumerator HitDown(float duration = 0.8f)
     {
         float time = 0.0f;
-        weapon.GetComponent<BoxCollider>().enabled = true;
+        GetComponent<BoxCollider>().enabled = true;
         while (time < _bluntAttackSpeed)
         {
             time += Time.deltaTime / duration;
@@ -26,6 +26,6 @@ public class Blunt : WeaponManager
             transform.position -= moveDir * _bluntRange;
             yield return null;
         }
-        weapon.GetComponent<BoxCollider>().enabled = false;
+        GetComponent<BoxCollider>().enabled = false;
     }
 }

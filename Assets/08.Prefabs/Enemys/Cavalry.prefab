@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8327014340676683928}
   - component: {fileID: 2396402217744317725}
   - component: {fileID: 4917033918223279020}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Avatar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.4, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3409748316937932840}
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 3871219448304418280}
   - component: {fileID: 5898982645314243091}
   - component: {fileID: -1603222673739650798}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cavalry
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -258,8 +258,8 @@ MonoBehaviour:
   _enemyStatus: 0
   ReconRange: {x: 0, y: 0, z: 0}
   EnemyHealth: {fileID: 0}
-  HPSlider: {fileID: -9221016340474550520, guid: e4c8bf6c384cb7d46a55d9636e7accfb, type: 3}
-  HPSlider_Pre: {fileID: 1813496503973678500, guid: e4c8bf6c384cb7d46a55d9636e7accfb, type: 3}
+  HPSlider: {fileID: 0}
+  HPSlider_Pre: {fileID: 3935420175710341301, guid: c069f285d37714745b1ed5a3ab0760f7, type: 3}
   tlqk: {x: 0, y: 0}
 --- !u!114 &-1603222673739650798
 MonoBehaviour:
@@ -290,6 +290,7 @@ MonoBehaviour:
         m_CallState: 2
   ps: {fileID: 0}
   _hp: 0
+  maxHp: 0
 --- !u!1001 &2551713766282268362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -301,6 +302,14 @@ PrefabInstance:
     - target: {fileID: 4333966941256275611, guid: ab7daad9005b261488b91920a62319cf, type: 3}
       propertyPath: m_Name
       value: DamagedEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 4333966941256275611, guid: ab7daad9005b261488b91920a62319cf, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562945055871413188, guid: ab7daad9005b261488b91920a62319cf, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7928927039922864703, guid: ab7daad9005b261488b91920a62319cf, type: 3}
       propertyPath: m_LocalPosition.x
