@@ -44,7 +44,7 @@ public class DayCycle : MonoBehaviour
 
         if (currentTime == Time.Night)
         {
-            if (Hour > 42f)
+            if (Hour > 420f)
             {
                 combatObj.SetActive(false);
                 playerObj.SetActive(true);
@@ -55,7 +55,7 @@ public class DayCycle : MonoBehaviour
         }
         else if(currentTime == Time.Day)
         {
-            if (Hour > 3f)
+            if (Hour > 300f)
             {
                 combatObj.SetActive(true);
                 playerObj.SetActive(false);

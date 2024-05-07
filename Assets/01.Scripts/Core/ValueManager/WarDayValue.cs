@@ -5,17 +5,20 @@ using UnityEngine.UI;
 
 public class WarDayValue : MonoBehaviour
 {
-    public Text wardayuUi;
+    [SerializeField] private int warday = 3;
+    public int daycycle = 1;
+
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        if (warday == 0)
+        {
+            daycycle++;
+        }
     }
 
-    [SerializeField] private int warday = 3;
-
-    public void PressBtn()
+    /*public void PressBtn()
     {
         warday--;
         wardayuUi.text = "남은 교전일 :" + warday;
-    }
+    }*/
 }

@@ -9,11 +9,13 @@ public class InteractionObject : InteractionObjType
     [SerializeField] protected Text messageUi;
     [SerializeField] protected string dollor = "$";
 
-    [SerializeField] protected GameObject playerObject;
+
+    [SerializeField] protected PlayerMovement playerObject;
     [SerializeField] protected GameObject scrap;
     [SerializeField] protected GameObject food;
     [SerializeField] protected int scrapMoney = 0;
     [SerializeField] protected int foodMoney = 0;
+    [SerializeField] protected HowMuchDefeat defeatValue;
     protected float lootingTime = 2f;
     protected bool isLooting = false;
 
@@ -40,7 +42,22 @@ public class InteractionObject : InteractionObjType
             isLooting = false;
         }
     }
+    private void Awake()
+    {
+        playerObject = FindObjectOfType<PlayerMovement>();
+        defeatValue = GetComponent<HowMuchDefeat>();
 
+        if (defeatValue.defeat >= 4)
+        {
+            lootingTime = 2f - (defeatValue.defeat * 0.1f);
+        }
+    }
+
+    private void Update()
+    {
+        Search();
+        Interaction();
+    }
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
