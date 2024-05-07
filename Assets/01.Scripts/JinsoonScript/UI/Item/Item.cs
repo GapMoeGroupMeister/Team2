@@ -25,7 +25,8 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     private RectTransform itemRect;
     private Transform itemSellParent;
     private TextMeshProUGUI itemTxt;
-    
+
+    private bool isSelected = false;
     public int itemAmount = 1;
     public bool canPlace = true;
 
@@ -49,6 +50,15 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     private void Start()
     {
         Init(itemSO);
+    }
+
+    private void Update()
+    {
+        if(Input.GetMouseButtonUp(0) && isSelected == true)
+        {
+            OnPointerUp();
+            isSelected = false;
+        }
     }
 
     public int AddItem(int amount)
@@ -109,6 +119,7 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         FindSelectedSell();
         image.raycastTarget = false;
         image.color = new Color(image.color.r, image.color.g, image.color.b, 0.6f);
+        isSelected = true;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -116,7 +127,7 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         itemRect.anchoredPosition = (Vector2)Input.mousePosition - offset;
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    public void OnPointerUp()
     {
         //현재 선택된 슬롯이 존재하고 Place할 수 있다면
         if (InventoryManager.Instance.curSelectingSlot != null 
