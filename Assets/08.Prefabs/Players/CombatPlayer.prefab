@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3072803319172227370}
   - component: {fileID: 5124281249627349246}
+  - component: {fileID: 6900801686542279172}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -84,6 +85,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &6900801686542279172
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2917782495716703990}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4661358808514894030
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,6 +121,8 @@ GameObject:
   - component: {fileID: 2837562595277820401}
   - component: {fileID: 6485491148801404043}
   - component: {fileID: 2955153128936045511}
+  - component: {fileID: 4210998522978506655}
+  - component: {fileID: 3865246521057886008}
   m_Layer: 0
   m_Name: CombatPlayer
   m_TagString: CombatPlayer
@@ -247,6 +271,46 @@ MonoBehaviour:
   OnHpChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  entity: {fileID: 0}
   ps: {fileID: 0}
   _hp: 0
+--- !u!114 &4210998522978506655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4661358808514894030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d018c09110a2a86428717d711215a6fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movespeed: 100
+  increaseSpeed: 0
+  acceleration: 12.8
+  deceleration: 10.8
+  currentStamina: 100
+  fullStamina: 100
+  cureStamina: 1
+  decreaseStamina: 1.8999
+--- !u!95 &3865246521057886008
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4661358808514894030}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 76da9346670597f49af27b3a9aed6316, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
