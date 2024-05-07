@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class HowMuchDefeat : MonoBehaviour
 {
     [SerializeField] public int defeat = 0;
-    [SerializeField] private Text _defeatUI;
 
 
     /*private void Awake()
