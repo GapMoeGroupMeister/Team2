@@ -36,4 +36,13 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="position">Position of item's bottom left</param>
+    /// <param name="item"></param>
+    public void SetItem(Vector2Int position, Item item)
+    {
+        inventorySlots[position.x, position.y].SetItem(item, true);
+    }
 }

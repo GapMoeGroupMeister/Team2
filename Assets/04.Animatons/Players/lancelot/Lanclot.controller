@@ -68,7 +68,7 @@ AnimatorStateMachine:
     m_Position: {x: 290, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7975042308836592552}
-    m_Position: {x: 325, y: 185, z: 0}
+    m_Position: {x: 310, y: 440, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -85,7 +85,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GameObject
+  m_Name: Lanclot
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: MoveDir
@@ -93,7 +93,7 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -145,7 +145,10 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 3
     m_ConditionEvent: MoveDir
-    m_EventTreshold: 0
+    m_EventTreshold: 0.0001
+  - m_ConditionMode: 4
+    m_ConditionEvent: MoveDir
+    m_EventTreshold: -0.0001
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7975042308836592552}
   m_Solo: 0

@@ -25,7 +25,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected EnemeyStatus _enemyStatus;
     [SerializeField] protected Vector3 ReconRange;
     [SerializeField] protected HealthSytem EnemyHealth;
-    [SerializeField] protected Transform Owner;
+    //[SerializeField] protected Transform Owner;
     [SerializeField] protected EnemyHpUI HPSlider;
     [SerializeField] protected GameObject HPSlider_Pre;
     
@@ -51,7 +51,7 @@ public abstract class Enemy : MonoBehaviour
         HPSlider = Instantiate(HPSlider_Pre, transform.position, Quaternion.identity, GameObject.Find("Canvas").transform).GetComponent<EnemyHpUI>();
         EnemyHealth.HP = _maxHp;
         ReconRange = transform.position;
-        Owner = transform;
+        //Owner = transform;
     }
     private void Update()
     {
