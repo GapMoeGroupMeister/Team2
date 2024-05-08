@@ -9,16 +9,11 @@ public class Archers : Enemy
         _collider.size = new Vector2(_findDistance_x, _findDistance_y);
         _enemyStatus = EnemeyStatus.Recon;
     }
-
-    
     private void FixedUpdate()
     {
         //IsDided();
         Move(_enemyStatus);
     }
-
-
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -29,16 +24,9 @@ public class Archers : Enemy
         {
             Debug.Log("¿Ö¾ÈµÅ ½Ã¹ß");
             _enemyStatus = EnemeyStatus.Attack;
-            StopCoroutine("Wait");
+            StopCoroutine(Wait());
         }
     }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        StartCoroutine("Wait");
-    }
-
-    
 
     private void OnCollisionStay2D(Collision2D collision)
     {
@@ -46,11 +34,5 @@ public class Archers : Enemy
         {
             ReconRange = new Vector2(Random.Range(-10f, 10f), Random.Range(-10f, 10f));
         }
-    }
-
-    private IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(4);
-        _enemyStatus = EnemeyStatus.Recon;
     }
 }
