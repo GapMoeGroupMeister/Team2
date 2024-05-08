@@ -21,7 +21,6 @@ public class StartSceneManager : MonoBehaviour
         _settingButton.onClick.AddListener(Setting);
         _exitButton.onClick.AddListener(Exit);
         _settingCloseButton.onClick.AddListener(CloseSetting);
-        
     }
 
     private void CloseSetting()
