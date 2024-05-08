@@ -1,143 +1,44 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponManager : MonoSingleton<WeaponManager>
 {
-    [SerializeField] protected GameObject[] weaponPrefabs;
-    [SerializeField] protected GameObject player;
-    [SerializeField] protected GameObject weapon;
-    [SerializeField] protected int nowWeapon = 1;
-    [SerializeField] protected float _arrowSpeed = 100f;
-    private float _desiredAngle;
-    protected BoxCollider2D weaponCollider;
-    public bool isAttacking = false;
-    protected Vector3 moveDir;
+    //Managers
+    private GameManager _gameManager;
+    
+    [SerializeField] private List<Weapon> _weaponPrefabs = new List<Weapon>();
+    [SerializeField] private List<Weapon> _weaponObjList = new List<Weapon>();
+    [SerializeField] private Weapon _curWeapon;
+    public int currentWeapon;
+    [SerializeField] private Transform _weaponTrm;
+    
+    private PlayerController player;
 
-    private int weaponCount = 5;
-
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
-        moveDir = PlayerManager.Instance.MoveDir;
-        weaponCollider = weapon.GetComponent<BoxCollider2D>();
+        _gameManager = GameManager.Instance;
+        player = _gameManager.PlayerController;
+        WeaponInit();
     }
 
-    private void Start()
+    private void WeaponInit()
     {
-        SetWeapon();
-    }
-
-    private void Update()
-    {
-        JudgeWeapon();
-        ChangeWeapon();
-    }
-
-    private void SetWeapon()
-    {
-        Vector3 spawnPosition = transform.position;
-        foreach (GameObject weaponPrefabs in weaponPrefabs)
+        for (int i = 0; i < _weaponPrefabs.Count; ++i)
         {
-            GameObject weapon = Instantiate(weaponPrefabs, transform);
-            weapon.SetActive(false);
+            Weapon weapon = Instantiate(_weaponPrefabs[i]);
+            _weaponObjList.Add(weapon);
+            weapon.transform.SetParent(_weaponTrm);
+            weapon.gameObject.SetActive(i==0);
         }
     }
-
-    private void JudgeWeapon()
+    
+    public void ChangeWeapon()
     {
-        if (Input.GetMouseButton(0) && isAttacking == false)
-        {
-
-            isAttacking = true;
-
-            switch (nowWeapon)
-            {
-                case 1:
-                    weapon = weaponPrefabs[0];
-                    break;
-
-                case 2:
-                    weapon = weaponPrefabs[1];
-                    break;
-
-                case 3:
-                    weapon = weaponPrefabs[2];
-                    break;
-
-                case 4:
-                    weapon = weaponPrefabs[3];
-                    break;
-
-                case 5:
-                    weapon = weaponPrefabs[4];
-                    break;
-            }
-        }
+        currentWeapon++;
     }
-
-    private void ChangeWeapon()
+    
+    public Weapon GetCurrentWeapon()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            nowWeapon += 1;
-        }
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            nowWeapon -= 1;
-        }
-        
-        nowWeapon = Mathf.Clamp(nowWeapon, 1, weaponCount);
-    }
-
-    private void WeaponDir()
-    {
-        Vector3 aimDir = moveDir;
-        _desiredAngle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
-        weapon.transform.rotation = Quaternion.AngleAxis(_desiredAngle, Vector3.forward);
-    }
-
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        GameObject getTag = collision.gameObject;
-
-        switch (getTag.tag)
-        {
-            case "Eneny":
-                Destroy(gameObject);
-                break;
-            case "Axe":
-                nowWeapon = 1;
-                Destroy(getTag);
-                break;
-            case "Shield":
-                nowWeapon = 2;
-                Destroy(getTag);
-                break;
-            case "Sword":
-                nowWeapon = 3;
-                Destroy(getTag);
-                break;
-            case "Spare":
-                nowWeapon = 4;
-                Destroy(getTag);
-                break;
-            case "Bow":
-                nowWeapon = 5;
-                Destroy(getTag);
-                break;
-
-        }
-    }
-
-    public void AttackEnd()
-    {
-        Destroy(gameObject);
-    }
-
-    public int NowWeapon
-    {
-        get { return nowWeapon; }
+        return _curWeapon;
     }
 }

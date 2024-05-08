@@ -30,8 +30,11 @@ public class ArrowMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<HealthSytem>().HP -= _damage;
-            Destroy(gameObject);
+            if (collision.TryGetComponent<HealthSystem>(out HealthSystem healthSystem))
+            {
+                healthSystem.HP -= _damage;
+                Destroy(gameObject);
+            }
         }
     }
 

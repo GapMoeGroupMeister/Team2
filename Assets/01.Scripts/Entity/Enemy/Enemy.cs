@@ -22,12 +22,16 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected int _findDistance_x;
     [SerializeField] protected int _findDistance_y;
     [SerializeField] protected Transform _playerTransform;
-    [SerializeField] protected EnemeyStatus _enemyStatus;
+    [SerializeField] protected EnemeyStatus _enemyStatus; 
     [SerializeField] protected Vector3 ReconRange;
     [SerializeField] protected HealthSytem EnemyHealth;
     //[SerializeField] protected Transform Owner;
     [SerializeField] protected EnemyHpUI HPSlider;
     [SerializeField] protected GameObject HPSlider_Pre;
+    [SerializeField] GameObject _hpslider;
+    [SerializeField] protected GameObject DropItem1;
+    [SerializeField] protected GameObject DropItem2;
+    
     
     public Vector2 tlqk;
 
@@ -48,7 +52,8 @@ public abstract class Enemy : MonoBehaviour
         _collider = GetComponentInChildren<BoxCollider2D>();
         Player = GameObject.Find("CombatPlayer");
         _playerTransform = GameObject.Find("CombatPlayer").transform;
-        HPSlider = Instantiate(HPSlider_Pre, transform.position, Quaternion.identity, GameObject.Find("Canvas").transform).GetComponent<EnemyHpUI>();
+        _hpslider = Instantiate(HPSlider_Pre, transform.position, Quaternion.identity, GameObject.Find("Canvas").transform);
+        HPSlider = _hpslider.GetComponent<EnemyHpUI>();
         EnemyHealth.HP = _maxHp;
         ReconRange = transform.position;
         //Owner = transform;
@@ -60,7 +65,7 @@ public abstract class Enemy : MonoBehaviour
         HPSlider.transform.position = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x + 1.5f, transform.position.y + 2f, 0));
 
         Timer += UnityEngine.Time.deltaTime;
-        if (_hp < 0)
+        if (_hp <= 0)
         {
             Dided();
         }
@@ -144,8 +149,9 @@ public abstract class Enemy : MonoBehaviour
         // 죽는 애니메이션
 
         // 적 캐릭터에 해당하는 시체 생성
-        // Instantiate()
+        Instantiate(Random.Range(1,3) == 1 ? DropItem1 : DropItem2, transform.position, Quaternion.identity);
         Destroy(gameObject);
+        Destroy(_hpslider);
     }
 
     protected void Attack()

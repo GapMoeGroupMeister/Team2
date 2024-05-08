@@ -706,6 +706,27 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
+      name: Tile_Sample_39
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 16
+        height: 16
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fb201f88e624104fab8e7988df7df49
+      internalID: -1547964880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
       name: Tile_Sample_41
       rect:
         serializedVersion: 2
