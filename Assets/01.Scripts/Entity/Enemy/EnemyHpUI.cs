@@ -1,31 +1,19 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 
 public class EnemyHpUI : MonoBehaviour
 {
-    protected Slider HpSlider;
-    public HealthSytem healthSytem;
     
-    
+    public HealthSystem healthSystem;
 
-    // Start is called before the first frame update
-    void Awake()
+    public void Init(HealthSystem healthSystem)
     {
-        
-        
-        HpSlider = GetComponent<Slider>();
-        
+        this.healthSystem = healthSystem;
+        this.healthSystem.OnHpChangedEvent.AddListener(HandlerHpChangeEvent);
     }
 
-    // Update is called once per frame
-    void Update()
-    {// -960, -540 : 0, 0
-        
-        
-        HpSlider.value = healthSytem.HP;
+    private void HandlerHpChangeEvent()
+    {
+        transform.localScale = new Vector3(healthSystem.HP/healthSystem.maxHp, 1, 1);
     }
 }

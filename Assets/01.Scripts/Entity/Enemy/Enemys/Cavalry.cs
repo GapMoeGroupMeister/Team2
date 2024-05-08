@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Cavalry : Enemy
 {
@@ -10,7 +12,6 @@ public class Cavalry : Enemy
         _enemyStatus = EnemeyStatus.Recon;
     }
 
-    
     private void FixedUpdate()
     {
         
@@ -18,22 +19,15 @@ public class Cavalry : Enemy
     }
 
 
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        StopCoroutine("Wait");
+        StartCoroutine(Wait());
         // 콜라이더 2개 써서 탐지용, 피격용으로 사용
         
         if (collision.gameObject.CompareTag("Player"))
         {
             _enemyStatus = EnemeyStatus.Attack;
         }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        StartCoroutine(Wait());
     }
 
     
@@ -46,9 +40,5 @@ public class Cavalry : Enemy
         }
     }
 
-    private IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(4);
-        _enemyStatus = EnemeyStatus.Recon;
-    }
+    
 }

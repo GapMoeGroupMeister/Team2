@@ -1,11 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
     public bool isAttackAble = false;
-    protected Transform trans;
     protected Vector2 box;
     private int nowWeapon;
 
@@ -13,7 +11,8 @@ public class PlayerAttack : MonoBehaviour
 
     private void Awake()
     {
-        nowWeapon = WeaponManager.Instance.NowWeapon;
+        Transform visualTrm = transform.Find("Visual");
+        animator = visualTrm.GetComponent<Animator>();
     }
 
     private void Update()
@@ -25,10 +24,10 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && !isAttackAble)
         {
-            Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(trans.position, box, 0);
-            foreach (Collider2D collider in collider2Ds)
+            Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(transform.position, box, 0, LayerMask.GetMask("Enemy"));
+            if (collider2Ds != null)
             {
-                if (collider.CompareTag("Enemy"))
+                foreach (Collider2D collider in collider2Ds)
                 {
                     switch (nowWeapon)
                     {
@@ -38,8 +37,9 @@ public class PlayerAttack : MonoBehaviour
 
                         // 이제 쭉 case 추가하면서 공격 하나하나 추가하면 될 거 같은
                     }
-                }
+                }    
             }
+            
             animator.SetTrigger("Attack1");
             isAttackAble = true;
             StartCoroutine(Attack1());
