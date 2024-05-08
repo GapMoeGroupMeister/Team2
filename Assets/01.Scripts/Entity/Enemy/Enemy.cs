@@ -28,6 +28,9 @@ public abstract class Enemy : MonoBehaviour
     //[SerializeField] protected Transform Owner;
     [SerializeField] protected EnemyHpUI HPSlider;
     [SerializeField] protected GameObject HPSlider_Pre;
+    [SerializeField] protected GameObject DropItem1;
+    [SerializeField] protected GameObject DropItem2;
+    
     
     public Vector2 tlqk;
 
@@ -60,7 +63,7 @@ public abstract class Enemy : MonoBehaviour
         HPSlider.transform.position = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x + 1.5f, transform.position.y + 2f, 0));
 
         Timer += UnityEngine.Time.deltaTime;
-        if (_hp < 0)
+        if (_hp <= 0)
         {
             Dided();
         }
@@ -144,7 +147,7 @@ public abstract class Enemy : MonoBehaviour
         // 죽는 애니메이션
 
         // 적 캐릭터에 해당하는 시체 생성
-        // Instantiate()
+        Instantiate(DropItem, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
