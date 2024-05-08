@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class DropItem : MonoBehaviour
+public class DropItem : InteractionObject
 {
     [SerializeField] float _jumpPower;
     [SerializeField] ItemSO itemData;
@@ -19,5 +19,15 @@ public class DropItem : MonoBehaviour
     private void Start()
     {
         transform.DOJump(transform.position, _jumpPower, 2, 1);
+    }
+
+    protected override void Interaction()
+    {
+        base.Interaction();
+
+        if (makeInteraction == true)
+        {
+            PickedUp();
+        }
     }
 }
