@@ -17,6 +17,7 @@ public class StartSceneManager : MonoBehaviour
     
     private void Start()
     {
+        _blackImage.DOFade(0, 1).OnComplete(() => _blackImage.gameObject.SetActive(false));
         _startButton.onClick.AddListener(StartGame);
         _settingButton.onClick.AddListener(Setting);
         _exitButton.onClick.AddListener(Exit);
