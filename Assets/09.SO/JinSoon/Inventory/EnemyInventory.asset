@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61da1dd81391e3f4794f3eb3a95e9d58, type: 3}
-  m_Name: Inventory
+  m_Name: EnemyInventory
   m_EditorClassIdentifier: 
-  InventoryName: PlayerInventory
+  InventoryName: EnemyDeadBox
   inventorySize: {x: 8, y: 5}
