@@ -1,27 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
-
-public class Axe : WeaponManager
+public class Axe : Weapon
 {
-    [SerializeField] private float _axeAttackSpeed = 90f;
-
-    public IEnumerator Swing(float duration = 2.2f)
+    protected override void Awake()
     {
-        Vector3 direction = player.transform.position - transform.position;
-        direction.Normalize();
-        float time = 0.0f;
-        weapon.GetComponent<BoxCollider2D>().enabled = true;
-        while (time < _axeAttackSpeed)
-        {
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        base.Awake();
+    }
 
-            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, _axeAttackSpeed * Time.deltaTime);
-            yield return null;
-        }
-        weapon.GetComponent<BoxCollider2D>().enabled = false;
+    protected override void OnAttack()
+    {
+        base.OnAttack();
+        Sequence seq = DOTween.Sequence();
+        seq.Append(_visualTrm.DOLocalRotate(new Vector3(0, 0, 35f), 0.3f))
+            .AppendInterval(0.1f)
+            .Append(_visualTrm.DOLocalRotate(new Vector3(0, 0, -90f), 0.3f))
+            .AppendInterval(0.1f)
+            .AppendCallback(EndAttack)
+            .Append(_visualTrm.DOLocalRotate(new Vector3(0, 0, 0f), 0.4f));
+    }
+
+    protected override void EndAttack()
+    {
+        base.EndAttack();
     }
 }
     

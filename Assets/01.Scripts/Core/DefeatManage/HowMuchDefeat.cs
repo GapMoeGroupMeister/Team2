@@ -11,25 +11,25 @@ public class HowMuchDefeat : MonoBehaviour
 
     /*private void Awake()
     {
-        _defeatUI.text = "ÆĞÀü È½¼ö : " + defeat;
+        _defeatUI.text = "íŒ¨ì „ íšŸìˆ˜ : " + defeat;
     }
 
     public void pressBtn()
     {
 
         defeat++;
-        _defeatUI.text = "ÆĞÀü È½¼ö : " + defeat;
+        _defeatUI.text = "íŒ¨ì „ íšŸìˆ˜ : " + defeat;
     }
 
     public void Reset()
     {
         defeat = 0;
-        _defeatUI.text = "ÆĞÀü È½¼ö : " + defeat;
+        _defeatUI.text = "íŒ¨ì „ íšŸìˆ˜ : " + defeat;
     }*/
 
     private void Update()
     {
-        //Ã¼·Â ºÒ·¯¿Í¼­ 0ÀÌ¸é defeat Áõ°¡
-        //½Ã°£À» ¹öÆ¼´ø°¡ ÀûÀ» ´Ù Á×ÀÌ¸é defeat ÇÔ¼ö ÃÊ±âÈ­
+        //ì²´ë ¥ ë¶ˆëŸ¬ì™€ì„œ 0ì´ë©´ defeat ì¦ê°€
+        //ì‹œê°„ì„ ë²„í‹°ë˜ê°€ ì ì„ ë‹¤ ì£½ì´ë©´ defeat í•¨ìˆ˜ ì´ˆê¸°í™”
     }
 }
