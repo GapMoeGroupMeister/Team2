@@ -3,6 +3,8 @@ using System;
 
 public class PlayerManager : MonoSingleton<PlayerManager>
 {
+
+
     [Header("Speed Value")]
     [SerializeField] protected float movespeed = 100f;
     [SerializeField] protected float increaseSpeed;
@@ -19,6 +21,7 @@ public class PlayerManager : MonoSingleton<PlayerManager>
 
     private Rigidbody2D rb;
     private Vector3 moveDir;
+    private bool isRun;
     private HowMuchDefeat defValue;
 
     #region Properties
@@ -40,7 +43,11 @@ public class PlayerManager : MonoSingleton<PlayerManager>
         set => increaseSpeed = value;
     }
 
-    public bool IsRun { get; set; }
+    public bool IsRun
+    {
+        get => isRun;
+        set => isRun = value;
+    }
     #endregion
 
     protected override void Awake()
@@ -65,7 +72,7 @@ public class PlayerManager : MonoSingleton<PlayerManager>
         rb.velocity = moveDir * (movespeed + increaseSpeed) * Time.deltaTime;
 
         #region run
-        if (IsRun)
+        if (isRun)
         {
             increaseSpeed -= fullStamina / deceleration * Time.deltaTime;
 
