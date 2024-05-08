@@ -9916,9 +9916,10 @@ MonoBehaviour:
   _enemyStatus: 0
   ReconRange: {x: 0, y: 0, z: 0}
   EnemyHealth: {fileID: 0}
-  Owner: {fileID: 0}
   HPSlider: {fileID: -9221016340474550520, guid: e4c8bf6c384cb7d46a55d9636e7accfb, type: 3}
   HPSlider_Pre: {fileID: 1813496503973678500, guid: e4c8bf6c384cb7d46a55d9636e7accfb, type: 3}
+  DropItem1: {fileID: 5235872722666479554, guid: 0c21a1e17a8fe194792dd2d02e602ec1, type: 3}
+  DropItem2: {fileID: 5235872722666479554, guid: fdab09e58a68c4441a3477f8c04579c0, type: 3}
   tlqk: {x: 0, y: 0}
 --- !u!114 &-4299941991524138835
 MonoBehaviour:
@@ -9947,7 +9948,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  entity: {fileID: 0}
   ps: {fileID: 4056856539430600056}
   _hp: 0
 --- !u!1 &8040921582901394498

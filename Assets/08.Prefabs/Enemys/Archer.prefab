@@ -173,7 +173,6 @@ MonoBehaviour:
   OnHpChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  entity: {fileID: 600980756925181094}
   ps: {fileID: 4056856539430600056}
   _hp: 0
 --- !u!114 &8298540001899919081
@@ -205,9 +204,10 @@ MonoBehaviour:
   _enemyStatus: 0
   ReconRange: {x: 0, y: 0, z: 0}
   EnemyHealth: {fileID: 0}
-  Owner: {fileID: 0}
   HPSlider: {fileID: 0}
   HPSlider_Pre: {fileID: 1813496503973678500, guid: e4c8bf6c384cb7d46a55d9636e7accfb, type: 3}
+  DropItem1: {fileID: 5235872722666479554, guid: 0b84232a80d1ff54c9efadd424ff5dcb, type: 3}
+  DropItem2: {fileID: 5235872722666479554, guid: c33aa905b9917034eb09864b640a5bc0, type: 3}
   tlqk: {x: 0, y: 0}
 --- !u!50 &405775576880416005
 Rigidbody2D:
