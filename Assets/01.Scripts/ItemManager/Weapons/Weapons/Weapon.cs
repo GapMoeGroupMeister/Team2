@@ -44,5 +44,7 @@ public class Weapon : MonoBehaviour
     {
         AttackDirection = dir;
         transform.rotation = Quaternion.LookRotation(dir);
+        
+        
     }
 }

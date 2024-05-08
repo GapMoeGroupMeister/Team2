@@ -28,6 +28,7 @@ public class WeaponManager : MonoSingleton<WeaponManager>
             Weapon weapon = Instantiate(_weaponPrefabs[i]);
             _weaponObjList.Add(weapon);
             weapon.transform.SetParent(_weaponTrm);
+            weapon.transform.localPosition = Vector3.zero;
             weapon.gameObject.SetActive(i==0);
         }
     }

@@ -1,7 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-public class Axe : Weapon
+public class BigSword : Weapon
 {
     protected override void Awake()
     {
@@ -25,5 +27,3 @@ public class Axe : Weapon
         base.EndAttack();
     }
 }
-    
-

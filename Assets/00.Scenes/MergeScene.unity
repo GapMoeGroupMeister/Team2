@@ -7443,7 +7443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponPrefabs:
-  - {fileID: 3788852636647338442, guid: 3321f8e868ca29549bb6bf5aee80803b, type: 3}
+  - {fileID: -5243140204295238926, guid: 09443a4679d33044987782d839874eed, type: 3}
   - {fileID: 4508262160490561581, guid: 8a0007f239622d2458722ca291825c8f, type: 3}
   - {fileID: 6021434422554263160, guid: 54df9213af65fd64ea424675f55a8bc2, type: 3}
   - {fileID: 8974881230941832590, guid: 3e840c085b76d854fb9721c49c74701a, type: 3}
@@ -7562,10 +7562,10 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 1615011101}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 8
+    OrthographicSize: 6
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -7591,7 +7591,7 @@ Transform:
   m_GameObject: {fileID: 613638305}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.5, y: -1.5, z: -10}
+  m_LocalPosition: {x: 2.32, y: -6.71, z: -7.774371}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -85499,7 +85499,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -85524,7 +85524,7 @@ Transform:
   m_GameObject: {fileID: 857566284}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.5, y: -1.5, z: -10}
+  m_LocalPosition: {x: 2.32, y: -6.71, z: -7.774371}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -86762,6 +86762,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 009f0ff0af583264889bbaf5f2ae9a5d, type: 3}
+--- !u!4 &1615011101 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 643659510923959137, guid: 009f0ff0af583264889bbaf5f2ae9a5d, type: 3}
+  m_PrefabInstance: {fileID: 1615011100}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1646547242
 GameObject:
   m_ObjectHideFlags: 0
