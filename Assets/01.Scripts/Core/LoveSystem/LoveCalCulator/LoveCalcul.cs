@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class LoveCalcul : MonoBehaviour
 {
     [SerializeField]Slider _loveBar;
-    private bool _happyEnd = false;
-    private bool _badEnding = false;
     [SerializeField] private float _value = 100f;
     private bool _loveValue = false;
     private HowMuchDefeat defVal;
@@ -23,33 +21,19 @@ public class LoveCalcul : MonoBehaviour
     {
         _loveBar.value = PlayerPrefs.GetFloat("LoveValue", 100);
         PlayerPrefs.Save();
-        _badEnding = false;
-        _happyEnd = false;
-        if (_loveBar.value == 0)
-        {
-            _badEnding = true;
-        }
-        else if (_loveBar.value >= 200)
-        {
-            _happyEnd = true;
-        }
     }
     public void PlusLoveGauge()
     {
         _value += Random.Range(5, 16);
         if(defVal.defeat >= 3)
         {
-            _value += Random.Range(5, 16) / (defVal.defeat * 1.1f);
+            _value += Random.Range(5, 16) / (defVal.defeat * 1.2f);
         }
     }
 
     public void MinusLoveGauge()
     {
         _value -= Random.Range(5, 16);
-        if (defVal.defeat >= 3)
-        {
-            _value -= Random.Range(5, 16) / (defVal.defeat * 1.1f);
-        }
     }
 
     public void RandomSystem()

@@ -5,26 +5,17 @@ using UnityEngine.UI;
 
 public class HowMuchDefeat : MonoBehaviour
 {
-    [SerializeField] public int defeat = 0;
-
-
-    /*private void Awake()
-    {
-        _defeatUI.text = "ÆÐÀü È½¼ö : " + defeat;
-    }
+    [SerializeField] public int defeat;
 
     public void pressBtn()
     {
-
         defeat++;
-        _defeatUI.text = "ÆÐÀü È½¼ö : " + defeat;
     }
 
     public void Reset()
     {
         defeat = 0;
-        _defeatUI.text = "ÆÐÀü È½¼ö : " + defeat;
-    }*/
+    }
 
     private void Update()
     {

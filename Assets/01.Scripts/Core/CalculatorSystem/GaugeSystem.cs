@@ -9,10 +9,9 @@ public class FoodGauge : MonoBehaviour
     [SerializeField] Slider _scrapBar;
     private int _food;
     private int _scrap;
-    private WarDayValue _dayChanges;
-    private int _levelUp;
     private bool gaugeTest = false;
     private HowMuchDefeat _lose;
+    private WarDayValue _dayChanges;
 
     private void Awake()
     {
@@ -22,12 +21,12 @@ public class FoodGauge : MonoBehaviour
         _lose = GetComponent<HowMuchDefeat>();
         _food = 0;
         _scrap = 0;
-        _scrapBar.maxValue = _foodBar.maxValue;
     }
 
     private void Update()
     {
-        _foodBar.maxValue = 700 + _dayChanges.daycycle * 10 + (_lose.defeat * 10);
+        _foodBar.maxValue = 700 + (_lose.defeat + 1) * (_dayChanges.daycycle * 10);
+        _scrapBar.maxValue = 700 + (_lose.defeat + 1) * (_dayChanges.daycycle * 10);
         _foodBar.value = _food;
         _scrapBar.value = _scrap;
         if (_foodBar.value >= _foodBar.maxValue && _scrapBar.value >= _scrapBar.maxValue)
