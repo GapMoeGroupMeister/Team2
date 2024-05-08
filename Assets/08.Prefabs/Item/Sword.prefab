@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3503222927745344559}
   - component: {fileID: 6149852821336674973}
   m_Layer: 0
-  m_Name: item 1
+  m_Name: Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -255127611, guid: 8c16182265490a04ab4b676e95ddae16, type: 3}
+  m_Sprite: {fileID: 232533005, guid: 8c16182265490a04ab4b676e95ddae16, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,5 +97,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d7e6e9c372eec946a0738b6b2af1f6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceUi: {fileID: 0}
+  interactionUi: {fileID: 0}
+  messageUi: {fileID: 0}
+  dollor: $
+  playerObject: {fileID: 0}
+  scrap: {fileID: 0}
+  food: {fileID: 0}
+  scrapMoney: 0
+  foodMoney: 0
+  defeatValue: {fileID: 0}
   _jumpPower: 0.5
-  itemData: {fileID: 11400000, guid: 9273ae43d70a78c43b11890651484c1b, type: 2}
+  itemData: {fileID: 11400000, guid: 331157089839d5c43918a1cfc087b672, type: 2}
