@@ -3,8 +3,6 @@ using System;
 
 public class PlayerManager : MonoSingleton<PlayerManager>
 {
-
-
     [Header("Speed Value")]
     [SerializeField] protected float movespeed = 100f;
     [SerializeField] protected float increaseSpeed;

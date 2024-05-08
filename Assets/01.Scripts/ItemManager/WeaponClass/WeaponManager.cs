@@ -48,31 +48,8 @@ public class WeaponManager : MonoSingleton<WeaponManager>
     {
         if (Input.GetMouseButton(0) && isAttacking == false)
         {
-
             isAttacking = true;
-
-            switch (nowWeapon)
-            {
-                case 1:
-                    weapon = weaponPrefabs[0];
-                    break;
-
-                case 2:
-                    weapon = weaponPrefabs[1];
-                    break;
-
-                case 3:
-                    weapon = weaponPrefabs[2];
-                    break;
-
-                case 4:
-                    weapon = weaponPrefabs[3];
-                    break;
-
-                case 5:
-                    weapon = weaponPrefabs[4];
-                    break;
-            }
+            weapon = weaponPrefabs[nowWeapon - 1];
         }
     }
 
