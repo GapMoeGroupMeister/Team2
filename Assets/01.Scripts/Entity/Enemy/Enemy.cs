@@ -28,7 +28,9 @@ public abstract class Enemy : MonoBehaviour
     //[SerializeField] protected Transform Owner;
     [SerializeField] protected EnemyHpUI HPSlider;
     [SerializeField] protected GameObject HPSlider_Pre;
-    [SerializeField] protected GameObject DropItem;
+    [SerializeField] protected GameObject DropItem1;
+    [SerializeField] protected GameObject DropItem2;
+    
     
     public Vector2 tlqk;
 
