@@ -5137,8 +5137,8 @@ MonoBehaviour:
   _maxHp: 100
   _hp: 0
   _defense: 0
-  _damage: 0
-  _attackDistance: 0
+  _damage: 5
+  _attackDistance: 1
   _attackSpeed: 1
   _findDistance_x: 15
   _findDistance_y: 15
@@ -5148,6 +5148,7 @@ MonoBehaviour:
   EnemyHealth: {fileID: 0}
   HPSlider: {fileID: -9221016340474550520, guid: e4c8bf6c384cb7d46a55d9636e7accfb, type: 3}
   HPSlider_Pre: {fileID: 1813496503973678500, guid: e4c8bf6c384cb7d46a55d9636e7accfb, type: 3}
+  _hpslider: {fileID: 0}
   DropItem1: {fileID: 5235872722666479554, guid: 3933045a64f5dcb47b1b3eec951cf285, type: 3}
   DropItem2: {fileID: 5235872722666479554, guid: 9da8b98ba9932624294164adcdf96601, type: 3}
   tlqk: {x: 0, y: 0}
