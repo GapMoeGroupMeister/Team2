@@ -1,31 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class Spear : Weapon
 {
     [SerializeField] private float _spearRange = 4.2f;
     [SerializeField] private float _spearAttackSpeed = 0.8f;
-    protected void SprearAttack()
+    private Transform _visualTrm;
+
+    protected override void Awake()
     {
-        StartCoroutine(Sting());
+        base.Awake();
+        _visualTrm = transform.Find("Visual");
     }
-    public IEnumerator Sting(float duration = 0.8f)
+
+    protected override void OnAttack()
     {
-        float time = 0.0f;
-        weapon.GetComponent<BoxCollider2D>().enabled = true;
-        while (time < _spearAttackSpeed)
-        {
-            time += Time.deltaTime / duration;
-            transform.position += moveDir *  _spearRange;
-            yield return null;
-        }
-        while (time > 0)
-        {
-            time -= Time.deltaTime / (duration * 2);
-            transform.position -= moveDir * _spearRange;
-            yield return null;
-        }
-        weapon.GetComponent<BoxCollider2D>().enabled = false;
+        base.OnAttack();
+        Sequence seq = DOTween.Sequence();
+        seq.Append(_visualTrm.DOLocalMoveY(1f, 0.15f))
+            .Append(_visualTrm.DOLocalMoveY(0f, 0.23f))
+            .AppendCallback(EndAttack);
+    }
+
+    protected override void EndAttack()
+    {
+        base.EndAttack(); 
     }
 }
