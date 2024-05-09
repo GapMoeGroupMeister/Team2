@@ -21,9 +21,9 @@ public class ArrowMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (collision.TryGetComponent<HealthSystem>(out HealthSystem healthSystem))
+            if (collision.TryGetComponent(out DefaultHealthSystem healthSystem))
             {
-                healthSystem.HP -= _damage;
+                healthSystem.Hp -= _damage;
                 Destroy(gameObject);
             }
         }

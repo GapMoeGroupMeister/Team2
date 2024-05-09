@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     
     private InputManager _inputManager;
     private Rigidbody2D _rigidbody;
+    private Animator _animator;
     
     private void OnEnable()
     {
@@ -19,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
             _rigidbody = GetComponent<Rigidbody2D>();
         if (_visualTrm == null)
             _visualTrm = transform.Find("Visual");
+        if (_animator == null)
+            _animator = _visualTrm.GetComponent<Animator>();
         
         //Move
         _inputManager.MoveEvent += HandleMoveEvent;
@@ -34,5 +37,6 @@ public class PlayerMovement : MonoBehaviour
         _rigidbody.velocity = dir.normalized * _speed;
         if(Mathf.Approximately(dir.x, 0f) == false)
             _visualTrm.localScale = new Vector3((int)dir.x, 1, 1);
+        _animator.SetFloat("MoveDir", dir.magnitude);
     }
 }

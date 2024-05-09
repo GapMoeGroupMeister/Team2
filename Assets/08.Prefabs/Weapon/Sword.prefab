@@ -100,7 +100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5911926643887971525
 Transform:
   m_ObjectHideFlags: 0
@@ -217,10 +217,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b181702726b59445811361db6faf96b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackDelayTime: 0.5
-  _curAttackDelayTime: 0
+  _attackDelayTime: 2
   _attackEffect: {fileID: 0}
-  attackValue: 0
+  attackValue: 2
   _swordAttackSpeed: 60
 --- !u!60 &8958884396283452886
 PolygonCollider2D:

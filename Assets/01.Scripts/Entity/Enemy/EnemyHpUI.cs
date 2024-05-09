@@ -1,15 +1,16 @@
+using Crogen.HealthSystem;
 using UnityEngine;
 
 
 public class EnemyHpUI : MonoBehaviour
 {
     
-    public HealthSystem healthSystem;
+    public DefaultHealthSystem healthSystem;
 
-    public void Init(HealthSystem healthSystem)
+    public void Init(DefaultHealthSystem healthSystem)
     {
         this.healthSystem = healthSystem;
-        this.healthSystem.OnHpChangedEvent.AddListener(HandlerHpChangeEvent);
+        this.healthSystem.hpChangeEvent.AddListener(HandlerHpChangeEvent);
     }
 
     private void HandlerHpChangeEvent()

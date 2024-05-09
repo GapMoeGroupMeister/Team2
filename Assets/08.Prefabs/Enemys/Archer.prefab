@@ -129,11 +129,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5372072842224338732}
-  - component: {fileID: 7220392526975421914}
   - component: {fileID: 8298540001899919081}
   - component: {fileID: 405775576880416005}
   - component: {fileID: 6740626668149264377}
   - component: {fileID: 5724877692927224232}
+  - component: {fileID: 2204126847274326616}
   m_Layer: 8
   m_Name: Archer
   m_TagString: Enemy_archers
@@ -158,24 +158,6 @@ Transform:
   - {fileID: 5132489544578034139}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7220392526975421914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1359420475927455222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93d97cd78138c4b448d2df45f2e3757c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnHpChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  ps: {fileID: 0}
-  _hp: 0
-  maxHp: 0
 --- !u!114 &8298540001899919081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,8 +174,6 @@ MonoBehaviour:
   _collider: {fileID: 6740626668149264377}
   Player: {fileID: 4661358808514894030, guid: 009f0ff0af583264889bbaf5f2ae9a5d, type: 3}
   _speed: 0.05
-  _maxHp: 100
-  _hp: 0
   _defense: 0
   _damage: 0
   _attackDistance: 1
@@ -203,10 +183,11 @@ MonoBehaviour:
   _playerTransform: {fileID: 0}
   _enemyStatus: 0
   ReconRange: {x: 0, y: 0, z: 0}
-  EnemyHealth: {fileID: 0}
+  EnemyHealth: {fileID: 2204126847274326616}
   HPSlider: {fileID: 3935420175710341301, guid: c069f285d37714745b1ed5a3ab0760f7, type: 3}
   HPSlider_Pre: {fileID: 3935420175710341301, guid: c069f285d37714745b1ed5a3ab0760f7, type: 3}
   dropItem: {fileID: 6149852821336674973, guid: 9da8b98ba9932624294164adcdf96601, type: 3}
+  _deadEffect: {fileID: 4056856539430600056, guid: b50aa586c10926646bd86217208d9a4a, type: 3}
   tlqk: {x: 0, y: 0}
   _arrow: {fileID: 7404453635826244510, guid: 551f4c1aea85ef44ab9681431663a30f, type: 3}
 --- !u!50 &405775576880416005
@@ -326,6 +307,31 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2204126847274326616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359420475927455222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4d63ed3b4335db4cbe4d5cd4a40b09b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 80
+  hpChangeEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  hpUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  hpDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  dieEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &272078459693270803
 PrefabInstance:
   m_ObjectHideFlags: 0

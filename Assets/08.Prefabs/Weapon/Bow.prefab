@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7192323287695918710
 Transform:
   m_ObjectHideFlags: 0
@@ -46,10 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3db98a1bfe060c2478e5e5c8817f16eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackDelayTime: 0.5
-  _curAttackDelayTime: 0
+  _attackDelayTime: 8
+  _curAttackDelayTime: 8
   _attackEffect: {fileID: 1681403796196791843}
-  attackValue: 0
+  attackValue: 10
   playerArrow: {fileID: 0}
 --- !u!1 &1681403796196791843
 GameObject:

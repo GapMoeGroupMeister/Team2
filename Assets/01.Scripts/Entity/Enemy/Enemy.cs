@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using HealthSystem = Crogen.HealthSystem.HealthSystem;
 
 
 public abstract class Enemy : MonoBehaviour
@@ -11,8 +12,6 @@ public abstract class Enemy : MonoBehaviour
     
 
     [SerializeField] protected float _speed;
-    [SerializeField] protected float _maxHp;
-    [SerializeField] protected float _hp;
     [SerializeField] protected int _defense;
     [SerializeField] protected int _damage;
     [SerializeField] protected float _attackDistance;
@@ -22,12 +21,13 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected Transform _playerTransform;
     [SerializeField] protected EnemeyStatus _enemyStatus;
     [SerializeField] protected Vector3 ReconRange;
-    [SerializeField] protected HealthSystem EnemyHealth;
+    [SerializeField] protected DefaultHealthSystem EnemyHealth;
     //[SerializeField] protected Transform Owner;
     [SerializeField] protected EnemyHpUI HPSlider;
     [SerializeField] protected EnemyHpUI HPSlider_Pre;
     
     [SerializeField] protected DropItem dropItem;
+    [SerializeField] protected ParticleSystem _deadEffect;
     
     public Vector2 tlqk;
 
@@ -42,27 +42,22 @@ public abstract class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        EnemyHealth = GetComponent<HealthSystem>();
+        EnemyHealth = GetComponent<DefaultHealthSystem>();
         _collider = GetComponentInChildren<BoxCollider2D>();
         Player = GameManager.Instance.PlayerController.gameObject;
         _playerTransform = GameManager.Instance.PlayerController.transform;
         HPSlider = Instantiate(HPSlider_Pre, transform);
         HPSlider.transform.localPosition = new Vector3(0, 1, 0);
         HPSlider.Init(EnemyHealth);
-        EnemyHealth.HP = _maxHp;
         ReconRange = transform.position;
         //Owner = transform;
+        
+        EnemyHealth.hpChangeEvent.AddListener(Dided);
     }
 
     private void Update()
     {
-        _hp = EnemyHealth.HP;
         Timer += Time.deltaTime;
-        if (_hp < 0)
-        {
-            Dided();
-        }
-
     }
     
     private void OnTriggerExit2D(Collider2D collision)
@@ -132,6 +127,8 @@ public abstract class Enemy : MonoBehaviour
 
         // �� ĳ���Ϳ� �ش��ϴ� ��ü ����
         Instantiate(dropItem, transform.position, Quaternion.identity);
+        ParticleSystem ps = Instantiate(_deadEffect, transform.position, Quaternion.identity);
+        ps.Play();
         Destroy(gameObject);
     }
 
@@ -140,9 +137,9 @@ public abstract class Enemy : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, tlqk.normalized, _attackDistance);
         if(hit.transform != null)
         {
-            if (hit.transform.TryGetComponent<HealthSystem>(out HealthSystem healthSystem))
+            if (hit.transform.TryGetComponent(out DefaultHealthSystem healthSystem))
             {
-                healthSystem.HP -= 0;
+                healthSystem.Hp -= _damage;
             }
         }
         

@@ -132,8 +132,8 @@ GameObject:
   - component: {fileID: 1647929875857419033}
   - component: {fileID: 3871219448304418280}
   - component: {fileID: 5898982645314243091}
-  - component: {fileID: -1603222673739650798}
   - component: {fileID: 4026333576681128065}
+  - component: {fileID: 650135275504505659}
   m_Layer: 8
   m_Name: Cavalry
   m_TagString: Enemy
@@ -246,8 +246,6 @@ MonoBehaviour:
   _collider: {fileID: 1647929875857419033}
   Player: {fileID: 4661358808514894030, guid: 009f0ff0af583264889bbaf5f2ae9a5d, type: 3}
   _speed: 0.05
-  _maxHp: 100
-  _hp: 0
   _defense: 0
   _damage: 0
   _attackDistance: 0
@@ -257,41 +255,12 @@ MonoBehaviour:
   _playerTransform: {fileID: 0}
   _enemyStatus: 0
   ReconRange: {x: 0, y: 0, z: 0}
-  EnemyHealth: {fileID: 0}
+  EnemyHealth: {fileID: 650135275504505659}
   HPSlider: {fileID: 0}
   HPSlider_Pre: {fileID: 3935420175710341301, guid: c069f285d37714745b1ed5a3ab0760f7, type: 3}
-  dropItem: {fileID: 0}
+  dropItem: {fileID: 6149852821336674973, guid: 9da8b98ba9932624294164adcdf96601, type: 3}
+  _deadEffect: {fileID: 4056856539430600056, guid: b50aa586c10926646bd86217208d9a4a, type: 3}
   tlqk: {x: 0, y: 0}
---- !u!114 &-1603222673739650798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4083817515648105490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93d97cd78138c4b448d2df45f2e3757c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnHpChangedEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -1603222673739650798}
-        m_TargetAssemblyTypeName: HealthSytem, Assembly-CSharp
-        m_MethodName: set_HP
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  ps: {fileID: 0}
-  _hp: 0
-  maxHp: 0
 --- !u!61 &4026333576681128065
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -337,6 +306,31 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &650135275504505659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4083817515648105490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4d63ed3b4335db4cbe4d5cd4a40b09b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 100
+  hpChangeEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  hpUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  hpDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  dieEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &2551713766282268362
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -5,10 +5,11 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] protected float _attackDelayTime = 0.5f;
-    [SerializeField] protected float _curAttackDelayTime = 0;
+    private float _curAttackDelayTime = 0;
 
     protected float _defultRotate;
     protected bool _attackable;
+    private bool _isAttack;
     protected GameManager _gameManager;
     protected PlayerController _player;
     protected Transform _visualTrm;
@@ -42,7 +43,8 @@ public class Weapon : MonoBehaviour
         _attackable = false;
         _curAttackDelayTime = 0;
         if(_attackEffect != null) 
-            _attackEffect.SetActive(true);    
+            _attackEffect.SetActive(true);
+        _isAttack = true;
     }
 
     protected virtual void EndAttack()
@@ -50,6 +52,7 @@ public class Weapon : MonoBehaviour
         if(_attackEffect != null) 
             _attackEffect.SetActive(false);
         _visualTrm.DORotate(new Vector3(0, 0, _defultRotate), _attackDelayTime);
+        _isAttack = false;
     }
 
     protected void Update()
@@ -63,9 +66,10 @@ public class Weapon : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(TryGetComponent(out HealthSystem healthSystem))
+        if (!_isAttack) return;
+        if(other.TryGetComponent(out DefaultHealthSystem healthSystem))
         {
-            healthSystem.HP -= attackValue;
+            healthSystem.Hp -= attackValue;
         }
     }
 
