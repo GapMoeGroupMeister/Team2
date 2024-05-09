@@ -27,6 +27,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected EnemyHpUI HPSlider_Pre;
     
     [SerializeField] protected DropItem dropItem;
+    [SerializeField] protected ParticleSystem _deadEffect;
     
     public Vector2 tlqk;
 
@@ -126,6 +127,8 @@ public abstract class Enemy : MonoBehaviour
 
         // �� ĳ���Ϳ� �ش��ϴ� ��ü ����
         Instantiate(dropItem, transform.position, Quaternion.identity);
+        ParticleSystem ps = Instantiate(_deadEffect, transform.position, Quaternion.identity);
+        ps.Play();
         Destroy(gameObject);
     }
 

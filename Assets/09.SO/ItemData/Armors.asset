@@ -17,6 +17,6 @@ MonoBehaviour:
   itemExplain: "\uC548 \uCABD\uC774 \uCC1D\uCC1D\uD558\uB2E4."
   maxAmountInSlot: 5
   itemImage: {fileID: 21300000, guid: e0719a9e6e937b74395a522518164f74, type: 2}
-  itemPf: {fileID: 672791492436654251, guid: 8bee50c349b667f4e834fe8d199544b9, type: 3}
+  itemPf: {fileID: 672791492436654251, guid: ad97a5ab05613dd478ecef2323835463, type: 3}
   itemSell: {fileID: 7372066719209750812, guid: 7b2e0912ba4f6594497c23eee1c2b0cc, type: 3}
   itemSize: {x: 3, y: 5}

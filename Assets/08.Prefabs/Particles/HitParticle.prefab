@@ -287,8 +287,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.03
-      minScalar: 0.2
+      scalar: 0.2
+      minScalar: 0.1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -4160,7 +4160,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.5048545
+          value: 0.39699012
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -4168,7 +4168,7 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.532135
+          time: 0.7188721
           value: 0
           inSlope: -2.472624
           outSlope: -2.472624
@@ -4855,7 +4855,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 606090489
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 1
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -9743,7 +9743,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 606090489
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0

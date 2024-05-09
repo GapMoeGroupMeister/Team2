@@ -255,10 +255,11 @@ MonoBehaviour:
   _playerTransform: {fileID: 0}
   _enemyStatus: 0
   ReconRange: {x: 0, y: 0, z: 0}
-  EnemyHealth: {fileID: 0}
+  EnemyHealth: {fileID: 650135275504505659}
   HPSlider: {fileID: 0}
   HPSlider_Pre: {fileID: 3935420175710341301, guid: c069f285d37714745b1ed5a3ab0760f7, type: 3}
   dropItem: {fileID: 6149852821336674973, guid: 9da8b98ba9932624294164adcdf96601, type: 3}
+  _deadEffect: {fileID: 4056856539430600056, guid: b50aa586c10926646bd86217208d9a4a, type: 3}
   tlqk: {x: 0, y: 0}
 --- !u!61 &4026333576681128065
 BoxCollider2D:
