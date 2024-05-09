@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Bow
   m_EditorClassIdentifier: 
   id: 0
-  itemName: 
-  itemExplain: 
-  maxAmountInSlot: 0
+  itemName: "\uD65C"
+  itemExplain: "\uCAC4\uBCF4\uB4E4\uC758 \uBB34\uAE30\uB85C \uC720\uBA85\uD558\uB2E4."
+  maxAmountInSlot: 5
   itemImage: {fileID: -378133464, guid: 8c16182265490a04ab4b676e95ddae16, type: 3}
   itemPf: {fileID: 672791492436654251, guid: 8bee50c349b667f4e834fe8d199544b9, type: 3}
   itemSell: {fileID: 7372066719209750812, guid: 7b2e0912ba4f6594497c23eee1c2b0cc, type: 3}

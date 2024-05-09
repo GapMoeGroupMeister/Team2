@@ -1,0 +1,14 @@
+{
+    "items": [
+        {
+            "posX": 0,
+            "posY": 0,
+            "itemId": 0
+        },
+        {
+            "posX": 3,
+            "posY": 0,
+            "itemId": 1
+        }
+    ]
+}
