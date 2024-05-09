@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Inventory
   m_EditorClassIdentifier: 
   InventoryName: PlayerInventory
-  inventorySize: {x: 10, y: 5}
+  inventorySize: {x: 8, y: 5}

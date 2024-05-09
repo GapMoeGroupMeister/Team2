@@ -10,7 +10,7 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     #region ItemInformation
 
     [SerializeField] private ItemSO itemSO;
-    public ItemSO ItemSO { get; private set; }
+    public ItemSO ItemSO => itemSO;
 
     public string itemName { get; private set; }
     public string itemExplain { get; private set; }
@@ -25,7 +25,8 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     private RectTransform itemRect;
     private Transform itemSellParent;
     private TextMeshProUGUI itemTxt;
-    
+
+    private bool isSelected = false;
     public int itemAmount = 1;
     public bool canPlace = true;
 
@@ -46,9 +47,13 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         itemTxt = transform.Find("Visual/Amount").GetComponent<TextMeshProUGUI>();
     }
 
-    private void Start()
+    private void Update()
     {
-        Init(itemSO);
+        if (Input.GetMouseButtonUp(0) && isSelected == true)
+        {
+            OnPointerUp();
+            isSelected = false;
+        }
     }
 
     public int AddItem(int amount)
@@ -72,7 +77,8 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public void Init(ItemSO itemSO)
     {
-        this.ItemSO = itemSO;
+        this.itemSO = itemSO;
+        Debug.Log(itemSO.itemName);
 
         itemName = itemSO.itemName;
         itemExplain = itemSO.itemExplain;
@@ -81,6 +87,10 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         sellSize = InventoryManager.Instance.slotSize;
 
         itemRect.sizeDelta = new Vector2(sellSize.x * itemSize.x, sellSize.y * itemSize.y);
+        RectTransform rect = image.GetComponent<RectTransform>();
+        rect.sizeDelta = itemRect.sizeDelta;
+        rect.anchoredPosition3D = new Vector3(itemRect.sizeDelta.x / 2, -itemRect.sizeDelta.y/2, 0);
+        image.sprite = itemSO.itemImage;
     }
 
 
@@ -100,7 +110,7 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     {
         InventoryManager.Instance.curSelectingItem = this;
 
-        for(int i =0; i < assignedSlotList.Count; i++)
+        for (int i = 0; i < assignedSlotList.Count; i++)
         {
             assignedSlotList[i].assignedItem = null;
         }
@@ -109,6 +119,7 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         FindSelectedSell();
         image.raycastTarget = false;
         image.color = new Color(image.color.r, image.color.g, image.color.b, 0.6f);
+        isSelected = true;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -116,19 +127,17 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         itemRect.anchoredPosition = (Vector2)Input.mousePosition - offset;
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    public void OnPointerUp()
     {
         //현재 선택된 슬롯이 존재하고 Place할 수 있다면
-        if (InventoryManager.Instance.curSelectingSlot != null 
+        if (InventoryManager.Instance.curSelectingSlot != null
             && canPlace == true)
         {
             //선택을 해제해주고 위치를 옮기십시오
             InventoryManager.Instance.curSelectingSlot.Select(false, true);
-            Debug.Log("MING");
         }
         else //그렇지 않다면
         {
-            Debug.Log("MING!!!!!");
             assignedSlotList[0].SetItem(this, true);    //이전 위치로 가십시오
         }
 
@@ -141,7 +150,7 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     private void FindSelectedSell()
     {
-        Vector2 rect = (Vector2)Input.mousePosition - (itemRect.anchoredPosition + new Vector2(960, 350));
+        Vector2 rect = (Vector2)Input.mousePosition - (itemRect.anchoredPosition + new Vector2(960, 550));
 
         if (itemSize.x % 2 == 0)
         {

@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 3871219448304418280}
   - component: {fileID: 5898982645314243091}
   - component: {fileID: -1603222673739650798}
+  - component: {fileID: 4026333576681128065}
   m_Layer: 8
   m_Name: Cavalry
   m_TagString: Enemy
@@ -228,7 +229,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &5898982645314243091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,8 +245,7 @@ MonoBehaviour:
   rigid: {fileID: 3871219448304418280}
   _collider: {fileID: 1647929875857419033}
   Player: {fileID: 4661358808514894030, guid: 009f0ff0af583264889bbaf5f2ae9a5d, type: 3}
-  _arrow: {fileID: 0}
-  _speed: 0.1
+  _speed: 0.05
   _maxHp: 100
   _hp: 0
   _defense: 0
@@ -260,6 +260,7 @@ MonoBehaviour:
   EnemyHealth: {fileID: 0}
   HPSlider: {fileID: 0}
   HPSlider_Pre: {fileID: 3935420175710341301, guid: c069f285d37714745b1ed5a3ab0760f7, type: 3}
+  dropItem: {fileID: 0}
   tlqk: {x: 0, y: 0}
 --- !u!114 &-1603222673739650798
 MonoBehaviour:
@@ -291,6 +292,51 @@ MonoBehaviour:
   ps: {fileID: 0}
   _hp: 0
   maxHp: 0
+--- !u!61 &4026333576681128065
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4083817515648105490}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1001 &2551713766282268362
 PrefabInstance:
   m_ObjectHideFlags: 0

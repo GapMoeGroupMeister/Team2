@@ -1,28 +1,19 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ArrowMovement : MonoBehaviour
 {
     public Rigidbody2D rigid;
-    public Transform owner;
     [SerializeField] protected float _speed;
     public float _damage;
     
     public Archers archers;
-    // Start is called before the first frame update
-
-    private void Awake()
-    {
-        
-    }
+    
     void Start()
     {
-        
         rigid.AddForce(archers.tlqk.normalized * _speed, ForceMode2D.Impulse);
+        transform.right = archers.tlqk;
         StartCoroutine(Wait());
-        
     }
 
 

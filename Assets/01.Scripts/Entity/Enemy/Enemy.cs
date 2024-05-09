@@ -8,7 +8,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected Rigidbody2D rigid;
     [SerializeField] protected BoxCollider2D _collider;
     [SerializeField] protected GameObject Player;
-    [SerializeField] protected GameObject _arrow;
+    
 
     [SerializeField] protected float _speed;
     [SerializeField] protected float _maxHp;
@@ -27,23 +27,25 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected EnemyHpUI HPSlider;
     [SerializeField] protected EnemyHpUI HPSlider_Pre;
     
+    [SerializeField] protected DropItem dropItem;
+    
     public Vector2 tlqk;
 
     float Timer;
 
-    /* ÇØ¾ßÇÒ°Å
-     * ¸Ê º¸°í Àû ÀÌµ¿¹üÀ§ Á¤ÇÏ±â
-     * ÇÃ·¡ÀÌ¾î ¿Ï¼ºµÇ¸é Attack ¿Ï¼ºÇÏ±â
-     * Dided ¿Ï¼ºÇÏ±â
-     * Find ¿Ï¼ºÇÏ±â
+    /* ï¿½Ø¾ï¿½ï¿½Ò°ï¿½
+     * ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
+     * ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ï¼ï¿½ï¿½Ç¸ï¿½ Attack ï¿½Ï¼ï¿½ï¿½Ï±ï¿½
+     * Dided ï¿½Ï¼ï¿½ï¿½Ï±ï¿½
+     * Find ï¿½Ï¼ï¿½ï¿½Ï±ï¿½
      */
 
     private void Awake()
     {
         EnemyHealth = GetComponent<HealthSystem>();
         _collider = GetComponentInChildren<BoxCollider2D>();
-        Player = GameObject.Find("CombatPlayer");
-        _playerTransform = GameObject.Find("CombatPlayer").transform;
+        Player = GameManager.Instance.PlayerController.gameObject;
+        _playerTransform = GameManager.Instance.PlayerController.transform;
         HPSlider = Instantiate(HPSlider_Pre, transform);
         HPSlider.transform.localPosition = new Vector3(0, 1, 0);
         HPSlider.Init(EnemyHealth);
@@ -74,31 +76,11 @@ public abstract class Enemy : MonoBehaviour
     {
         switch (enemyStatus)
         {
-            case EnemeyStatus.Attack: // ¹ß°ß ÇßÀ» ¶§
-                tlqk = _playerTransform.position - transform.position;
-                // ±Ã¼ö Àü¿ë °ø°Ý
-                if (gameObject.CompareTag("Enemy_archers")) // ÅÂ±×·Î ±¸º°
-                {
-                    if (Timer >= _attackSpeed)
-                    {
-                        Timer = 0;
-                        Attack_archers();
-                    }
-                    break;
-                }
-                // ÇÃ·¡ÀÌ¾î¸¦ °è¼Ó ¦i¾Æ´Ù´Ô
-                transform.position = Vector2.MoveTowards(transform.position, _playerTransform.position, _speed * 2);
-                if (Vector2.Distance(transform.position, Player.transform.position) <= _attackDistance)
-                {
-                    if (Timer >= _attackSpeed)
-                    {
-                        Timer = 0;
-                        Attack();
-                    }
-                }
+            case EnemeyStatus.Attack: // ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+                StartCoroutine(ReconCoroutine());
                 break;
-            case EnemeyStatus.Recon: // Á¤Âû ÁßÀÏ ¶§
-                // ÀÚ±âÁß½É 20*20(ÀÓ½Ã) Å©±âÀÇ ±¸¿ª ¾È ¿¡¼­ ·£´ýÀ¸·Î ÁöÁ¤ÇØ¼­ µ¹¾Æ´Ù´Ô
+            case EnemeyStatus.Recon: // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+                // ï¿½Ú±ï¿½ï¿½ß½ï¿½ 20*20(ï¿½Ó½ï¿½) Å©ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½Æ´Ù´ï¿½
                 if (transform.position == ReconRange || Timer > 20f)
                 {
                     ReconRange = new Vector2(Random.Range(-10f, 10f), Random.Range(-10f, 10f));
@@ -106,22 +88,50 @@ public abstract class Enemy : MonoBehaviour
                 }
                 transform.position = Vector2.MoveTowards(transform.position, ReconRange, _speed);
                 break;
-            case EnemeyStatus.Suspicious: // ¼Ò¸®°¡ µé·ÈÀ» ¶§
-                // ÇöÀç À§Ä¡¿¡¼­ ¼Ò¸®°¡ ³­ À§Ä¡·Î ÀÌµ¿
+            case EnemeyStatus.Suspicious: // ï¿½Ò¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+                // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¸ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ìµï¿½
                 transform.position = Vector2.MoveTowards(transform.position, new Vector2(1, 1), _speed);
                 break;
         }
 
     }
 
+    private IEnumerator ReconCoroutine()
+    {
+        tlqk = _playerTransform.position - transform.position;
+        // ï¿½Ã¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        if (gameObject.CompareTag("Enemy_archers")) // ï¿½Â±×·ï¿½ ï¿½ï¿½ï¿½ï¿½
+        {
+            if (Timer >= _attackSpeed)
+            {
+                Timer = 0;
+                Attack_archers();
+            }
+        }
+        // ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ ï¿½ï¿½ï¿½ ï¿½iï¿½Æ´Ù´ï¿½
+        if (Vector2.Distance(transform.position, Player.transform.position) <= _attackDistance)
+        {
+            if (Timer >= _attackSpeed)
+            {
+                Timer = 0;
+                Attack();
+            }
+        }
+        transform.position = Vector2.MoveTowards(transform.position, _playerTransform.position, _speed * 2);
+        yield return new WaitUntil(() => Vector2.Distance(transform.position, _playerTransform.position) > _attackDistance);
+        transform.position = transform.position;
+        yield return new WaitForSeconds(0.5f);
+        transform.position = Vector2.MoveTowards(transform.position, _playerTransform.position, _speed * 2);
+    }
+
     
 
     protected void Dided()
     {
-        // Á×´Â ¾Ö´Ï¸ÞÀÌ¼Ç
+        // ï¿½×´ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½
 
-        // Àû Ä³¸¯ÅÍ¿¡ ÇØ´çÇÏ´Â ½ÃÃ¼ »ý¼º
-        // Instantiate()
+        // ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
+        Instantiate(dropItem, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
@@ -136,15 +146,12 @@ public abstract class Enemy : MonoBehaviour
             }
         }
         
-        // °ø°Ý ¾Ö´Ï¸ÞÀÌ¼Ç
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½
     }
 
-    protected void Attack_archers()
+    protected virtual void Attack_archers()
     {
-        GameObject arrow = Instantiate(_arrow, transform.position, Quaternion.identity);
-        arrow.GetComponent<ArrowMovement>()._damage = _damage;
-        arrow.GetComponent<ArrowMovement>().archers = GetComponent<Archers>();
-        arrow.GetComponent<ArrowMovement>().owner = transform;
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½
     }
 
     protected IEnumerator Wait()
@@ -156,6 +163,6 @@ public abstract class Enemy : MonoBehaviour
     protected enum EnemeyStatus
     {
         Attack, Recon, Suspicious
-             //  Á¤Âû    ¼ö»óÇÑ
+             //  ï¿½ï¿½ï¿½ï¿½    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     }
 }
