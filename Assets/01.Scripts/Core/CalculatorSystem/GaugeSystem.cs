@@ -29,10 +29,10 @@ public class FoodGauge : MonoBehaviour
         _scrapBar.maxValue = 700 + (_lose.defeat + 1) * (_dayChanges.daycycle * 10);
         _foodBar.value = _food;
         _scrapBar.value = _scrap;
-        if (_foodBar.value >= _foodBar.maxValue && _scrapBar.value >= _scrapBar.maxValue)
+        /*if (_foodBar.value >= _foodBar.maxValue && _scrapBar.value >= _scrapBar.maxValue)
         {
             gaugeTest = true;
-        }
+        }*/
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

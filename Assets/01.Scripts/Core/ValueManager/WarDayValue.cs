@@ -5,14 +5,20 @@ using UnityEngine.UI;
 
 public class WarDayValue : MonoBehaviour
 {
-    [SerializeField] private int warday = 3;
+    [SerializeField] private int warday;
     public int daycycle = 1;
 
     private void Awake()
     {
+        warday = PlayDataManager.Instance.playData._fightDay;
+    }
+
+    private void Update()
+    {
         if (warday == 0)
         {
             daycycle++;
+            PlayDataManager.Instance.playData._fightDay = 3;
         }
     }
 

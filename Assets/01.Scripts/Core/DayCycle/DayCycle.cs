@@ -10,6 +10,8 @@ public class DayCycle : MonoBehaviour
     public GameObject combatPlayerPrefab;
     GameObject playerObj;
     GameObject combatObj;
+    private int _changeDay; 
+
     public enum Time
     {
         Day, Night
@@ -25,7 +27,7 @@ public class DayCycle : MonoBehaviour
         playerObj.name.Replace("(Clone)", "");
         combatObj = Instantiate(combatPlayerPrefab);
         combatObj.name.Replace("(Clone)", "");
-
+        PlayDataManager.Instance.LoadPlayData();
         combatObj.SetActive(false);
     }
 
@@ -44,24 +46,28 @@ public class DayCycle : MonoBehaviour
 
         if (currentTime == Time.Night)
         {
-            if (Hour > 420f)
+            if (Hour > 4.2f)
             {
                 combatObj.SetActive(false);
                 playerObj.SetActive(true);
                 currentTime = ChangeDay(currentTime);
                 Hour = 0;
+                PlayDataManager.Instance.playData._day++;
+                PlayDataManager.Instance.playData._fightDay--;
                 theWorld = true;
+                GoToGameScene();
             }
         }
         else if(currentTime == Time.Day)
         {
-            if (Hour > 300f)
+            if (Hour > 3f)
             {
                 combatObj.SetActive(true);
                 playerObj.SetActive(false);
                 currentTime = ChangeDay(currentTime);
                 Hour = 0;
                 theWorld = true;
+                GoToGameScene();
             }
         }
 
@@ -81,6 +87,11 @@ public class DayCycle : MonoBehaviour
         }
 
         return time;
+    }
+
+    public void GoToGameScene()
+    {
+        SceneManager.LoadScene("ChangeScene");
     }
 }
 
