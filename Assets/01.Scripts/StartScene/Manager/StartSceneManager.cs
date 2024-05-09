@@ -43,6 +43,6 @@ public class StartSceneManager : MonoBehaviour
     private void StartGame()
     {
         _blackImage.gameObject.SetActive(true);
-        _blackImage.DOFade(1, 1).OnComplete(() => SceneManager.LoadScene("InGame"));
+        _blackImage.DOFade(1, 1).OnComplete(() => SceneManager.LoadScene("MergeScene"));
     }
 }

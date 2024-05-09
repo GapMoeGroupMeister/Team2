@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Archers : Enemy
 {
+    [SerializeField] private ArrowMovement _arrow;
     private void Start()
     {
         _collider.size = new Vector2(_findDistance_x, _findDistance_y);
@@ -34,5 +35,12 @@ public class Archers : Enemy
         {
             ReconRange = new Vector2(Random.Range(-10f, 10f), Random.Range(-10f, 10f));
         }
+    }
+    
+    protected override void Attack_archers()
+    {
+        ArrowMovement arrow = Instantiate(_arrow, transform.position, Quaternion.identity);
+        arrow.archers = this;
+        tlqk = _playerTransform.position - transform.position;
     }
 }
