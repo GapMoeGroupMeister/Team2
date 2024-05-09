@@ -376,6 +376,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &828506733 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7219373970476192252, guid: 71af7e84f775c2948aa6f20d5d074042, type: 3}
+  m_PrefabInstance: {fileID: 3525080135337307048}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d417fef42ff4f2b41982a7cee28c7494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &830180107
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,6 +560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotSize: {x: 100, y: 100}
+  curSelectingInventory: {fileID: 828506733}
   curSelectingSlot: {fileID: 0}
   curSelectingItem: {fileID: 0}
 --- !u!1 &1934374055

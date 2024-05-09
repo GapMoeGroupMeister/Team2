@@ -135,7 +135,7 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        //ÀÌ°Å ³ªÁß¿¡ prettyPrint false·Î ¤¢
+        //ì´ê±° ë‚˜ì¤‘ì— prettyPrint falseë¡œ ã„²
         EasyToJson.ToJson(saves, "MyInventory", true);
 
         Load();
