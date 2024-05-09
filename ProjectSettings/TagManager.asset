@@ -67,6 +67,9 @@ TagManager:
   - name: Character
     uniqueID: 2185696691
     locked: 0
+  - name: Weapon
+    uniqueID: 138220575
+    locked: 0
   - name: FrontWall
     uniqueID: 1001727741
     locked: 0
