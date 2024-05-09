@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/00.Scenes/RSJScenes/RSJScene.unity
     guid: 068d100919b05bb4a8ead650545d2398
+  - enabled: 1
+    path: Assets/00.Scenes/StartScene.unity
+    guid: ef7dbfe475ddc7441b4adbf392a468e0
+  - enabled: 1
+    path: Assets/00.Scenes/MergeScene.unity
+    guid: 58c81b20721a5504a8d4be5329641b20
   m_configObjects: {}

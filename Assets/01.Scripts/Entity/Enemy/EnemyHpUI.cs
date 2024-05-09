@@ -14,6 +14,6 @@ public class EnemyHpUI : MonoBehaviour
 
     private void HandlerHpChangeEvent()
     {
-        transform.localScale = new Vector3(healthSystem.HP/healthSystem.maxHp, 1, 1);
+        //transform.localScale = new Vector3(healthSystem.HP/healthSystem.maxHp, 1, 1);
     }
 }
