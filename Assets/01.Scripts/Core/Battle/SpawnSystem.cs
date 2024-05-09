@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpawnSystem : MonoBehaviour
+public class SpawnSystem : MonoSingleton<SpawnSystem>
 {
     [SerializeField] private GameObject[] _enemyPrefabs;
     [SerializeField] private Transform[] _spawnPositions;
@@ -11,7 +11,7 @@ public class SpawnSystem : MonoBehaviour
         Invoke("EnemySpawn", 1f);
     }
 
-    void EnemySpawn()
+    public void EnemySpawn()
     {
         enemyCount = Random.Range(7, 12);
 

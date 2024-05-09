@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class Sword : Weapon
 {
-    [SerializeField] private float _swordAttackSpeed = 60f;
-
     protected override void OnEnable()
     {
         base.OnEnable();

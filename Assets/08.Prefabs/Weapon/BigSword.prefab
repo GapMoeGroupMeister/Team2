@@ -100,7 +100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2583812119625132310
 Transform:
   m_ObjectHideFlags: 0
@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fec3ecb381d9a0c4c9a255ed74eb3844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackDelayTime: 0.5
+  _attackDelayTime: 3
   _curAttackDelayTime: 3
   _attackEffect: {fileID: 4169243860134757717}
   attackValue: 5
