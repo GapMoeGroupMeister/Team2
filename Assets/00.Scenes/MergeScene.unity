@@ -7443,8 +7443,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponPrefabs:
-  - {fileID: -5243140204295238926, guid: 09443a4679d33044987782d839874eed, type: 3}
   - {fileID: 4508262160490561581, guid: 8a0007f239622d2458722ca291825c8f, type: 3}
+  - {fileID: -5243140204295238926, guid: 09443a4679d33044987782d839874eed, type: 3}
   - {fileID: 6021434422554263160, guid: 54df9213af65fd64ea424675f55a8bc2, type: 3}
   - {fileID: 8974881230941832590, guid: 3e840c085b76d854fb9721c49c74701a, type: 3}
   - {fileID: 8450559992111833402, guid: 6a58cacea56f5454f85a7331916f666e, type: 3}
@@ -86456,7 +86456,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 000000009fd694e2d5a73f7e535842dbb3154782fd26b53bf9342024bf8e41fd
+  m_ApplyToSortingLayers: 000000009fd694e2d5a73f7e535842dbb3154782fd26b53bf9342024bf8e41fd1f143d08
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -86756,6 +86756,10 @@ PrefabInstance:
       propertyPath: m_Icon
       value: 
       objectReference: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 8887436316809305842, guid: 009f0ff0af583264889bbaf5f2ae9a5d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3337253500567566103, guid: 009f0ff0af583264889bbaf5f2ae9a5d, type: 3}
@@ -87216,7 +87220,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 606090489
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0

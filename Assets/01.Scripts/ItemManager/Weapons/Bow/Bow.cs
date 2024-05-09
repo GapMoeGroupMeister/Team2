@@ -4,17 +4,18 @@ public class Bow : Weapon
 {
     [SerializeField] private PlayerArrow playerArrow;
 
-    protected override void Awake()
+    protected override void OnEnable()
     {
-        base.Awake();
+        base.OnEnable();
     }
 
     protected override void OnAttack()
     {
         base.OnAttack();
-        Instantiate(playerArrow, transform.position, Quaternion.LookRotation(AttackDirection));
-        playerArrow.Init(this);
-        playerArrow.OnAttack(AttackDirection);
+        PlayerArrow arrow = Instantiate(playerArrow, transform.position, Quaternion.identity);
+        arrow.transform.up = AttackDirection;
+        arrow.Init(this);
+        arrow.OnAttack(AttackDirection);
     }
 
     protected override void EndAttack()

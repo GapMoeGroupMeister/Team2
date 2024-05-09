@@ -4,9 +4,9 @@ public class Sword : Weapon
 {
     [SerializeField] private float _swordAttackSpeed = 60f;
 
-    protected override void Awake()
+    protected override void OnEnable()
     {
-        base.Awake();
+        base.OnEnable();
     }
 
     protected override void OnAttack()

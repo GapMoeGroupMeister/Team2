@@ -11,7 +11,7 @@ public class Weapon : MonoBehaviour
     private InputManager _inputManager;
     public Vector2 AttackDirection { get; private set; }
     
-    protected virtual void Awake()
+    protected virtual void OnEnable()
     {
         //Managements
         _gameManager = GameManager.Instance;
@@ -43,8 +43,6 @@ public class Weapon : MonoBehaviour
     private void HandleAttackDirection(Vector2 dir)
     {
         AttackDirection = dir;
-        transform.rotation = Quaternion.LookRotation(dir);
-        
-        
+        transform.up = dir;
     }
 }

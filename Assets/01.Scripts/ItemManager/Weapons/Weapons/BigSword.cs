@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class BigSword : Weapon
 {
-    protected override void Awake()
+    protected override void OnEnable()
     {
-        base.Awake();
+        base.OnEnable();
     }
 
     protected override void OnAttack()
