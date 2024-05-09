@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class WeaponManager : MonoSingleton<WeaponManager>
 {
@@ -10,14 +11,15 @@ public class WeaponManager : MonoSingleton<WeaponManager>
     [SerializeField] private List<Weapon> _weaponObjList = new List<Weapon>();
     [SerializeField] private Weapon _curWeapon;
     public int currentWeapon;
-    [SerializeField] private Transform _weaponTrm;
+    public Transform WeaponTrm { get; private set; }
     
     private PlayerController player;
 
-    private void Awake()
+    public void Init(Transform weaponTrm)
     {
         _gameManager = GameManager.Instance;
         player = _gameManager.PlayerController;
+        WeaponTrm = weaponTrm;
         WeaponInit();
     }
 
@@ -27,7 +29,7 @@ public class WeaponManager : MonoSingleton<WeaponManager>
         {
             Weapon weapon = Instantiate(_weaponPrefabs[i]);
             _weaponObjList.Add(weapon);
-            weapon.transform.SetParent(_weaponTrm);
+            weapon.transform.SetParent(WeaponTrm);
             weapon.transform.localPosition = Vector3.zero;
             weapon.gameObject.SetActive(i==0);
         }

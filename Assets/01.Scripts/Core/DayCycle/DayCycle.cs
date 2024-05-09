@@ -1,11 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class DayCycle : MonoBehaviour
 {
+    //Managements
+    private GameManager _gameManager;
+    private WeaponManager _weaponManager;
+    
     public PlayerController playerPrefab;
     public PlayerController combatPlayerPrefab;
     [SerializeField] private GameObject _nightVolume;
@@ -22,13 +23,17 @@ public class DayCycle : MonoBehaviour
 
     private void Awake()
     {
+        _gameManager = GameManager.Instance;
+        _weaponManager = WeaponManager.Instance;
+        
         theWorld = false;
         playerObj = Instantiate(playerPrefab);
         combatObj = Instantiate(combatPlayerPrefab);
+        _weaponManager.Init(playerObj.transform.Find("WeaponPos"));
 
         combatObj.gameObject.SetActive(false);
-        GameManager.Instance.PlayerController = playerObj.GetComponent<PlayerController>();
-        GameManager.Instance.VirtualCamera.Follow = playerObj.transform;
+        _gameManager.PlayerController = playerObj.GetComponent<PlayerController>();
+        _gameManager.VirtualCamera.Follow = playerObj.transform;
     }
 
     public bool TheWorld
