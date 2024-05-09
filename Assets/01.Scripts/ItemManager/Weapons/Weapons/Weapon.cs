@@ -1,20 +1,20 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
     [SerializeField] protected float _attackDelayTime = 0.5f;
-    protected float _curAttackDelayTime = 0;
+    [SerializeField] protected float _curAttackDelayTime = 0;
 
     protected float _defultRotate;
-    
+    protected bool _attackable;
     protected GameManager _gameManager;
     protected PlayerController _player;
     protected Transform _visualTrm;
     public GameObject _attackEffect;
     public float attackValue;
-    public bool isAttack = false;
-    private InputManager _inputManager;
+    protected InputManager _inputManager;
     public Vector2 AttackDirection { get; private set; }
 
     protected virtual void OnEnable()
@@ -39,27 +39,37 @@ public class Weapon : MonoBehaviour
 
     protected virtual void OnAttack()
     {
-        if (_curAttackDelayTime < _attackDelayTime)
-            isAttack = true;
+        _attackable = false;
+        _curAttackDelayTime = 0;
         if(_attackEffect != null) 
             _attackEffect.SetActive(true);    
     }
 
     protected virtual void EndAttack()
     {
-        isAttack = false;
         if(_attackEffect != null) 
             _attackEffect.SetActive(false);
-        _curAttackDelayTime = 0;
         _visualTrm.DORotate(new Vector3(0, 0, _defultRotate), _attackDelayTime);
     }
 
     protected void Update()
     {
-        _curAttackDelayTime += Time.deltaTime;
+        if (!_attackable)
+        {
+            _curAttackDelayTime += Time.deltaTime;
+            _attackable = _curAttackDelayTime > _attackDelayTime;
+        }
     }
 
-    private void HandleAttackDirection(Vector2 dir)
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(TryGetComponent(out HealthSystem healthSystem))
+        {
+            healthSystem.HP -= attackValue;
+        }
+    }
+
+    protected void HandleAttackDirection(Vector2 dir)
     {
         AttackDirection = dir;
         dir = Quaternion.Euler(0, 45, 0) * dir;
