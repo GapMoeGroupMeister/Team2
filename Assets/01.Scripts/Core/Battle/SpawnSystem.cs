@@ -8,7 +8,7 @@ public class SpawnSystem : MonoSingleton<SpawnSystem>
     
     private void Start()
     {
-        Invoke("EnemySpawn", 1f);
+        InvokeRepeating("EnemySpawn", 1f, 60f);
     }
 
     public void EnemySpawn()
