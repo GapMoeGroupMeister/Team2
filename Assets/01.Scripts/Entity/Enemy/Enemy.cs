@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 
 public abstract class Enemy : MonoBehaviour
@@ -10,7 +8,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected Rigidbody2D rigid;
     [SerializeField] protected BoxCollider2D _collider;
     [SerializeField] protected GameObject Player;
-    [SerializeField] protected GameObject _arrow;
+    
 
     [SerializeField] protected float _speed;
     [SerializeField] protected float _maxHp;
@@ -22,54 +20,55 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected int _findDistance_x;
     [SerializeField] protected int _findDistance_y;
     [SerializeField] protected Transform _playerTransform;
-    [SerializeField] protected EnemeyStatus _enemyStatus; 
+    [SerializeField] protected EnemeyStatus _enemyStatus;
     [SerializeField] protected Vector3 ReconRange;
-    [SerializeField] protected HealthSytem EnemyHealth;
+    [SerializeField] protected HealthSystem EnemyHealth;
     //[SerializeField] protected Transform Owner;
     [SerializeField] protected EnemyHpUI HPSlider;
-    [SerializeField] protected GameObject HPSlider_Pre;
-    [SerializeField] GameObject _hpslider;
-    [SerializeField] protected GameObject DropItem1;
-    [SerializeField] protected GameObject DropItem2;
+    [SerializeField] protected EnemyHpUI HPSlider_Pre;
     
+    [SerializeField] protected DropItem dropItem;
     
     public Vector2 tlqk;
 
     float Timer;
 
-    /* ÇØ¾ßÇÒ°Å
-     * ¸Ê º¸°í Àû ÀÌµ¿¹üÀ§ Á¤ÇÏ±â
-     * ÇÃ·¡ÀÌ¾î ¿Ï¼ºµÇ¸é Attack ¿Ï¼ºÇÏ±â
-     * Dided ¿Ï¼ºÇÏ±â
-     * Find ¿Ï¼ºÇÏ±â
+    /* ï¿½Ø¾ï¿½ï¿½Ò°ï¿½
+     * ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
+     * ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ï¼ï¿½ï¿½Ç¸ï¿½ Attack ï¿½Ï¼ï¿½ï¿½Ï±ï¿½
+     * Dided ï¿½Ï¼ï¿½ï¿½Ï±ï¿½
+     * Find ï¿½Ï¼ï¿½ï¿½Ï±ï¿½
      */
 
     private void Awake()
     {
-
-        
-        EnemyHealth = GetComponent<HealthSytem>();
+        EnemyHealth = GetComponent<HealthSystem>();
         _collider = GetComponentInChildren<BoxCollider2D>();
-        Player = GameObject.Find("CombatPlayer");
-        _playerTransform = GameObject.Find("CombatPlayer").transform;
-        _hpslider = Instantiate(HPSlider_Pre, transform.position, Quaternion.identity, GameObject.Find("Canvas").transform);
-        HPSlider = _hpslider.GetComponent<EnemyHpUI>();
+        Player = GameManager.Instance.PlayerController.gameObject;
+        _playerTransform = GameManager.Instance.PlayerController.transform;
+        HPSlider = Instantiate(HPSlider_Pre, transform);
+        HPSlider.transform.localPosition = new Vector3(0, 1, 0);
+        HPSlider.Init(EnemyHealth);
         EnemyHealth.HP = _maxHp;
         ReconRange = transform.position;
         //Owner = transform;
     }
+
     private void Update()
     {
         _hp = EnemyHealth.HP;
-        HPSlider.healthSytem = EnemyHealth;
-        HPSlider.transform.position = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x + 1.5f, transform.position.y + 2f, 0));
-
-        Timer += UnityEngine.Time.deltaTime;
-        if (_hp <= 0)
+        Timer += Time.deltaTime;
+        if (_hp < 0)
         {
             Dided();
         }
 
+    }
+    
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(gameObject.activeSelf)
+            StartCoroutine(Wait());
     }
 
     
@@ -77,117 +76,93 @@ public abstract class Enemy : MonoBehaviour
     {
         switch (enemyStatus)
         {
-            // ¹ß°ß ÇßÀ» ¶§
-
-            case EnemeyStatus.Attack:
-                
-                tlqk = _playerTransform.position - transform.position;
-
-                // ±Ã¼ö Àü¿ë °ø°Ý
-                if (gameObject.CompareTag("Enemy_archers")) // ÅÂ±×·Î ±¸º°
-                {
-                    if (Timer >= _attackSpeed)
-                    {
-                        Timer = 0;
-                        Attack_archers();
-                    }
-                    break;
-                }
-
-                // ÇÃ·¡ÀÌ¾î¸¦ °è¼Ó ¦i¾Æ´Ù´Ô
-                transform.position = Vector2.MoveTowards(transform.position, _playerTransform.position, _speed * 2);
-              
-                if (Vector2.Distance(transform.position, Player.transform.position) <= _attackDistance)
-                {
-                    if (Timer >= _attackSpeed)
-                    {
-                        Timer = 0;
-                        Attack();
-                    }
-                }
+            case EnemeyStatus.Attack: // ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+                StartCoroutine(ReconCoroutine());
                 break;
-
-            // Á¤Âû ÁßÀÏ ¶§
-
-            case EnemeyStatus.Recon:
-                // ÀÚ±âÁß½É 20*20(ÀÓ½Ã) Å©±âÀÇ ±¸¿ª ¾È ¿¡¼­ ·£´ýÀ¸·Î ÁöÁ¤ÇØ¼­ µ¹¾Æ´Ù´Ô
-
-                
+            case EnemeyStatus.Recon: // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+                // ï¿½Ú±ï¿½ï¿½ß½ï¿½ 20*20(ï¿½Ó½ï¿½) Å©ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½Æ´Ù´ï¿½
                 if (transform.position == ReconRange || Timer > 20f)
                 {
                     ReconRange = new Vector2(Random.Range(-10f, 10f), Random.Range(-10f, 10f));
                     Timer = 0;
                 }
-                
                 transform.position = Vector2.MoveTowards(transform.position, ReconRange, _speed);
-                
-                
                 break;
-
-            // ¼Ò¸®°¡ µé·ÈÀ» ¶§
-
-            case EnemeyStatus.Suspicious:
-                // ÇöÀç À§Ä¡¿¡¼­ ¼Ò¸®°¡ ³­ À§Ä¡·Î ÀÌµ¿
-
+            case EnemeyStatus.Suspicious: // ï¿½Ò¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+                // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¸ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ìµï¿½
                 transform.position = Vector2.MoveTowards(transform.position, new Vector2(1, 1), _speed);
-                                                                            /*¼Ò¸® ³­ ÂÊ À§Ä¡*/
                 break;
-
-
-
-
-
-
         }
 
+    }
+
+    private IEnumerator ReconCoroutine()
+    {
+        tlqk = _playerTransform.position - transform.position;
+        // ï¿½Ã¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        if (gameObject.CompareTag("Enemy_archers")) // ï¿½Â±×·ï¿½ ï¿½ï¿½ï¿½ï¿½
+        {
+            if (Timer >= _attackSpeed)
+            {
+                Timer = 0;
+                Attack_archers();
+            }
+        }
+        // ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ ï¿½ï¿½ï¿½ ï¿½iï¿½Æ´Ù´ï¿½
+        if (Vector2.Distance(transform.position, Player.transform.position) <= _attackDistance)
+        {
+            if (Timer >= _attackSpeed)
+            {
+                Timer = 0;
+                Attack();
+            }
+        }
+        transform.position = Vector2.MoveTowards(transform.position, _playerTransform.position, _speed * 2);
+        yield return new WaitUntil(() => Vector2.Distance(transform.position, _playerTransform.position) > _attackDistance);
+        transform.position = transform.position;
+        yield return new WaitForSeconds(0.5f);
+        transform.position = Vector2.MoveTowards(transform.position, _playerTransform.position, _speed * 2);
     }
 
     
 
     protected void Dided()
     {
-        // Á×´Â ¾Ö´Ï¸ÞÀÌ¼Ç
+        // ï¿½×´ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½
 
-        // Àû Ä³¸¯ÅÍ¿¡ ÇØ´çÇÏ´Â ½ÃÃ¼ »ý¼º
-        Instantiate(Random.Range(1,3) == 1 ? DropItem1 : DropItem2, transform.position, Quaternion.identity);
+        // ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
+        Instantiate(dropItem, transform.position, Quaternion.identity);
         Destroy(gameObject);
-        Destroy(_hpslider);
     }
 
     protected void Attack()
     {
-
-        if(Physics2D.Raycast(transform.position, tlqk.normalized, _attackDistance))
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, tlqk.normalized, _attackDistance);
+        if(hit.transform != null)
         {
-            Physics2D.Raycast(transform.position, tlqk.normalized, _attackDistance).collider.gameObject.GetComponent<HealthSytem>().HP -= 0;
+            if (hit.transform.TryGetComponent<HealthSystem>(out HealthSystem healthSystem))
+            {
+                healthSystem.HP -= 0;
+            }
         }
         
-        // °ø°Ý ¾Ö´Ï¸ÞÀÌ¼Ç
-
-        
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½
     }
 
-    protected void Attack_archers()
+    protected virtual void Attack_archers()
     {
-        GameObject arrow = Instantiate(_arrow, transform.position, Quaternion.identity);
-        arrow.GetComponent<ArrowMovement>()._damage = _damage;
-        arrow.GetComponent<ArrowMovement>().archers = GetComponent<Archers>();
-        arrow.GetComponent<ArrowMovement>().owner = transform;
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½
     }
 
-
-    
-    
-
-
-
-
-
-
+    protected IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(4);
+        _enemyStatus = EnemeyStatus.Recon;
+    }
 
     protected enum EnemeyStatus
     {
         Attack, Recon, Suspicious
-             //  Á¤Âû    ¼ö»óÇÑ
+             //  ï¿½ï¿½ï¿½ï¿½    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     }
 }

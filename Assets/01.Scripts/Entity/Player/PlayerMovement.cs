@@ -10,12 +10,15 @@ public class PlayerMovement : MonoBehaviour
     private InputManager _inputManager;
     private Rigidbody2D _rigidbody;
     
-    private void Awake()
+    private void OnEnable()
     {
         //Components
-        _inputManager = InputManager.Instance;
-        _rigidbody = GetComponent<Rigidbody2D>();
-        _visualTrm = transform.Find("Visual");
+        if (_inputManager == null)
+            _inputManager = InputManager.Instance;
+        if (_rigidbody == null)
+            _rigidbody = GetComponent<Rigidbody2D>();
+        if (_visualTrm == null)
+            _visualTrm = transform.Find("Visual");
         
         //Move
         _inputManager.MoveEvent += HandleMoveEvent;

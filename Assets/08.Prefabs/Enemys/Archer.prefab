@@ -191,8 +191,7 @@ MonoBehaviour:
   rigid: {fileID: 405775576880416005}
   _collider: {fileID: 6740626668149264377}
   Player: {fileID: 4661358808514894030, guid: 009f0ff0af583264889bbaf5f2ae9a5d, type: 3}
-  _arrow: {fileID: 4672251512579532059, guid: 551f4c1aea85ef44ab9681431663a30f, type: 3}
-  _speed: 0.1
+  _speed: 0.05
   _maxHp: 100
   _hp: 0
   _defense: 0
@@ -205,9 +204,11 @@ MonoBehaviour:
   _enemyStatus: 0
   ReconRange: {x: 0, y: 0, z: 0}
   EnemyHealth: {fileID: 0}
-  HPSlider: {fileID: 0}
+  HPSlider: {fileID: 3935420175710341301, guid: c069f285d37714745b1ed5a3ab0760f7, type: 3}
   HPSlider_Pre: {fileID: 3935420175710341301, guid: c069f285d37714745b1ed5a3ab0760f7, type: 3}
+  dropItem: {fileID: 6149852821336674973, guid: 9da8b98ba9932624294164adcdf96601, type: 3}
   tlqk: {x: 0, y: 0}
+  _arrow: {fileID: 7404453635826244510, guid: 551f4c1aea85ef44ab9681431663a30f, type: 3}
 --- !u!50 &405775576880416005
 Rigidbody2D:
   serializedVersion: 4
@@ -234,7 +235,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 7
+  m_Constraints: 4
 --- !u!61 &6740626668149264377
 BoxCollider2D:
   m_ObjectHideFlags: 0
