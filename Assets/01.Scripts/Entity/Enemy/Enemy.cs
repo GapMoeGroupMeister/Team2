@@ -13,7 +13,7 @@ public abstract class Enemy : MonoBehaviour
 
     [SerializeField] protected float _speed;
     [SerializeField] protected int _defense;
-    [SerializeField] protected int _damage;
+    [SerializeField] public int _damage;
     [SerializeField] protected float _attackDistance;
     [SerializeField] protected int _attackSpeed;
     [SerializeField] protected int _findDistance_x;
