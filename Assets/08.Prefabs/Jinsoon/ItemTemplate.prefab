@@ -50,8 +50,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10e037062bef79e4d82b52e2d23b8811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSO: {fileID: 11400000, guid: e066ad1982ed3cb49844b37aa3ce340f, type: 2}
+  itemSO: {fileID: 0}
   itemAmount: 1
+  canPlace: 1
+  assignedSlotList: []
 --- !u!1 &7588579798858453068
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryManager : MonoBehaviour
+public class InventoryManager : MonoSingleton<InventoryManager>
 {
-    public static InventoryManager Instance;
-
     public Vector2 slotSize;
+    public Inventory curSelectingInventory;
 
 
     [HideInInspector]
@@ -14,12 +11,5 @@ public class InventoryManager : MonoBehaviour
 
     [HideInInspector]
     public Item curSelectingItem;
-
-    private void Awake()
-    {
-        if (Instance != null)
-            Destroy(Instance);
-
-        Instance = this;
-    }
+    
 }

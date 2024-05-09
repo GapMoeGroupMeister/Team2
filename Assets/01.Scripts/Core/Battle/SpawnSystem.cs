@@ -5,6 +5,11 @@ public class SpawnSystem : MonoBehaviour
     [SerializeField] private GameObject[] _enemyPrefabs;
     [SerializeField] private Transform[] _spawnPositions;
     [SerializeField] private int enemyCount;
+    
+    private void Start()
+    {
+        Invoke("EnemySpawn", 1f);
+    }
 
     void EnemySpawn()
     {

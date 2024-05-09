@@ -1,12 +1,8 @@
-using UnityEngine;
-
-public class Sword : Weapon
+public class Shield : Weapon
 {
-    [SerializeField] private float _swordAttackSpeed = 60f;
-
-    protected override void Awake()
+    protected override void OnEnable()
     {
-        base.Awake();
+        base.OnEnable();
     }
 
     protected override void OnAttack()

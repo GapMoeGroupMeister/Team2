@@ -97,10 +97,4 @@ public class InteractionObject : InteractionObjType
             }
         }
     }
-
-
-    protected override void PickedUp()
-    {
-        base.PickedUp();
-    }
 }

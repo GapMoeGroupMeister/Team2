@@ -7,10 +7,9 @@ public class Spear : Weapon
     [SerializeField] private float _spearAttackSpeed = 0.8f;
     private Transform _visualTrm;
 
-    protected override void Awake()
+    protected override void OnEnable()
     {
-        base.Awake();
-        _visualTrm = transform.Find("Visual");
+        base.OnEnable();
     }
 
     protected override void OnAttack()

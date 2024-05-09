@@ -2,7 +2,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -56,7 +55,6 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         if (setItem && canPlace)
         {
-            Debug.Log("¹Ö¹Ö¹Ö!!!");
             owner.inventorySlots[x, y].SetItem(curItem, canPlace);
         }
     }
@@ -105,7 +103,6 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         int sizeX = item.itemSize.x;
         int sizeY = item.itemSize.y;
 
-        Debug.Log("¸Á!");
         for (int i = 0; i < owner.inventorySlots.GetLength(1); i++)
         {
             for (int j = 0; j < owner.inventorySlots.GetLength(0); j++)
@@ -153,6 +150,8 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             itemPos.y += item.SellSize.y * (sizeY - 1) / 2;
         }
 
+        Debug.Log(rect.localPosition);
+        Debug.Log(itemPos);
         item.SetPosition(itemPos);
     }
 
