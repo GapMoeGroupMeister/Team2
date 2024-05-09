@@ -30,4 +30,10 @@ public class DropItem : InteractionObject
             PickedUp();
         }
     }
+    
+    protected override void PickedUp()
+    {
+        base.PickedUp();
+        InventoryManager.Instance.curSelectingInventory.SetItem(itemData);
+    }
 }
