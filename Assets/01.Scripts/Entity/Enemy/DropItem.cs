@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
@@ -29,5 +27,11 @@ public class DropItem : InteractionObject
         {
             PickedUp();
         }
+    }
+    
+    protected override void PickedUp()
+    {
+        base.PickedUp();
+        InventoryManager.Instance.curSelectingInventory.SetItem(itemData);
     }
 }

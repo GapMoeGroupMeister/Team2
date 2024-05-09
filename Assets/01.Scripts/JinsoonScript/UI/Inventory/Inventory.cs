@@ -1,10 +1,7 @@
-using EasySave;
 using EasySave.Json;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class Inventory : MonoBehaviour
 {
@@ -135,7 +132,7 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        //ÀÌ°Å ³ªÁß¿¡ prettyPrint false·Î ¤¢
+        //ì´ê±° ë‚˜ì¤‘ì— prettyPrint falseë¡œ ã„²
         EasyToJson.ToJson(saves, "MyInventory", true);
 
         Load();
