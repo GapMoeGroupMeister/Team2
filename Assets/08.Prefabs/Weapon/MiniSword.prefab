@@ -289,4 +289,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackDelayTime: 1
   _attackEffect: {fileID: 2410648794796416954}
-  attackValue: 2
+  attackValue: 20

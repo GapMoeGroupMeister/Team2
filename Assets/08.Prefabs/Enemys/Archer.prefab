@@ -130,10 +130,10 @@ GameObject:
   - component: {fileID: 5372072842224338732}
   - component: {fileID: 8298540001899919081}
   - component: {fileID: 405775576880416005}
-  - component: {fileID: 5724877692927224232}
   - component: {fileID: 2204126847274326616}
   - component: {fileID: 5399523096733633541}
   - component: {fileID: -6182756883338096735}
+  - component: {fileID: 479292760521067846}
   m_Layer: 8
   m_Name: Archer
   m_TagString: Enemy
@@ -170,29 +170,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8afd4f08e36ff94aaef780e352b3eec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigid: {fileID: 405775576880416005}
-  Player: {fileID: 4661358808514894030, guid: 009f0ff0af583264889bbaf5f2ae9a5d, type: 3}
   _attackRange: 5
-  _whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 0
-  _speed: 0.05
-  _defense: 0
-  _damage: 2
-  _attackDistance: 1
-  _attackSpeed: 1
-  _findDistance_x: 15
-  _findDistance_y: 5
-  _playerTransform: {fileID: 0}
-  _enemyStatus: 0
-  ReconRange: {x: 0, y: 0, z: 0}
+  _damage: 1
   EnemyHealth: {fileID: 2204126847274326616}
+  _attackDelay: 5
+  _playerTransform: {fileID: 0}
   HPSlider: {fileID: 3935420175710341301, guid: c069f285d37714745b1ed5a3ab0760f7, type: 3}
-  HPSlider_Pre: {fileID: 3935420175710341301, guid: c069f285d37714745b1ed5a3ab0760f7, type: 3}
+  HPSlider_Pre: {fileID: -9221016340474550520, guid: e4c8bf6c384cb7d46a55d9636e7accfb, type: 3}
   dropItem: {fileID: 6149852821336674973, guid: 9da8b98ba9932624294164adcdf96601, type: 3}
   _deadEffect: {fileID: 4056856539430600056, guid: b50aa586c10926646bd86217208d9a4a, type: 3}
-  tlqk: {x: 0, y: 0}
-  _arrow: {fileID: 7404453635826244510, guid: 551f4c1aea85ef44ab9681431663a30f, type: 3}
+  _arrowPrefab: {fileID: 7404453635826244510, guid: 551f4c1aea85ef44ab9681431663a30f, type: 3}
 --- !u!50 &405775576880416005
 Rigidbody2D:
   serializedVersion: 4
@@ -220,51 +207,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &5724877692927224232
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1359420475927455222}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!114 &2204126847274326616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,6 +373,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!195 &479292760521067846
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359420475927455222}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1001 &272078459693270803
 PrefabInstance:
   m_ObjectHideFlags: 0

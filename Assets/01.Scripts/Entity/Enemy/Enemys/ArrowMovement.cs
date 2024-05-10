@@ -7,18 +7,21 @@ public class ArrowMovement : MonoBehaviour
     [SerializeField] protected float _speed;
     public float _damage;
     
-    public Archers archers;
-    
-    void Start()
-    {
-        rigid.AddForce(archers.tlqk.normalized * _speed, ForceMode2D.Impulse);
-        transform.right = archers.tlqk;
-        StartCoroutine(Wait());
-    }
+    public Archer archer;
 
+    private bool isInit = false;
+    
+    public void Init()
+    {
+        rigid.AddForce(archer.OwnerToPlayerDirection * _speed, ForceMode2D.Impulse);
+        transform.right = archer.OwnerToPlayerDirection;
+        StartCoroutine(Wait());
+        isInit = true;
+    }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        if (isInit == false) return;
         if (collision.gameObject.CompareTag("Player"))
         {
             if (collision.TryGetComponent(out DefaultHealthSystem healthSystem))
@@ -29,11 +32,9 @@ public class ArrowMovement : MonoBehaviour
         }
     }
 
-
-
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(10f);
         Destroy(gameObject);
     }
 }

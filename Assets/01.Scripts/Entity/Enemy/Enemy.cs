@@ -1,140 +1,73 @@
+using System;
 using System.Collections;
 using UnityEngine;
-using Random = UnityEngine.Random;
-using HealthSystem = Crogen.HealthSystem.HealthSystem;
+using UnityEngine.AI;
 
-
+[RequireComponent(typeof(NavMeshAgent))]
 public abstract class Enemy : MonoBehaviour
 {
-    [SerializeField] protected Rigidbody2D rigid;
-    [SerializeField] protected GameObject Player;
-    [SerializeField] protected float _attackRange = 5f;
-    [SerializeField] protected LayerMask _whatIsPlayer;
-    [SerializeField] protected float _speed;
-    [SerializeField] protected int _defense;
+    [SerializeField] private float _attackRange = 5f;
     [SerializeField] public int _damage;
-    [SerializeField] protected float _attackDistance;
-    [SerializeField] protected int _attackSpeed;
-    [SerializeField] protected int _findDistance_x;
-    [SerializeField] protected int _findDistance_y;
-    [SerializeField] protected Transform _playerTransform;
-    [SerializeField] protected EnemeyStatus _enemyStatus;
-    [SerializeField] protected Vector3 ReconRange;
     [SerializeField] protected DefaultHealthSystem EnemyHealth;
-    //[SerializeField] protected Transform Owner;
+    [SerializeField] protected float _attackDelay = 5f;
+    protected float _curAttackDelay = 0;
+    [SerializeField] protected Transform _playerTransform;
+    
     [SerializeField] protected EnemyHpUI HPSlider;
     [SerializeField] protected EnemyHpUI HPSlider_Pre;
     
     [SerializeField] protected DropItem dropItem;
     [SerializeField] protected ParticleSystem _deadEffect;
-    
+    private NavMeshAgent _agent;
     protected AudioSource _dieSound;
+
+    public Vector2 OwnerToPlayerDirection { get; private set; }
+    protected event Action _attackEvent; 
     
-    public Vector2 tlqk;
-
-    float Timer;
-
-    /* �ؾ��Ұ�
-     * �� ���� �� �̵����� ���ϱ�
-     * �÷��̾� �ϼ��Ǹ� Attack �ϼ��ϱ�
-     * Dided �ϼ��ϱ�
-     * Find �ϼ��ϱ�
-     */
-
-    private void Awake()
+    
+    protected virtual void Awake()
     {
+        _agent = GetComponent<NavMeshAgent>();
         EnemyHealth = GetComponent<DefaultHealthSystem>();
-        Player = GameManager.Instance.PlayerController.gameObject;
+        
         _playerTransform = GameManager.Instance.PlayerController.transform;
+        
         HPSlider = Instantiate(HPSlider_Pre, transform);
         HPSlider.transform.localPosition = new Vector3(0, 1, 0);
         HPSlider.Init(EnemyHealth);
-        ReconRange = transform.position;
-        //Owner = transform;
+        _agent.updateRotation = false;
+        _agent.updateUpAxis = false;
         
         _dieSound = GetComponent<AudioSource>();
-        EnemyHealth.hpChangeEvent.AddListener(Dided);
+        EnemyHealth.dieEvent.AddListener(HandleDieEvent);
+
+        InputManager.Instance.MoveEvent += HandleFollowPlayer;
+    }
+
+    private void OnDestroy()
+    {
+        InputManager.Instance.MoveEvent -= HandleFollowPlayer;
     }
 
     private void Update()
     {
-        Timer += Time.deltaTime;
-        Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, _attackRange, _whatIsPlayer);
-        if (col != null)
-        {
-            _enemyStatus = EnemeyStatus.Suspicious;
-        }
-    }
-    
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if(gameObject.activeSelf)
-            StartCoroutine(Wait());
+        OwnerToPlayerDirection = (_playerTransform.position - transform.position).normalized;
+        _curAttackDelay += Time.deltaTime;
     }
 
-    
-    protected void Move(EnemeyStatus enemyStatus)
+    private void HandleFollowPlayer(Vector2 vec)
     {
-        switch (enemyStatus)
+        _agent.destination = _playerTransform.position;
+        float distance = Vector2.Distance(_playerTransform.position, transform.position);
+        if (distance < _attackRange && _curAttackDelay > _attackDelay)
         {
-            case EnemeyStatus.Attack: // �߰� ���� ��
-                StartCoroutine(ReconCoroutine());
-                break;
-            case EnemeyStatus.Recon: // ���� ���� ��
-                // �ڱ��߽� 20*20(�ӽ�) ũ���� ���� �� ���� �������� �����ؼ� ���ƴٴ�
-                if (transform.position == ReconRange || Timer > 20f)
-                {
-                    ReconRange = new Vector2(Random.Range(-10f, 10f), Random.Range(-10f, 10f));
-                    Timer = 0;
-                }
-                transform.position = Vector2.MoveTowards(transform.position, ReconRange, _speed);
-                break;
-            case EnemeyStatus.Suspicious: // �Ҹ��� ����� ��
-                // ���� ��ġ���� �Ҹ��� �� ��ġ�� �̵�
-                transform.position = Vector2.MoveTowards(transform.position, new Vector2(1, 1), _speed);
-                break;
+            _curAttackDelay = 0;
+            _attackEvent?.Invoke();
         }
-
     }
 
-    private IEnumerator ReconCoroutine()
+    private void HandleDieEvent()
     {
-        tlqk = GameManager.Instance.PlayerController.transform.position - transform.position;
-        // �ü� ���� ����
-        if (gameObject.CompareTag("Enemy_archers")) // �±׷� ����
-        {
-            if (Timer >= _attackSpeed)
-            {
-                Timer = 0;
-                Attack_archers();
-            }
-        }
-        // �÷��̾ ��� �i�ƴٴ�
-        if (Vector2.Distance(transform.position, GameManager.Instance.PlayerController.transform.position) <= _attackDistance)
-        {
-            if (Timer >= _attackSpeed)
-            {
-                Timer = 0;
-                Attack();
-            }
-        }
-        transform.position = Vector2.MoveTowards
-            (transform.position, 
-                GameManager.Instance.PlayerController.transform.position, 
-                _speed * 2);
-        yield return new WaitUntil(() => Vector2.Distance(transform.position, GameManager.Instance.PlayerController.transform.position) > _attackDistance);
-        transform.position = transform.position;
-        yield return new WaitForSeconds(0.5f);
-        transform.position = Vector2.MoveTowards(transform.position, GameManager.Instance.PlayerController.transform.position, _speed * 2);
-    }
-
-    
-
-    protected void Dided()
-    {
-        // �״� �ִϸ��̼�
-
-        // �� ĳ���Ϳ� �ش��ϴ� ��ü ����
         StartCoroutine(DieCoroutine());
     }
 
@@ -146,37 +79,5 @@ public abstract class Enemy : MonoBehaviour
         ps.Play();
         yield return new WaitUntil(() => !_dieSound.isPlaying);
         Destroy(gameObject);
-    }
-
-    protected void Attack()
-    {
-        // Enemy가 0,0으로 모인다 뭐지??
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, tlqk.normalized, _attackDistance);
-        if(hit.transform != null)
-        {
-            if (hit.transform.TryGetComponent(out DefaultHealthSystem healthSystem))
-            {
-                healthSystem.Hp -= _damage;
-            }
-        }
-        
-        // ���� �ִϸ��̼�
-    }
-
-    protected virtual void Attack_archers()
-    {
-        // ���� �ִϸ��̼�
-    }
-
-    protected IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(4);
-        _enemyStatus = EnemeyStatus.Recon;
-    }
-
-    protected enum EnemeyStatus
-    {
-        Attack, Recon, Suspicious
-             //  ����    ������
     }
 }

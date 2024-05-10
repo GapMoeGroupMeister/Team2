@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackDelayTime: 8
   _attackEffect: {fileID: 1681403796196791843}
-  attackValue: 10
+  attackValue: 50
   playerArrow: {fileID: 0}
 --- !u!1 &1681403796196791843
 GameObject:

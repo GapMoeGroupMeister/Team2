@@ -50,7 +50,7 @@ MonoBehaviour:
   _attackEffect: {fileID: 5974092210087922216}
   attackValue: 3
   _spearRange: 4.2
-  _spearAttackSpeed: 0.8
+  _spearAttackSpeed: 30
 --- !u!1 &2824924608460540129
 GameObject:
   m_ObjectHideFlags: 0

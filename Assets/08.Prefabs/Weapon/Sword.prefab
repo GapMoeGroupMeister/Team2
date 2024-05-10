@@ -294,7 +294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackDelayTime: 2
   _attackEffect: {fileID: 0}
-  attackValue: 2
+  attackValue: 30
 --- !u!1 &2477046055416793377
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -4299941991524138835}
   - component: {fileID: 755935242422795037}
   - component: {fileID: 1984864167084165308}
+  - component: {fileID: 1589944213925977218}
   m_Layer: 8
   m_Name: Feeler
   m_TagString: Enemy
@@ -123,28 +124,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23e3bc36a7df6744e9cf46735532627e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigid: {fileID: 4024256234405855228}
-  Player: {fileID: 0}
   _attackRange: 5
-  _whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 0
-  _speed: 0.05
-  _defense: 0
-  _damage: 5
-  _attackDistance: 0
-  _attackSpeed: 1
-  _findDistance_x: 10
-  _findDistance_y: 5
-  _playerTransform: {fileID: 0}
-  _enemyStatus: 0
-  ReconRange: {x: 0, y: 0, z: 0}
+  _damage: 1
   EnemyHealth: {fileID: -4299941991524138835}
+  _attackDelay: 5
+  _playerTransform: {fileID: 0}
   HPSlider: {fileID: 0}
   HPSlider_Pre: {fileID: 3935420175710341301, guid: c069f285d37714745b1ed5a3ab0760f7, type: 3}
   dropItem: {fileID: 6149852821336674973, guid: 9da8b98ba9932624294164adcdf96601, type: 3}
   _deadEffect: {fileID: 4056856539430600056, guid: b50aa586c10926646bd86217208d9a4a, type: 3}
-  tlqk: {x: 0, y: 0}
 --- !u!114 &-4299941991524138835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,6 +299,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!195 &1589944213925977218
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6825581175632476641}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &8040921582901394498
 GameObject:
   m_ObjectHideFlags: 0

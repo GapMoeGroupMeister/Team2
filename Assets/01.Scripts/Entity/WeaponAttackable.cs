@@ -14,7 +14,6 @@ public class WeaponAttackable : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log("공격");
             if (other.TryGetComponent(out DefaultHealthSystem healthSystem))
             {
                 healthSystem.Hp -= _parent.attackValue;

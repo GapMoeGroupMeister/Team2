@@ -287,7 +287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackDelayTime: 3
   _attackEffect: {fileID: 4169243860134757717}
-  attackValue: 5
+  attackValue: 50
 --- !u!114 &2256635454971232341
 MonoBehaviour:
   m_ObjectHideFlags: 0

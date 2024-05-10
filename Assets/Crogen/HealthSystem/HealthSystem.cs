@@ -8,9 +8,14 @@ namespace Crogen.HealthSystem
     public abstract class HealthSystem : MonoBehaviour
     {
         [Header("Hp Option")]
-        protected float _hp = 100.0f;
         public float maxHp = 100.0f;
-        
+        protected float _hp;
+
+        private void Awake()
+        {
+            _hp = maxHp;
+        }
+
         public float Hp
         {
             get => _hp;
