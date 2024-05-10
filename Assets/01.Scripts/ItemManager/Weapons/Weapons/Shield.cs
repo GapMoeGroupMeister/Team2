@@ -7,6 +7,7 @@ public class Shield : Weapon
 
     protected override void OnAttack()
     {
+        if (attackable==false) return;
         base.OnAttack();
     }
 

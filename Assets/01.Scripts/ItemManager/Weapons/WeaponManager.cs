@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -11,6 +12,11 @@ public class WeaponManager : MonoSingleton<WeaponManager>
     
     [SerializeField] private List<Weapon> _weaponPrefabs = new List<Weapon>();
     [SerializeField] private List<Weapon> _weaponObjList = new List<Weapon>();
+
+    [Space(25)] 
+    public List<float> attackDelayTime;
+    public List<float> curAttackDelayTime;
+    
     [SerializeField] private Weapon _curWeapon;
     public int currentWeapon;
     public Transform WeaponTrm { get; private set; }
@@ -37,6 +43,7 @@ public class WeaponManager : MonoSingleton<WeaponManager>
             _weaponObjList.Add(weapon);
             weapon.transform.SetParent(WeaponTrm);
             weapon.transform.localPosition = Vector3.zero;
+            _curWeapon = weapon;
             weapon.gameObject.SetActive(i==0);
         }
     }
@@ -55,9 +62,21 @@ public class WeaponManager : MonoSingleton<WeaponManager>
         
         _uiManager.SetCurrentWeapon(iconImage);
     }
-    
-    public Weapon GetCurrentWeapon()
+
+    private void Update()
     {
-        return _curWeapon;
+        for (int i = 0; i < curAttackDelayTime.Count; ++i)
+        {
+            if (curAttackDelayTime[i] < attackDelayTime[i])
+            {
+                curAttackDelayTime[i] += Time.deltaTime;
+            }
+            else
+            {
+                _weaponObjList[i].attackable = true;
+            }
+            if(_weaponObjList[i].attackable == true) continue;
+            _uiManager.SetCoolTimeImage(1-(curAttackDelayTime[currentWeapon]/attackDelayTime[currentWeapon]));
+        }
     }
 }

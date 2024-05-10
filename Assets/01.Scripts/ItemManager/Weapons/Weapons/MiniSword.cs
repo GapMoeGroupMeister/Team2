@@ -10,7 +10,7 @@ public class MiniSword : Weapon
 
     protected override void OnAttack()
     {
-        if (!_attackable) return;
+        if (attackable==false) return;
         Sequence seq = DOTween.Sequence();
         seq.AppendCallback(() =>
             {

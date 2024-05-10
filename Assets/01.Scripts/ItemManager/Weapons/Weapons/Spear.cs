@@ -14,7 +14,7 @@ public class Spear : Weapon
 
     protected override void OnAttack()
     {
-        if (!_attackable) return;
+        if (!attackable) return;
         Sequence seq = DOTween.Sequence();
         seq.AppendCallback(() =>
             {
@@ -29,5 +29,6 @@ public class Spear : Weapon
                 _inputManager.AttackDirectionEvent += HandleAttackDirection;
             });
         base.OnAttack();
+        Debug.Log("공격");
     }
 }

@@ -46,7 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 009a2bee1f78391478afac173c170745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackDelayTime: 2
+  weaponIndex: 3
+  attackable: 0
   _attackEffect: {fileID: 5974092210087922216}
   attackValue: 3
   _spearRange: 4.2

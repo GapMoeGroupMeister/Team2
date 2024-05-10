@@ -10,7 +10,7 @@ public class Sword : Weapon
 
     protected override void OnAttack()
     {
-        if (!_attackable) return;
+        if (!attackable) return;
         Sequence seq = DOTween.Sequence();
         seq.AppendCallback(() =>
             {

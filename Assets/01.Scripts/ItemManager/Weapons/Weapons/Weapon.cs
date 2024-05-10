@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] protected float _attackDelayTime = 0.5f;
-    private float _curAttackDelayTime = 0;
+    //Managements
+    protected GameManager _gameManager;
+    protected InputManager _inputManager;
+    private UIManager _uiManager;
+    private WeaponManager _weaponManager;
+
+    [SerializeField] private int weaponIndex;
 
     protected float _defultRotate;
-    protected bool _attackable;
+    public bool attackable;
     private bool _isAttack;
-    protected GameManager _gameManager;
+    
     protected PlayerController _player;
     protected Transform _visualTrm;
     public GameObject _attackEffect;
     public float attackValue;
-    protected InputManager _inputManager;
     public Vector2 AttackDirection { get; private set; }
 
     protected virtual void OnEnable()
@@ -23,6 +27,8 @@ public class Weapon : MonoBehaviour
         //Managements
         _gameManager = GameManager.Instance;
         _inputManager = _gameManager.InputManager;
+        _uiManager = UIManager.Instance;
+        _weaponManager = WeaponManager.Instance;
         
         //Trm
         _visualTrm = transform.Find("Visual");
@@ -40,8 +46,8 @@ public class Weapon : MonoBehaviour
 
     protected virtual void OnAttack()
     {
-        _attackable = false;
-        _curAttackDelayTime = 0;
+        attackable = false;
+        _weaponManager.curAttackDelayTime[weaponIndex] = 0;
         if(_attackEffect != null) 
             _attackEffect.SetActive(true);
         _isAttack = true;
@@ -51,17 +57,8 @@ public class Weapon : MonoBehaviour
     {
         if(_attackEffect != null) 
             _attackEffect.SetActive(false);
-        _visualTrm.DORotate(new Vector3(0, 0, _defultRotate), _attackDelayTime);
+        _visualTrm.DORotate(new Vector3(0, 0, _defultRotate), _weaponManager.attackDelayTime[weaponIndex]);
         _isAttack = false;
-    }
-
-    protected void Update()
-    {
-        if (!_attackable)
-        {
-            _curAttackDelayTime += Time.deltaTime;
-            _attackable = _curAttackDelayTime > _attackDelayTime;
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

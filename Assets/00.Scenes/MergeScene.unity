@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1806773651, guid: 8c16182265490a04ab4b676e95ddae16, type: 3}
+  m_Sprite: {fileID: -1507163148, guid: 8c16182265490a04ab4b676e95ddae16, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -683,6 +683,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 29494874}
+  - {fileID: 590811639}
   m_Father: {fileID: 1300831436}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -8288,10 +8289,21 @@ MonoBehaviour:
   - {fileID: -5243140204295238926, guid: 09443a4679d33044987782d839874eed, type: 3}
   - {fileID: 3646384215554570494, guid: 8a0007f239622d2458722ca291825c8f, type: 3}
   - {fileID: 6021434422554263160, guid: 54df9213af65fd64ea424675f55a8bc2, type: 3}
-  - {fileID: 5710819839272164229, guid: d89b19a04b5e3e546b43c906d1180a62, type: 3}
   - {fileID: 8974881230941832590, guid: 3e840c085b76d854fb9721c49c74701a, type: 3}
   - {fileID: 8450559992111833402, guid: 6a58cacea56f5454f85a7331916f666e, type: 3}
   _weaponObjList: []
+  attackDelayTime:
+  - 2
+  - 5
+  - 10
+  - 3
+  - 4
+  curAttackDelayTime:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   _curWeapon: {fileID: 0}
   currentWeapon: 0
 --- !u!1 &533902060
@@ -8401,6 +8413,81 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &590811638
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 590811639}
+  - component: {fileID: 590811641}
+  - component: {fileID: 590811640}
+  m_Layer: 5
+  m_Name: CooltimePercentFill
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &590811639
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590811638}
+  m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 351041215}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 240, y: 240}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &590811640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590811638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.70980394}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &590811641
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590811638}
+  m_CullTransparentMesh: 1
 --- !u!1 &601387450
 GameObject:
   m_ObjectHideFlags: 0
@@ -86351,6 +86438,7 @@ MonoBehaviour:
   _destroyedHpIcon: {fileID: -1539461385, guid: f1a56a8ccaa8a384e8f00c173e2419d6, type: 3}
   hpIcons: []
   weaponIcon: {fileID: 29494875}
+  _coolTimePercentFill: {fileID: 590811640}
 --- !u!1 &1473373492
 GameObject:
   m_ObjectHideFlags: 0
