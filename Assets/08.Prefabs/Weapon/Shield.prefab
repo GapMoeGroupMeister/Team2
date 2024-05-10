@@ -46,8 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52b8e6246d56914cbcc5a023d326fb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackDelayTime: 0.5
-  _curAttackDelayTime: 0
+  _attackDelayTime: 20
   _attackEffect: {fileID: 0}
   attackValue: 0
 --- !u!60 &7436356494133500773
@@ -94,11 +93,11 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.012079328, y: 0.4201951}
-      - {x: -0.35917237, y: 0.10366905}
-      - {x: -0.26164496, y: -0.34597832}
-      - {x: 0.21735483, y: -0.34597817}
-      - {x: 0.35111946, y: 0.09561661}
+    - - {x: 0.04772681, y: 0.6594197}
+      - {x: -0.6320378, y: 0.14104776}
+      - {x: -0.30649957, y: -0.36840564}
+      - {x: 0.28463674, y: -0.42073599}
+      - {x: 0.5641788, y: 0.18532583}
   m_UseDelaunayMesh: 0
 --- !u!1 &7211039184252792634
 GameObject:

@@ -8,7 +8,8 @@ public class InputManager : MonoSingleton<InputManager>
    public event Action AttackEvent;
    public event Action<Vector2> MoveEvent;
    public event Action<Vector2> AttackDirectionEvent;
-
+   public event Action ChangeWeaponEvent;
+   
    private void Awake()
    {
       _gameManager = GameManager.Instance;
@@ -20,6 +21,7 @@ public class InputManager : MonoSingleton<InputManager>
       OnAttack();
       OnMove();
       OnAttackDirection();
+      OnChangeWeapon();
    }
 
    private void OnAttack()
@@ -40,5 +42,11 @@ public class InputManager : MonoSingleton<InputManager>
    {
       Vector2 dir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
       MoveEvent?.Invoke(dir);
+   }
+
+   private void OnChangeWeapon()
+   {
+      if(Input.GetKeyDown(KeyCode.LeftShift))
+         ChangeWeaponEvent?.Invoke();
    }
 }

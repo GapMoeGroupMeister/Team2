@@ -10,6 +10,7 @@ public class UIManager : MonoSingleton<UIManager>
     [SerializeField] private Sprite _destroyedHpIcon;
     
     [SerializeField] private Image[] hpIcons;
+    [SerializeField] private Image weaponIcon;
     
     private void Awake()
     {
@@ -27,6 +28,7 @@ public class UIManager : MonoSingleton<UIManager>
         {
             hpIcons[i].sprite = _destroyedHpIcon;
         }
-        
     }
+
+    public void SetCurrentWeapon(Sprite sprite)=>weaponIcon.sprite = sprite;
 }

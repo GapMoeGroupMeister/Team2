@@ -1,8 +1,9 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class Bow : Weapon
 {
-    [SerializeField] private PlayerArrow playerArrow;
+    [SerializeField] private PlayerArrowMovement playerArrow;
 
     protected override void OnEnable()
     {
@@ -11,11 +12,22 @@ public class Bow : Weapon
 
     protected override void OnAttack()
     {
-        base.OnAttack();
-        PlayerArrow arrow = Instantiate(playerArrow, transform.position, Quaternion.identity);
+        if (!_attackable) return;
+        PlayerArrowMovement arrow = Instantiate(playerArrow, transform.position, Quaternion.identity);
         arrow.transform.up = AttackDirection;
-        arrow.Init(this);
-        arrow.OnAttack(AttackDirection);
+        arrow.Init(transform.position);
+        Sequence seq = DOTween.Sequence();
+        seq.AppendCallback(() =>
+            {
+                _inputManager.AttackDirectionEvent -= HandleAttackDirection;
+            })
+            .AppendInterval(0.1f)
+            .AppendCallback(base.EndAttack)
+            .AppendCallback(() =>
+            {
+                _inputManager.AttackDirectionEvent += HandleAttackDirection;
+            });
+        base.OnAttack();
     }
 
     protected override void EndAttack()

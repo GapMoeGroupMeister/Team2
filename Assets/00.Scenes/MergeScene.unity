@@ -67077,6 +67077,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyPrefabs:
   - {fileID: 1359420475927455222, guid: 3bbf5ddc75c562545a13ed2f775ae978, type: 3}
+  - {fileID: 6825581175632476641, guid: f630d1823049d84459c7f51832ef87ba, type: 3}
+  - {fileID: 4083817515648105490, guid: f25c98779c9bee643804edbadd5ea2be, type: 3}
   _spawnPositions:
   - {fileID: 1720599388}
   - {fileID: 2030249600}
@@ -86348,6 +86350,7 @@ MonoBehaviour:
   _healthyHpIcon: {fileID: -1785762570, guid: f1a56a8ccaa8a384e8f00c173e2419d6, type: 3}
   _destroyedHpIcon: {fileID: -1539461385, guid: f1a56a8ccaa8a384e8f00c173e2419d6, type: 3}
   hpIcons: []
+  weaponIcon: {fileID: 29494875}
 --- !u!1 &1473373492
 GameObject:
   m_ObjectHideFlags: 0

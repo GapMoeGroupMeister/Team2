@@ -14,15 +14,20 @@ public class Spear : Weapon
 
     protected override void OnAttack()
     {
-        base.OnAttack();
+        if (!_attackable) return;
         Sequence seq = DOTween.Sequence();
-        seq.Append(_visualTrm.DOLocalMoveY(1f, 0.15f))
-            .Append(_visualTrm.DOLocalMoveY(0f, 0.23f))
-            .AppendCallback(EndAttack);
-    }
-
-    protected override void EndAttack()
-    {
-        base.EndAttack(); 
+        seq.AppendCallback(() =>
+            {
+                _inputManager.AttackDirectionEvent -= HandleAttackDirection;
+            })
+            .Append(_visualTrm.DOLocalMoveY(1f, 0.1f))
+            .AppendInterval(0.05f)
+            .Append(_visualTrm.DOLocalMoveY(0, 0.1f))
+            .AppendCallback(base.EndAttack)
+            .AppendCallback(() =>
+            {
+                _inputManager.AttackDirectionEvent += HandleAttackDirection;
+            });
+        base.OnAttack();
     }
 }
