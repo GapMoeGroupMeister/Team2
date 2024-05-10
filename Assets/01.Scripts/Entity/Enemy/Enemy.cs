@@ -7,10 +7,9 @@ using HealthSystem = Crogen.HealthSystem.HealthSystem;
 public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] protected Rigidbody2D rigid;
-    [SerializeField] protected BoxCollider2D _collider;
     [SerializeField] protected GameObject Player;
-    
-
+    [SerializeField] protected float _attackRange = 5f;
+    [SerializeField] protected LayerMask _whatIsPlayer;
     [SerializeField] protected float _speed;
     [SerializeField] protected int _defense;
     [SerializeField] public int _damage;
@@ -43,7 +42,6 @@ public abstract class Enemy : MonoBehaviour
     private void Awake()
     {
         EnemyHealth = GetComponent<DefaultHealthSystem>();
-        _collider = GetComponentInChildren<BoxCollider2D>();
         Player = GameManager.Instance.PlayerController.gameObject;
         _playerTransform = GameManager.Instance.PlayerController.transform;
         HPSlider = Instantiate(HPSlider_Pre, transform);
@@ -58,6 +56,11 @@ public abstract class Enemy : MonoBehaviour
     private void Update()
     {
         Timer += Time.deltaTime;
+        Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, _attackRange, _whatIsPlayer);
+        if (col != null)
+        {
+            _enemyStatus = EnemeyStatus.Suspicious;
+        }
     }
     
     private void OnTriggerExit2D(Collider2D collision)

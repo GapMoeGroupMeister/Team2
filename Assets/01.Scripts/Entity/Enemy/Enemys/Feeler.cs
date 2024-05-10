@@ -4,7 +4,6 @@ public class Feeler : Enemy
 {
     private void Start()
     {
-        _collider.size = new Vector2(_findDistance_x, _findDistance_y);
         _enemyStatus = EnemeyStatus.Recon;
     }
 

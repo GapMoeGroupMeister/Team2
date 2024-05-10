@@ -94,6 +94,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2583812119625132310}
   - component: {fileID: 647753906455536995}
+  - component: {fileID: 8413150983344179187}
+  - component: {fileID: 9105428100999272676}
   m_Layer: 0
   m_Name: AttackEffect
   m_TagString: Untagged
@@ -168,6 +170,74 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &8413150983344179187
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4169243860134757717}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.83}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.12, y: 5.12}
+    newSize: {x: 5.12, y: 5.12}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.3389304, y: 1.4959412}
+      - {x: -0.014328212, y: 1.8267114}
+      - {x: -1.2710605, y: 1.6093698}
+      - {x: -2.3053384, y: 0.9029934}
+      - {x: -2.261511, y: 0.28866106}
+      - {x: 0.021345496, y: 1.3528554}
+      - {x: 2.0812051, y: 0.27749115}
+      - {x: 2.296984, y: 0.9704142}
+  m_UseDelaunayMesh: 0
+--- !u!114 &9105428100999272676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4169243860134757717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87f4fa9b68bdb4043a739935f1e5e482, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &8807386253109026826
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,7 +248,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2247850222215070120}
   - component: {fileID: 3646384215554570494}
-  - component: {fileID: -5397026911664591302}
+  - component: {fileID: 2256635454971232341}
   m_Layer: 0
   m_Name: BigSword
   m_TagString: Untagged
@@ -216,59 +286,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackDelayTime: 3
-  _curAttackDelayTime: 3
   _attackEffect: {fileID: 4169243860134757717}
   attackValue: 5
---- !u!60 &-5397026911664591302
-PolygonCollider2D:
+--- !u!114 &2256635454971232341
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8807386253109026826}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87f4fa9b68bdb4043a739935f1e5e482, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatIsEnemy:
     serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 1.3389304, y: 1.4959412}
-      - {x: -0.014328212, y: 1.8267114}
-      - {x: -1.2710605, y: 1.6093698}
-      - {x: -2.3053384, y: 0.9029934}
-      - {x: -2.261511, y: 0.28866106}
-      - {x: 0.021345496, y: 1.3528554}
-      - {x: 2.0812051, y: 0.27749115}
-      - {x: 2.296984, y: 0.9704142}
-  m_UseDelaunayMesh: 0
+    m_Bits: 256
