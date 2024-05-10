@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5907059746735764041}
   - component: {fileID: 5425560067191860520}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 647753906455536995}
   - component: {fileID: 8413150983344179187}
   - component: {fileID: 9105428100999272676}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AttackEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 2247850222215070120}
   - component: {fileID: 3646384215554570494}
   - component: {fileID: 2256635454971232341}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BigSword
   m_TagString: Untagged
   m_Icon: {fileID: 0}

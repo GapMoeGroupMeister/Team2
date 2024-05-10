@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out Enemy enemy))
         {
+            if (_defaultHealthSystem.Hp <= 0)
+                SceneManager.LoadScene("DieScene");
             _defaultHealthSystem.Hp -= enemy._damage;
         }
     }

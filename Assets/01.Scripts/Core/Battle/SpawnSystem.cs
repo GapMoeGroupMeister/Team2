@@ -6,13 +6,13 @@ public class SpawnSystem : MonoSingleton<SpawnSystem>
     [SerializeField] private Transform[] _spawnPositions;
     [SerializeField] private int enemyCount;
     
-    private void Start()
-    {
-        InvokeRepeating("EnemySpawn", 1f, 60f);
-    }
+    public bool isSpawn = false;
+    
 
     public void EnemySpawn()
-    {
+    {  
+        if (isSpawn) return;
+        isSpawn = true;
         enemyCount = Random.Range(7, 12);
 
         for (int i = 0; i <= enemyCount; i++)

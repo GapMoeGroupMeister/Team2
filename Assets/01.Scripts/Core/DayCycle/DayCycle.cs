@@ -51,11 +51,13 @@ public class DayCycle : MonoBehaviour
 
         if (currentTime == Time.Night)
         {
+            SpawnSystem.Instance.isSpawn = false;
             SettingDay(false, 42f);
             playerObj.transform.position = combatObj.transform.position;
         }
         else if(currentTime == Time.Day)
         {
+            SpawnSystem.Instance.EnemySpawn();
             SettingDay(true, 30f);
             combatObj.transform.position = playerObj.transform.position;
         }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3393282510590591331}
   - component: {fileID: 8480865767302974314}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AttackEffect_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 5435997743179836581}
   - component: {fileID: 5354772229135102112}
   - component: {fileID: 2795818465561884222}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AttackEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -305,7 +305,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4918366851237482652}
   - component: {fileID: 1166608883911363647}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AttackEffect_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -389,7 +389,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3475529427693408328}
   - component: {fileID: 298211441609071605}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}

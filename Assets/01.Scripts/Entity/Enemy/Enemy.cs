@@ -28,6 +28,8 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected DropItem dropItem;
     [SerializeField] protected ParticleSystem _deadEffect;
     
+    protected AudioSource _dieSound;
+    
     public Vector2 tlqk;
 
     float Timer;
@@ -50,6 +52,7 @@ public abstract class Enemy : MonoBehaviour
         ReconRange = transform.position;
         //Owner = transform;
         
+        _dieSound = GetComponent<AudioSource>();
         EnemyHealth.hpChangeEvent.AddListener(Dided);
     }
 
@@ -96,7 +99,7 @@ public abstract class Enemy : MonoBehaviour
 
     private IEnumerator ReconCoroutine()
     {
-        tlqk = _playerTransform.position - transform.position;
+        tlqk = GameManager.Instance.PlayerController.transform.position - transform.position;
         // �ü� ���� ����
         if (gameObject.CompareTag("Enemy_archers")) // �±׷� ����
         {
@@ -107,7 +110,7 @@ public abstract class Enemy : MonoBehaviour
             }
         }
         // �÷��̾ ��� �i�ƴٴ�
-        if (Vector2.Distance(transform.position, Player.transform.position) <= _attackDistance)
+        if (Vector2.Distance(transform.position, GameManager.Instance.PlayerController.transform.position) <= _attackDistance)
         {
             if (Timer >= _attackSpeed)
             {
@@ -115,11 +118,14 @@ public abstract class Enemy : MonoBehaviour
                 Attack();
             }
         }
-        transform.position = Vector2.MoveTowards(transform.position, _playerTransform.position, _speed * 2);
-        yield return new WaitUntil(() => Vector2.Distance(transform.position, _playerTransform.position) > _attackDistance);
+        transform.position = Vector2.MoveTowards
+            (transform.position, 
+                GameManager.Instance.PlayerController.transform.position, 
+                _speed * 2);
+        yield return new WaitUntil(() => Vector2.Distance(transform.position, GameManager.Instance.PlayerController.transform.position) > _attackDistance);
         transform.position = transform.position;
         yield return new WaitForSeconds(0.5f);
-        transform.position = Vector2.MoveTowards(transform.position, _playerTransform.position, _speed * 2);
+        transform.position = Vector2.MoveTowards(transform.position, GameManager.Instance.PlayerController.transform.position, _speed * 2);
     }
 
     
@@ -129,14 +135,22 @@ public abstract class Enemy : MonoBehaviour
         // �״� �ִϸ��̼�
 
         // �� ĳ���Ϳ� �ش��ϴ� ��ü ����
+        StartCoroutine(DieCoroutine());
+    }
+
+    private IEnumerator DieCoroutine()
+    {
+        _dieSound.Play();
         Instantiate(dropItem, transform.position, Quaternion.identity);
         ParticleSystem ps = Instantiate(_deadEffect, transform.position, Quaternion.identity);
         ps.Play();
+        yield return new WaitUntil(() => !_dieSound.isPlaying);
         Destroy(gameObject);
     }
 
     protected void Attack()
     {
+        // Enemy가 0,0으로 모인다 뭐지??
         RaycastHit2D hit = Physics2D.Raycast(transform.position, tlqk.normalized, _attackDistance);
         if(hit.transform != null)
         {
