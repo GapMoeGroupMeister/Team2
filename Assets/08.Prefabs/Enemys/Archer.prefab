@@ -119,7 +119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3de9fb5a59ab2049a38ad7ba2312567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collider: {fileID: 6740626668149264377}
 --- !u!1 &1359420475927455222
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,12 +130,12 @@ GameObject:
   - component: {fileID: 5372072842224338732}
   - component: {fileID: 8298540001899919081}
   - component: {fileID: 405775576880416005}
-  - component: {fileID: 6740626668149264377}
   - component: {fileID: 5724877692927224232}
   - component: {fileID: 2204126847274326616}
+  - component: {fileID: 5399523096733633541}
   m_Layer: 8
   m_Name: Archer
-  m_TagString: Enemy_archers
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -171,8 +170,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigid: {fileID: 405775576880416005}
-  _collider: {fileID: 6740626668149264377}
   Player: {fileID: 4661358808514894030, guid: 009f0ff0af583264889bbaf5f2ae9a5d, type: 3}
+  _attackRange: 5
+  _whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 0
   _speed: 0.05
   _defense: 0
   _damage: 0
@@ -217,7 +219,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &6740626668149264377
+--- !u!61 &5724877692927224232
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -249,7 +251,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 3, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -262,7 +264,32 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!61 &5724877692927224232
+--- !u!114 &2204126847274326616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359420475927455222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4d63ed3b4335db4cbe4d5cd4a40b09b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 80
+  hpChangeEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  hpUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  hpDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  dieEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!61 &5399523096733633541
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -307,31 +334,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2204126847274326616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1359420475927455222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4d63ed3b4335db4cbe4d5cd4a40b09b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 80
-  hpChangeEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  hpUpEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  hpDownEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  dieEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1001 &272078459693270803
 PrefabInstance:
   m_ObjectHideFlags: 0

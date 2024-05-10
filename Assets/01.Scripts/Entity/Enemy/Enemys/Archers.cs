@@ -5,7 +5,6 @@ public class Archers : Enemy
     [SerializeField] private ArrowMovement _arrow;
     private void Start()
     {
-        _collider.size = new Vector2(_findDistance_x, _findDistance_y);
         _enemyStatus = EnemeyStatus.Recon;
     }
     private void FixedUpdate()
