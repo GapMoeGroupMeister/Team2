@@ -28,9 +28,9 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out Enemy enemy))
         {
+            _defaultHealthSystem.Hp -= enemy._damage;
             if (_defaultHealthSystem.Hp <= 0)
                 SceneManager.LoadScene("DieScene");
-            _defaultHealthSystem.Hp -= enemy._damage;
         }
     }
 }

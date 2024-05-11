@@ -17,7 +17,7 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void SetHpIcon(int hpValue, int maxHpValue)
     {
-        if (hpValue == 0) return;
+        if (hpValue <= 0) return;
         for (int i = 0; i < hpValue-1; ++i)
         {
             hpIcons[i].sprite = _healthyHpIcon;

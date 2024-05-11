@@ -294,8 +294,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponIndex: 4
   attackable: 0
-  _attackEffect: {fileID: 0}
-  attackValue: 30
+  _attackEffect: {fileID: 1386092872574617750}
+  attackValue: 50
 --- !u!1 &2477046055416793377
 GameObject:
   m_ObjectHideFlags: 0

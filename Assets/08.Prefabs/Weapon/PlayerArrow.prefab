@@ -319,4 +319,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigid: {fileID: 1536321599390364774}
   _speed: 20
-  _damage: 50
+  _damage: 80

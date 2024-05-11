@@ -286,8 +286,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponIndex: 1
+  attackable: 0
   _attackEffect: {fileID: 4169243860134757717}
-  attackValue: 50
+  attackValue: 100
 --- !u!114 &2256635454971232341
 MonoBehaviour:
   m_ObjectHideFlags: 0

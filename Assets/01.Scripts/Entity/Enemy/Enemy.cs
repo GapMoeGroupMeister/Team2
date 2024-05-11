@@ -40,21 +40,20 @@ public abstract class Enemy : MonoBehaviour
         
         _dieSound = GetComponent<AudioSource>();
         EnemyHealth.dieEvent.AddListener(HandleDieEvent);
-
+        EnemyHealth.hpChangeEvent.AddListener(HandleHpChangeEvent);
         InputManager.Instance.MoveEvent += HandleFollowPlayer;
     }
-
-    private void OnDestroy()
-    {
-        InputManager.Instance.MoveEvent -= HandleFollowPlayer;
-    }
-
     private void Update()
     {
         OwnerToPlayerDirection = (_playerTransform.position - transform.position).normalized;
         _curAttackDelay += Time.deltaTime;
     }
 
+    private void HandleHpChangeEvent()
+    {
+        HPSlider.transform.Find("Anchor").transform.localScale = new Vector3(EnemyHealth.Hp / EnemyHealth.maxHp, 1, 1);
+    }
+    
     private void HandleFollowPlayer(Vector2 vec)
     {
         _agent.destination = _playerTransform.position;
@@ -73,6 +72,7 @@ public abstract class Enemy : MonoBehaviour
 
     private IEnumerator DieCoroutine()
     {
+        InputManager.Instance.MoveEvent -= HandleFollowPlayer;
         _dieSound.Play();
         Instantiate(dropItem, transform.position, Quaternion.identity);
         ParticleSystem ps = Instantiate(_deadEffect, transform.position, Quaternion.identity);

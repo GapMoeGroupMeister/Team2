@@ -20,5 +20,4 @@ public class GameManager : MonoSingleton<GameManager>
     {
         _settingPanel.DOFade(0f, 0.5f).OnComplete(() => _settingPanel.gameObject.SetActive(false));
     }
-    
 }
